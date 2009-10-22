@@ -3,14 +3,14 @@
 import MySQLdb
 import sys
 
+if len(sys.argv) != 3:
+  print "import.py <user> <password>"
+  sys.exit(1)
+
 FILE = "adult.data"
 
 user = sys.argv[1]
 password = sys.argv[2]
-
-if len(sys.argv) != 3:
-  print "import.py <user> <password>"
-  sys.exit(1)
 
 def create_conn(db_user, db_password):
   return MySQLdb.connect(host = "localhost", user = db_user, passwd = db_password, db="adult", use_unicode = True, charset = 'utf8', unix_socket = "/tmp/mysql.sock")
