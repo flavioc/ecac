@@ -28,13 +28,10 @@ def add_new_adult(age, workclass, fnlwgt, education, education_num,
     marital_status, occupation, relationship, race, sex, capital_gain,
     capital_loss, hours_per_week, native_country, plus_50):
   cursor = db.cursor()
-  sql = '''
-  INSERT INTO adult(age, workclass, fnlwgt, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country, plus_50) VALUES (%s, '%s', %s, '%s', %s, '%s', '%s', '%s', '%s', '%s', %s, %s, %s, '%s', %s)
-    ''' \
+  sql = "INSERT INTO adult(age, workclass, fnlwgt, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country, plus_50) VALUES (%s, '%s', %s, '%s', %s, '%s', '%s', '%s', '%s', '%s', %s, %s, %s, '%s', %s)" \
                 % (age, workclass, fnlwgt, education, education_num,
                     marital_status, occupation, relationship, race, sex, capital_gain,
                     capital_loss, hours_per_week, native_country, plus_50)
-  #sys.stderr.write(sql + '\n')
   cursor.execute(sql)
   id = int(db.insert_id())
   db.commit()
@@ -76,19 +73,15 @@ def import_record(line):
     workclass = 'unknown'
   if occupation == '?':
     occupation = 'unknown'
-  #print occupation
   add_new_adult(age, workclass, fnlwgt, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country, plus_50)
 
 def import_file(file):
   f = open(file, 'r')
-
   for line in f:
     import_record(line)
-
   f.close()
 
 cleanup_database()
 import_file(FILE)
-#add_new_adult(22, 'private', 2, 'masters', 2, 'divorced', 'tech_support', 'husband', 'white', 'male', 2342, 23, 23, 'portugal')
 
 db.close()
