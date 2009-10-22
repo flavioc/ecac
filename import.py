@@ -44,6 +44,7 @@ def import_record(line):
   vec = line.split(', ')
   if len(vec) < 14:
     return
+
   age = vec[0]
   workclass = normalize_field(vec[1])
   fnlwgt = vec[2]
