@@ -11,9 +11,11 @@ data[data == "unknown"] <- NA
 
 ### turn strings into factors
 data$workclass <- factor(data$workclass)
+data$education <- factor(data$education)
 data$marital_status <- factor(data$marital_status)
 data$occupation <- factor(data$occupation)
 data$relationship <- factor(data$relationship)
 data$race <- factor(data$race)
 data$sex <- factor(data$sex)
 data$native_country <- factor(data$native_country)
+data$plus_50 <- factor(data$plus_50)
