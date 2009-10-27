@@ -1,0 +1,28 @@
+- Grafico com histograma das idades
+- Scatterplot de correlacao com idade e:
+  - capital_gain - capital_loss
+  - Se ganha >50K
+- Piechart dos seguintes campos:
+  - education
+  - marital Status
+  - workclass
+  - occupation
+  - relationship
+  - race
+  - sex
+  - country
+- Scatterplot entre hours per week e:
+  - capital_gain - capital_loss
+  - Se ganha >50K
+- Fazer um histograma por seccoes que mostre os campos em baixo, seccionados pela percentagem dos que ganham >50K:
+  - workclass
+  - education
+  - marital status
+  - occupation
+  - relationship
+  - race
+  - sex
+  - native country
+- Scatter plot com correlacao entre nivel de educacao e:
+  - capital_gain - capital_loss
+  - Se ganha >50K
