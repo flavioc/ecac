@@ -1,8 +1,8 @@
-- Grafico com histograma das idades
 - Scatterplot de correlacao com idade e:
   - capital_gain - capital_loss
   - Se ganha >50K
-- Piechart dos seguintes campos:
+- Histograma dos seguintes campos:
+  - age
   - education
   - marital Status
   - workclass
