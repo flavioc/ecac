@@ -20,11 +20,21 @@ data$native_country <- factor(data$native_country)
 data$plus_50        <- factor(data$plus_50)
 
 ### generates graphics
-generate_histogram <- function(data, filename, title) {
+generate_histogram <- function(data, filename, title) 
+{
     png(file=filename, bg="white")
     hist(data, prob=T, xlab="", main=title)
     lines(density(data, na.rm=T))
     rug(jitter(data))
+    dev.off()
+}
+
+generate_boxplot <- function(data, filename, title) 
+{
+    png(file=filename, bg="white")
+    boxplot(data, boxwex=0.15, ylab=title)
+    rug(jitter(data), side=2)
+    abline(h=mean(data, na.rm=T), lty=2)
     dev.off()
 }
 
@@ -34,4 +44,11 @@ generate_histogram(data$education_num, "histogram_education_num.png", "Education
 generate_histogram(data$capital_gain, "histogram_capital_gain.png", "Capital Gain Distribution")
 generate_histogram(data$capital_loss, "histogram_capital_loss.png", "Capital Loss Distribution")
 generate_histogram(data$hours_per_week, "histogram_hours_per_week.png", "Hours Per Week Distribution")
+
+generate_boxplot(data$age, "boxplot_age.png", "Age")
+generate_boxplot(data$fnlwgt, "boxplot_fnlwgt.png", "FNLWGT")
+generate_boxplot(data$education_num, "boxplot_education_num.png", "Education Num")
+generate_boxplot(data$capital_gain, "boxplot_capital_gain.png", "Capital Gain")
+generate_boxplot(data$capital_loss, "boxplot_capital_loss.png", "Capital Loss")
+generate_boxplot(data$hours_per_week, "boxplot_hours_per_week.png", "Hours Per Week")
 
