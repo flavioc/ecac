@@ -1,9 +1,3 @@
-- Scatterplot de correlacao com idade e:
-  - capital_gain - capital_loss
-  - Se ganha >50K
-- Scatterplot entre hours per week e:
-  - capital_gain - capital_loss
-  - Se ganha >50K
 - Fazer um histograma por seccoes que mostre os campos em baixo, seccionados pela percentagem dos que ganham >50K:
   - workclass
   - education

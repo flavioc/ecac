@@ -19,18 +19,25 @@ data$sex            <- factor(data$sex)
 data$native_country <- factor(data$native_country)
 data$plus_50        <- factor(data$plus_50)
 
-get_filename <- function (name) {
+get_filename <- function (name)
+{
   return(paste("R", "/", name, sep = ""))
 }
 
-proportion_table <- function (data, exclude = NULL) {
+proportion_table <- function (data, exclude = NULL)
+{
   return(prop.table(table(data, exclude = exclude)) * 100.0)
+}
+
+set_png_output <- function (filename)
+{
+  png(file=get_filename(filename), bg = "white")
 }
 
 ### generates graphics
 generate_histogram <- function(data, filename, title) 
 {
-    png(file=get_filename(filename), bg="white")
+    set_png_output(filename)
     hist(data, prob=T, xlab="", main=title)
     lines(density(data, na.rm=T))
     rug(jitter(data))
@@ -39,18 +46,32 @@ generate_histogram <- function(data, filename, title)
 
 generate_barplot <- function(data, filename, title, ymax = 12000)
 {
-  png(file = get_filename(filename), bg="white")
+  set_png_output(filename)
   barplot(data, xlab="", main=title, ylim = range(0, ymax))
   dev.off()
 }
 
 generate_boxplot <- function(data, filename, title) 
 {
-    png(file=get_filename(filename), bg="white")
+    set_png_output(filename)
     boxplot(data, boxwex=0.15, ylab=title)
     rug(jitter(data), side=2)
     abline(h=mean(data, na.rm=T), lty=2)
     dev.off()
+}
+
+generate_plot <- function (data1, data2, filename, title, xlab = NULL, ylab = NULL)
+{
+  set_png_output(filename)
+  plot(data1, data2, main = title, xlab = xlab, ylab = ylab)
+  dev.off()
+}
+
+generate_scatterplot <- function (data1, data2, filename, title, xlab = NULL, ylab = NULL)
+{
+  set_png_output(filename)
+  scatterplot(data1, data2, main = title, xlab = xlab, ylab = ylab)
+  dev.off()
 }
 
 generate_histogram(data$age, "histogram_age.png", "Age Distribution")
@@ -86,5 +107,15 @@ generate_boxplot(data$education_num, "boxplot_education_num.png", "Education Num
 generate_boxplot(data$capital_gain, "boxplot_capital_gain.png", "Capital Gain")
 generate_boxplot(data$capital_loss, "boxplot_capital_loss.png", "Capital Loss")
 generate_boxplot(data$hours_per_week, "boxplot_hours_per_week.png", "Hours Per Week")
+
+generate_plot(data$capital_gain, data$age, "plot_capital_gain_age.png", "Capital gain and age", xlab = "Capital gain", ylab = "Age")
+generate_plot(data$capital_loss, data$age, "plot_capital_loss_age.png", "Capital loss and age", xlab = "Capital loss", ylab = "Age")
+generate_plot(data$capital_gain - data$capital_loss, data$age, "plot_capital_result_age.png", "Capital result and age", xlab = "Capital result", ylab = "Age")
+generate_scatterplot(data$plus_50, data$age, "plot_plus_50_age.png", "Plus 50K and age", xlab = "> 50K", ylab = "Age")
+generate_scatterplot(data$hours_per_week, data$capital_gain, "plot_hpw_capital_gain.png", "Hours per week and capital gain", xlab = "Hours per week", ylab = "Capital gain")
+generate_scatterplot(data$hours_per_week, data$capital_loss, "plot_hpw_capital_loss.png", "Hours per week and capital loss", xlab = "Hours per week", ylab = "Capital loss")
+generate_scatterplot(data$hours_per_week, data$capital_gain - data$capital_loss, "plot_hpw_capital_result.png", "Hours per week and capital result", xlab = "Hours per week", ylab = "Capital result")
+generate_scatterplot(data$plus_50, data$hours_per_week, "plot_plus_50_hpw.png", "Plus 50 and hours per week", xlab = ">50K", ylab = "Hours per week")
+
 
 dbDisconnect(con)
