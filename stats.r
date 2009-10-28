@@ -23,6 +23,10 @@ get_filename <- function (name) {
   return(paste("R", "/", name, sep = ""))
 }
 
+proportion_table <- function (data) {
+  return(prop.table(table(data)) * 100.0)
+}
+
 ### generates graphics
 generate_histogram <- function(data, filename, title) 
 {
