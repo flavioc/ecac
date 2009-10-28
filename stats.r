@@ -33,6 +33,13 @@ generate_histogram <- function(data, filename, title)
     dev.off()
 }
 
+generate_barplot <- function(data, filename, title, ymax = 12000)
+{
+  png(file = get_filename(filename), bg="white")
+  barplot(data, xlab="", main=title, ylim = range(0, ymax))
+  dev.off()
+}
+
 generate_boxplot <- function(data, filename, title) 
 {
     png(file=get_filename(filename), bg="white")
@@ -49,6 +56,16 @@ generate_histogram(data$capital_gain, "histogram_capital_gain.png", "Capital Gai
 generate_histogram(data$capital_loss, "histogram_capital_loss.png", "Capital Loss Distribution")
 generate_histogram(data$hours_per_week, "histogram_hours_per_week.png", "Hours Per Week Distribution")
 
+generate_barplot(table(data$workclass), "barplot_workclass.png", "Work class", ymax = 25000)
+generate_barplot(table(data$education), "barplot_education.png", "Education")
+generate_barplot(table(data$marital_status), "barplot_marital_status.png", "Marital status", ymax = 20000)
+generate_barplot(table(data$occupation), "barplot_occupation.png", "Occupation", ymax = 5000)
+generate_barplot(table(data$relationship), "barplot_relationship.png", "Relationship", ymax = 15000)
+generate_barplot(table(data$sex), "barplot_sex.png", "Sex", ymax = 25000)
+generate_barplot(table(data$race), "barplot_race.png", "Race", ymax = 30000)
+generate_barplot(table(data$native_country), "barplot_native_country.png", "Native country (ALL)", ymax = 35000)
+generate_barplot(table(data$native_country, exclude = "united_states"), "barplot_native_country_no_us.png", "Native country (No united_states)", ymax = 800)
+
 generate_boxplot(data$age, "boxplot_age.png", "Age")
 generate_boxplot(data$fnlwgt, "boxplot_fnlwgt.png", "FNLWGT")
 generate_boxplot(data$education_num, "boxplot_education_num.png", "Education Num")
@@ -56,3 +73,4 @@ generate_boxplot(data$capital_gain, "boxplot_capital_gain.png", "Capital Gain")
 generate_boxplot(data$capital_loss, "boxplot_capital_loss.png", "Capital Loss")
 generate_boxplot(data$hours_per_week, "boxplot_hours_per_week.png", "Hours Per Week")
 
+dbDisconnect(con)
