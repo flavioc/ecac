@@ -19,10 +19,14 @@ data$sex            <- factor(data$sex)
 data$native_country <- factor(data$native_country)
 data$plus_50        <- factor(data$plus_50)
 
+get_filename <- function (name) {
+  return(paste("R", "/", name, sep = ""))
+}
+
 ### generates graphics
 generate_histogram <- function(data, filename, title) 
 {
-    png(file=filename, bg="white")
+    png(file=get_filename(filename), bg="white")
     hist(data, prob=T, xlab="", main=title)
     lines(density(data, na.rm=T))
     rug(jitter(data))
@@ -31,7 +35,7 @@ generate_histogram <- function(data, filename, title)
 
 generate_boxplot <- function(data, filename, title) 
 {
-    png(file=filename, bg="white")
+    png(file=get_filename(filename), bg="white")
     boxplot(data, boxwex=0.15, ylab=title)
     rug(jitter(data), side=2)
     abline(h=mean(data, na.rm=T), lty=2)
