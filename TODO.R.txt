@@ -1,7 +1,6 @@
 - Scatterplot de correlacao com idade e:
   - capital_gain - capital_loss
   - Se ganha >50K
-- Barplots com frequencias
 - Scatterplot entre hours per week e:
   - capital_gain - capital_loss
   - Se ganha >50K

@@ -23,8 +23,8 @@ get_filename <- function (name) {
   return(paste("R", "/", name, sep = ""))
 }
 
-proportion_table <- function (data) {
-  return(prop.table(table(data)) * 100.0)
+proportion_table <- function (data, exclude = NULL) {
+  return(prop.table(table(data, exclude = exclude)) * 100.0)
 }
 
 ### generates graphics
@@ -69,6 +69,16 @@ generate_barplot(table(data$sex), "barplot_sex.png", "Sex", ymax = 25000)
 generate_barplot(table(data$race), "barplot_race.png", "Race", ymax = 30000)
 generate_barplot(table(data$native_country), "barplot_native_country.png", "Native country (ALL)", ymax = 35000)
 generate_barplot(table(data$native_country, exclude = "united_states"), "barplot_native_country_no_us.png", "Native country (No united_states)", ymax = 800)
+
+generate_barplot(proportion_table(data$workclass), "barplot_workclass_prop.png", "Workclass", ymax = 100)
+generate_barplot(proportion_table(data$education), "barplot_education_prop.png", "Education", ymax = 100)
+generate_barplot(proportion_table(data$marital_status), "barplot_marital_status_prop.png", "Marital status", ymax = 100)
+generate_barplot(proportion_table(data$occupation), "barplot_occupation_prop.png", "Occupation", ymax = 100)
+generate_barplot(proportion_table(data$relationship), "barplot_relationship_prop.png", "Relationship", ymax = 100)
+generate_barplot(proportion_table(data$sex), "barplot_sex_prop.png", "Sex", ymax = 100)
+generate_barplot(proportion_table(data$race), "barplot_race_prop.png", "Race", ymax = 100)
+generate_barplot(proportion_table(data$native_country), "barplot_native_country_prop.png", "Native country (ALL)", ymax = 100)
+generate_barplot(proportion_table(data$native_country, exclude = "united_states"), "barplot_native_country_no_us_prop.png", "Native country (No united_states)", ymax = 100)
 
 generate_boxplot(data$age, "boxplot_age.png", "Age")
 generate_boxplot(data$fnlwgt, "boxplot_fnlwgt.png", "FNLWGT")
