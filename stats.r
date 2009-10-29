@@ -1,5 +1,6 @@
 ### loads the required libraries
 library(RMySQL)
+library(car)
 
 ### connects and loads the table data
 con <- dbConnect(dbDriver("MySQL"), dbname="adult", user="root", password="root")
@@ -112,10 +113,24 @@ generate_plot(data$capital_gain, data$age, "plot_capital_gain_age.png", "Capital
 generate_plot(data$capital_loss, data$age, "plot_capital_loss_age.png", "Capital loss and age", xlab = "Capital loss", ylab = "Age")
 generate_plot(data$capital_gain - data$capital_loss, data$age, "plot_capital_result_age.png", "Capital result and age", xlab = "Capital result", ylab = "Age")
 generate_scatterplot(data$plus_50, data$age, "plot_plus_50_age.png", "Plus 50K and age", xlab = "> 50K", ylab = "Age")
+
 generate_scatterplot(data$hours_per_week, data$capital_gain, "plot_hpw_capital_gain.png", "Hours per week and capital gain", xlab = "Hours per week", ylab = "Capital gain")
 generate_scatterplot(data$hours_per_week, data$capital_loss, "plot_hpw_capital_loss.png", "Hours per week and capital loss", xlab = "Hours per week", ylab = "Capital loss")
 generate_scatterplot(data$hours_per_week, data$capital_gain - data$capital_loss, "plot_hpw_capital_result.png", "Hours per week and capital result", xlab = "Hours per week", ylab = "Capital result")
 generate_scatterplot(data$plus_50, data$hours_per_week, "plot_plus_50_hpw.png", "Plus 50 and hours per week", xlab = ">50K", ylab = "Hours per week")
 
+generate_plot(data$occupation, data$plus_50, "plot_occupation_plus_50.png", "Occupation and plus 50K", xlab = "Occupation", ylab = ">50K")
+generate_plot(data$workclass, data$plus_50, "plot_workclass_plus_50.png", "Workclass and plus 50K", xlab = "Workclass", ylab = ">50K")
+generate_plot(data$education, data$plus_50, "plot_education_plus_50.png", "Education and plus 50K", xlab = "Education", ylab = ">50K")
+generate_plot(data$marital_status, data$plus_50, "plot_marital_status_plus_50.png", "Marital status and plus 50K", xlab = "Marital status", ylab = ">50K")
+generate_plot(data$relationship, data$plus_50, "plot_relationship_plus_50.png", "Relationship and plus 50K", xlab = "Relationship", ylab = ">50K")
+generate_plot(data$race, data$plus_50, "plot_race_plus_50.png", "Race and plus 50K", xlab = "Race", ylab = ">50K")
+generate_plot(data$sex, data$plus_50, "plot_sex_plus_50.png", "Sex and plus 50K", xlab = "Sex", ylab = ">50K")
+generate_plot(data$native_country, data$plus_50, "plot_native_country_plus_50.png", "Native country and plus 50K", xlab = "Native country", ylab = ">50K")
+
+generate_plot(data$education_num, data$capital_gain, "plot_education_num_capital_gain.png", "Education and capital gain", xlab = "Education", ylab = "Capital gain")
+generate_plot(data$education_num, data$capital_loss, "plot_education_num_capital_loss.png", "Education and capital loss", xlab = "Education", ylab = "Capital loss")
+generate_plot(data$education_num, data$capital_gain - data$capital_loss, "plot_education_num_capital_result.png", "Education and capital result", xlab = "Education", ylab = "Capital result")
+generate_plot(data$plus_50, data$education_num, "plot_plus_50_education_num.png", "Plus 50K and education", xlab = ">50K", ylab = "Education")
 
 dbDisconnect(con)

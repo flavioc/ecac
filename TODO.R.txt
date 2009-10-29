@@ -1,12 +1,2 @@
-- Fazer um histograma por seccoes que mostre os campos em baixo, seccionados pela percentagem dos que ganham >50K:
-  - workclass
-  - education
-  - marital status
-  - occupation
-  - relationship
-  - race
-  - sex
-  - native country
-- Scatter plot com correlacao entre nivel de educacao e:
-  - capital_gain - capital_loss
-  - Se ganha >50K
+- Melhorar aspecto dos plots (p.e. colocar as labels do eixo dos X na diagonal e a serem mostradas todas)
+- Melhorar aspecto do plot plot_native_country_plus_50
