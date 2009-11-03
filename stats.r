@@ -35,7 +35,7 @@ proportion_table <- function (data, exclude = NULL)
 
 set_png_output <- function (filename)
 {
-  png(file=get_filename(filename), bg = "white")
+  png(file=get_filename(filename), bg = "white", width = 1000, height = 800)
 }
 
 ### generates graphics
