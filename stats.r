@@ -38,11 +38,11 @@ set_png_output <- function (filename)
 ### generates graphics
 generate_histogram <- function(data, filename, title) 
 {
-    set_png_output(filename)
-    hist(data, prob=T, xlab="", main=title)
-    lines(density(data, na.rm=T))
-    rug(jitter(data))
-    dev.off()
+  set_png_output(filename)
+  hist(data, prob=T, xlab="", main=title)
+  lines(density(data, na.rm=T))
+  rug(jitter(data))
+  dev.off()
 }
 
 generate_barplot <- function(data, filename, title, ymax = 12000)
@@ -54,11 +54,11 @@ generate_barplot <- function(data, filename, title, ymax = 12000)
 
 generate_boxplot <- function(data, filename, title) 
 {
-    set_png_output(filename)
-    boxplot(data, boxwex=0.15, ylab=title)
-    rug(jitter(data), side=2)
-    abline(h=mean(data, na.rm=T), lty=2)
-    dev.off()
+  set_png_output(filename)
+  boxplot(data, boxwex=0.15, ylab=title)
+  rug(jitter(data), side=2)
+  abline(h=mean(data, na.rm=T), lty=2)
+  dev.off()
 }
 
 generate_plot <- function (data1, data2, filename, title, xlab = NULL, ylab = NULL)
