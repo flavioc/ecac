@@ -20,6 +20,9 @@ data$sex            <- factor(data$sex)
 data$native_country <- factor(data$native_country)
 data$plus_50        <- factor(data$plus_50)
 
+### data without values from the us
+data_no_us          <- data[data$native_country != "united_states",]
+
 get_filename <- function (name)
 {
   return(paste("R", "/", name, sep = ""))
@@ -127,6 +130,7 @@ generate_plot(data$relationship, data$plus_50, "plot_relationship_plus_50.png", 
 generate_plot(data$race, data$plus_50, "plot_race_plus_50.png", "Race and plus 50K", xlab = "Race", ylab = ">50K")
 generate_plot(data$sex, data$plus_50, "plot_sex_plus_50.png", "Sex and plus 50K", xlab = "Sex", ylab = ">50K")
 generate_plot(data$native_country, data$plus_50, "plot_native_country_plus_50.png", "Native country and plus 50K", xlab = "Native country", ylab = ">50K")
+generate_plot(data_no_us$native_country, data_no_us$plus_50, "plot_native_country_plus_50_no_us.png", "Native country and plus 50K (No united_states)", xlab = "Native country", ylab = ">50K")
 
 generate_plot(data$education_num, data$capital_gain, "plot_education_num_capital_gain.png", "Education and capital gain", xlab = "Education", ylab = "Capital gain")
 generate_plot(data$education_num, data$capital_loss, "plot_education_num_capital_loss.png", "Education and capital loss", xlab = "Education", ylab = "Capital loss")
