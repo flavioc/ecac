@@ -51,7 +51,11 @@ generate_histogram <- function(data, filename, title)
 generate_barplot <- function(data, filename, title, ymax = 12000)
 {
   set_png_output(filename)
+  old.las <- par("las")
+  old.mar <- par("mar")
+  par(las = 2, mar = c(10, 4, 4, 2) + 0.1)
   barplot(data, xlab="", main=title, ylim = range(0, ymax))
+  par(las = old.las, mar = old.mar)
   dev.off()
 }
 
@@ -67,7 +71,11 @@ generate_boxplot <- function(data, filename, title)
 generate_plot <- function (data1, data2, filename, title, xlab = NULL, ylab = NULL)
 {
   set_png_output(filename)
+  old.las <- par("las")
+  old.mar <- par("mar")
+  par(las = 2, mar = c(10, 4, 4, 2) + 0.1)
   plot(data1, data2, main = title, xlab = xlab, ylab = ylab)
+  par(las = old.las, mar = old.mar)
   dev.off()
 }
 
