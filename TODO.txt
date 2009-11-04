@@ -1,0 +1,2 @@
+- Gerar regras de associação usando o arules (há um exemplo com o nosso dataset no introduction to arules capitulo 5.2)
+- Gerar clusters usando o rapidminer
