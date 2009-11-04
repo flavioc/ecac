@@ -1,2 +1,0 @@
-- Melhorar aspecto dos plots (reduzir height das labels no eixo dos xx)
-- Melhorar aspecto do plot plot_native_country_plus_50
