@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<process version="4.6">
+
+  <operator name="Root" class="Process" expanded="yes">
+      <parameter key="logverbosity"	value="init"/>
+      <parameter key="random_seed"	value="2001"/>
+      <parameter key="send_mail"	value="never"/>
+      <parameter key="process_duration_for_mail"	value="30"/>
+      <parameter key="encoding"	value="SYSTEM"/>
+      <operator name="DatabaseExampleSource" class="DatabaseExampleSource">
+          <parameter key="work_on_database"	value="false"/>
+          <parameter key="database_system"	value="MySQL"/>
+          <parameter key="database_url"	value="jdbc:mysql://127.0.0.1:3306/adult"/>
+          <parameter key="username"	value="root"/>
+          <parameter key="password"	value="T1jEnNrhJik="/>
+          <parameter key="query"	value="SELECT * FROM `adult`"/>
+          <parameter key="id_attribute"	value="id"/>
+          <parameter key="datamanagement"	value="double_array"/>
+      </operator>
+      <operator name="Nominal2Numerical" class="Nominal2Numerical">
+          <parameter key="return_preprocessing_model"	value="false"/>
+          <parameter key="create_view"	value="false"/>
+      </operator>
+      <operator name="Normalization" class="Normalization">
+          <parameter key="return_preprocessing_model"	value="false"/>
+          <parameter key="create_view"	value="false"/>
+          <parameter key="method"	value="Z-Transformation"/>
+          <parameter key="min"	value="0.0"/>
+          <parameter key="max"	value="1.0"/>
+      </operator>
+      <operator name="AgglomerativeClustering" class="AgglomerativeClustering">
+          <parameter key="keep_example_set"	value="true"/>
+          <parameter key="mode"	value="SingleLink"/>
+          <parameter key="measure_types"	value="MixedMeasures"/>
+          <parameter key="mixed_measure"	value="MixedEuclideanDistance"/>
+          <parameter key="nominal_measure"	value="NominalDistance"/>
+          <parameter key="numerical_measure"	value="EuclideanDistance"/>
+          <parameter key="divergence"	value="GeneralizedIDivergence"/>
+          <parameter key="kernel_type"	value="radial"/>
+          <parameter key="kernel_gamma"	value="1.0"/>
+          <parameter key="kernel_sigma1"	value="1.0"/>
+          <parameter key="kernel_sigma2"	value="0.0"/>
+          <parameter key="kernel_sigma3"	value="2.0"/>
+          <parameter key="kernel_degree"	value="3.0"/>
+          <parameter key="kernel_shift"	value="1.0"/>
+          <parameter key="kernel_a"	value="1.0"/>
+          <parameter key="kernel_b"	value="0.0"/>
+      </operator>
+  </operator>
+
+</process>
