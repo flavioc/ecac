@@ -28,13 +28,56 @@ mining.
 \section{Formato dos Dados}
 
 O ``Adult Database'' consiste de 48842 entradas de informação de pessoas
-recolhida durante um censos de 1994 realizado no estado da Califórnia, nos
-Estados Unidos da América. Dos dados globais, foi extraída uma amostra
-representativa de pessoas com idades entre os 16 e os 100 anos e um peso
-superior a 1.
+recolhida durante um censos de 1994 realizado nos Estados Unidos da América. Dos
+dados globais, foi extraída uma amostra representativa de pessoas com idades
+entre os 16 e os 100 anos e um peso superior a 1.
+
+Cada entrada é composta por um conjunto de 14 atributos e por uma classe,
+identificando-a como uma pessoa que ganha mais ou menos de 50K. Os atributos e
+respectivos tipos são:
+
+\begin{itemize}
+  \item{\textbf{Age}: idade do indíviduo, sendo um tipo de dados contínuo.}
+  \item{\textbf{Workclass}: Classe operária do indivíduo, sendo um tipo de dados
+        categórico: [[Private], [Self-emp-not-inc], [Self-emp-inc], 
+        [Federal-gov], [Local-gov], [State-gov], [Without-pay], [Never-worked]]}
+  \item{\textbf{FNLWGT}: Medida demográfico do indíviduo. Sendo um tipo de dados
+        contínuo, deve ser próximo entre indivíduos com as mesmas
+        características sócio-económicas.}
+  \item{\textbf{Education}: Nível educacional do indivíduo, sendo um tipo de
+        dados ordinal: [1. [Preschool], 2. [1st-4th], 3. [5th-6th], 
+        4. [7th-8th], 5. [9th < 10th], 6. [11th < 12th], 7. [HS-grad], 
+        8. [Prof-school], 9. [Assoc-acdm], 10. [Assoc-voc], 11. [Some-college],
+        12. [Bachelors], 13. [Masters], 14. [Doctorate]]}
+  \item{\textbf{Education-num}: Representação numérica do atributo
+        \textbf{Education}, sendo um tipo de dados contínuo.}
+  \item{\textbf{Marital-status}: Estado civil do indivíduo, sendo um tipo de
+        dados categórico: [[Married-civ-spouse], [Divorced], [Never-married],
+        [Separated], [Widowed], [Married-spouse-absent], [Married-AF-spouse]]}
+  \item{\textbf{Occupation}: Área de ocupação profissional do indivíduo, sendo
+        um tipo de dados categórico: [[Tech-support], [Craft-repair],
+        [Other-service], [Sales], [Exec-managerial], [Prof-specialty], 
+        [Handlers-cleaners], [Machine-op-inspct], [Adm-clerical], 
+        [Farming-fishing], [Transport-moving], [Priv-house-serv], 
+        [Protective-serv], [Armed-Forces]]}
+  \item{\textbf{Relationship}: Tipo de relação familiar do indivíduo, sendo um
+        tipo de dados categórico: [[Wife], [Own-child], [Husband], 
+        [Not-in-family], [Other-relative], [Unmarried]]}
+  \item{\textbf{Race}: Raça do indivíduo, sendo um tipo de dados categórico: 
+      [[White], [Asian-Pac-Islander], [Amer-Indian-Eskimo], [Other], [Black]]}
+  \item{\textbf{Sex}: Sexo do indivíduo, sendo um tipo de dados categórico:
+      [[Male], [Female]]}
+  \item{\textbf{Capital-gain}: Ganho de capital do indivíduo, sendo um tipo de
+        dados contínuo}
+  \item{\textbf{Capital-loss}: Perda de capital do indivíduo, sendo um tipo de
+        dados contínuo}
+  \item{\textbf{Hours-per-week}: Horas de trabalho por semana do indivíduo,
+        sendo um tipo de dados contínuo}
+  \item{\textbf{Native-country}: Naturalidade do indivíduo, sendo um tipo de
+        dados categórico.}
+\end{itemize}
 
 \section{Análise dos Dados}
-
 \section{Trabalho Futuro}
 
 \section{Conclusões}
