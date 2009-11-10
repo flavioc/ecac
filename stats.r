@@ -5,6 +5,7 @@ library(car)
 ### connects and loads the table data
 con <- dbConnect(dbDriver("MySQL"), dbname="adult", user="root", password="root")
 data <- dbReadTable(con, "adult")
+dbDisconnect(con)
 
 ### replaces unknown with empty values for missing values processing
 data[data == "unknown"] <- NA
@@ -145,5 +146,3 @@ generate_plot(data$education_num, data$capital_gain, "plot_education_num_capital
 generate_plot(data$education_num, data$capital_loss, "plot_education_num_capital_loss.png", "Education and capital loss", xlab = "Education", ylab = "Capital loss", labeldist = 0)
 generate_plot(data$education_num, data$capital_gain - data$capital_loss, "plot_education_num_capital_result.png", "Education and capital result", xlab = "Education", ylab = "Capital result", labeldist = 0)
 generate_plot(data$plus_50, data$education_num, "plot_plus_50_education_num.png", "Plus 50K and education", xlab = ">50K", ylab = "Education", labeldist = 0)
-
-dbDisconnect(con)
