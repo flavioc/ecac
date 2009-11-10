@@ -1,11 +1,9 @@
 ### loads the required libraries
 library(RMySQL)
 library(car)
+source('common.r')
 
-### connects and loads the table data
-con <- dbConnect(dbDriver("MySQL"), dbname="adult", user="root", password="root")
-data <- dbReadTable(con, "adult")
-dbDisconnect(con)
+data <- get_dataset("root")
 
 ### replaces unknown with empty values for missing values processing
 data[data == "unknown"] <- NA
@@ -24,19 +22,9 @@ data$plus_50        <- factor(data$plus_50)
 ### data without values from the us
 data_no_us          <- data[data$native_country != "united_states",]
 
-get_filename <- function (name)
-{
-  return(paste("R", "/", name, sep = ""))
-}
-
 proportion_table <- function (data, exclude = NULL)
 {
   return(prop.table(table(data, exclude = exclude)) * 100.0)
-}
-
-set_png_output <- function (filename)
-{
-  png(file=get_filename(filename), bg = "white", width = 1000, height = 800)
 }
 
 ### generates graphics
