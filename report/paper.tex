@@ -332,7 +332,36 @@ indivíduos homens mais do dobro das mulheres.
 \includegraphics[width=11cm]{boxplot_hours_per_week.png}
 \caption{Boxplot da variável correspondente às horas de trabalho semanais}
 \label{fig:box_hours}
-\end{figure} %}
+\end{figure}
+
+Importa também verificar algumas correlações entre variáveis do dataset. Para
+isso, testamos algumas situações mais óbvias, como a influência que a idade,
+horas de trabalho semanais e nível educacional influenciam o ganho do indivíduo.
+As figuras \ref{fig:age_plus50}, \ref{fig:education_plus50} e 
+\ref{fig:hpw_plus50} mostram que existe uma tendência para que pessoas mais
+velhas, pessoas com um nível educacional mais elevado e pessoas que trabalham 
+mais horas por semana ganhem mais.
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{plot_plus_50_age.png}
+\caption{Boxplot da idade dos indivíduos, filtrado pelo ganho salarial}
+\label{fig:age_plus50}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{plot_plus_50_education_num.png}
+\caption{Boxplot do nível educacional dos indivíduos, filtrado pelo ganho salarial}
+\label{fig:education_plus50}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{plot_plus_50_hpw.png}
+\caption{Boxplot das horas de trabalho semanais, fitrado pelo ganho salarial}
+\label{fig:hpw_plus50}
+\end{figure}
 
 \subsection{Regras de associacao}
 
