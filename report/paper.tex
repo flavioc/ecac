@@ -2,13 +2,13 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{longtable}
-\usepackage[portuguese]{babel}
 \usepackage[latin1]{inputenc}
 \usepackage{subfigure}
+\usepackage{a4wide}
 \urldef{\mails}\path|{ei05011,ei05028}@fe.up.pt|
 \bibliographystyle{splncs}
 \begin{document}
-\title{Descrição do dataset ``Adult Database''}
+\title{Progress Report on the ``Adult Database'' analysis}
 \author{Flávio Cruz \and João Azevedo}
 \institute{Faculdade de Engenharia da Universidade do Porto\\
     Rua Dr. Roberto Frias, s/n 4200-465 Porto PORTUGAL
@@ -16,85 +16,98 @@
 \maketitle
 
 \begin{abstract}
-Usado de forma extremamente frequente em testes experimentais relacionados com
-data mining, a ``Adult Database'' reveste-se de algumas propriedades
-interessantes que a tornam bastante útil para o teste da eficácia de algoritmos
-de classificação. Este relatório pretende descrever a ``Adult Database'' de um
-ponto de vista estatístico e tendo em conta o seu suporte para tarefas de data
-mining.
+Highly frequent in experimental tests related to data mining, the Adult Database
+has some interesting properties which make it quite useful to test the 
+efficiency of classification algorithms. This report aims to describe the Adult
+Database from a statistical perspective and taking in account its support for
+data mining tasks.
 \end{abstract}
 
-\section{Introdução}
+\section{Introduction}
 
-\section{Formato dos Dados}
+\section{Data Format}
 
-O ``Adult Database'' consiste de 48842 entradas de informação de pessoas
-recolhida durante um censos de 1994 realizado nos Estados Unidos da América. Dos
-dados globais, foi extraída uma amostra representativa de pessoas com idades
-entre os 16 e os 100 anos e um peso superior a 1.
+The ``Adult Database'' consists of 48842 entries of individual information of 
+people gathered in a 1994 census on the United States of America. From the
+global collection of data, a representative sample was collected from people
+with ages between 16 and 100 and a final weight above 1.
 
-Cada entrada é composta por um conjunto de 14 atributos e por uma classe,
-identificando-a como uma pessoa que ganha mais ou menos de 50K. Os atributos e
-respectivos tipos são:
+Each entry is composed by a set of 14 attributes and a class, identifying
+persons who gain more or less than 50K. The attributes and types are:
 
 \begin{itemize}
-  \item{\textbf{Age}: idade do indíviduo, sendo um tipo de dados contínuo.}
-  \item{\textbf{Workclass}: Classe operária do indivíduo, sendo um tipo de dados
-        categórico: [[Private], [Self-emp-not-inc], [Self-emp-inc], 
-        [Federal-gov], [Local-gov], [State-gov], [Without-pay], [Never-worked]]}
-  \item{\textbf{FNLWGT}: Medida demográfico do indíviduo. Sendo um tipo de dados
-        contínuo, deve ser próximo entre indivíduos com as mesmas
-        características sócio-económicas.}
-  \item{\textbf{Education}: Nível educacional do indivíduo, sendo um tipo de
-        dados ordinal: [1. [Preschool], 2. [1st-4th], 3. [5th-6th], 
-        4. [7th-8th], 5. [9th < 10th], 6. [11th < 12th], 7. [HS-grad], 
-        8. [Prof-school], 9. [Assoc-acdm], 10. [Assoc-voc], 11. [Some-college],
-        12. [Bachelors], 13. [Masters], 14. [Doctorate]]}
-  \item{\textbf{Education-num}: Representação numérica do atributo
-        \textbf{Education}, sendo um tipo de dados contínuo.}
-  \item{\textbf{Marital-status}: Estado civil do indivíduo, sendo um tipo de
-        dados categórico: [[Married-civ-spouse], [Divorced], [Never-married],
-        [Separated], [Widowed], [Married-spouse-absent], [Married-AF-spouse]]}
-  \item{\textbf{Occupation}: Área de ocupação profissional do indivíduo, sendo
-        um tipo de dados categórico: [[Tech-support], [Craft-repair],
+  \item{\textbf{Age}: continuous.}
+  \item{\textbf{Workclass}: categorical: [[Private], [Self-emp-not-inc], 
+        [Self-emp-inc], [Federal-gov], [Local-gov], [State-gov], [Without-pay], 
+        [Never-worked]]}
+  \item{\textbf{FNLWGT}: continuous. Represents the final weight. People with 
+        the same demographical characteristics should have the same weight.}
+  \item{\textbf{Education}: ordinal: [1. [Preschool], 2. [1st-4th], 3. 
+        [5th-6th], 4. [7th-8th], 5. [9th < 10th], 6. [11th < 12th], 7. 
+        [HS-grad], 8. [Prof-school], 9. [Assoc-acdm], 10. [Assoc-voc], 11.
+        [Some-college], 12. [Bachelors], 13. [Masters], 14. [Doctorate]]}
+  \item{\textbf{Education-num}: continuous. Is a continuous representation of 
+        the \textbf{Education} attribute.}
+  \item{\textbf{Marital-status}: categorical: [[Married-civ-spouse], [Divorced],
+        [Never-married], [Separated], [Widowed], [Married-spouse-absent],
+        [Married-AF-spouse]]}
+  \item{\textbf{Occupation}: categorical: [[Tech-support], [Craft-repair],
         [Other-service], [Sales], [Exec-managerial], [Prof-specialty], 
         [Handlers-cleaners], [Machine-op-inspct], [Adm-clerical], 
         [Farming-fishing], [Transport-moving], [Priv-house-serv], 
         [Protective-serv], [Armed-Forces]]}
-  \item{\textbf{Relationship}: Tipo de relação familiar do indivíduo, sendo um
-        tipo de dados categórico: [[Wife], [Own-child], [Husband], 
+  \item{\textbf{Relationship}: categorical: [[Wife], [Own-child], [Husband], 
         [Not-in-family], [Other-relative], [Unmarried]]}
-  \item{\textbf{Race}: Raça do indivíduo, sendo um tipo de dados categórico: 
-        [[White], [Asian-Pac-Islander], [Amer-Indian-Eskimo], [Other], [Black]]}
-  \item{\textbf{Sex}: Sexo do indivíduo, sendo um tipo de dados categórico:
-        [[Male], [Female]]}
-  \item{\textbf{Capital-gain}: Ganho de capital do indivíduo, sendo um tipo de
-        dados contínuo}
-  \item{\textbf{Capital-loss}: Perda de capital do indivíduo, sendo um tipo de
-        dados contínuo}
-  \item{\textbf{Hours-per-week}: Horas de trabalho por semana do indivíduo,
-        sendo um tipo de dados contínuo}
-  \item{\textbf{Native-country}: Naturalidade do indivíduo, sendo um tipo de
-        dados categórico.}
+  \item{\textbf{Race}: categorial: [[White], [Asian-Pac-Islander], 
+        [Amer-Indian-Eskimo], [Other], [Black]]}
+  \item{\textbf{Sex}: categorical: [[Male], [Female]]}
+  \item{\textbf{Capital-gain}: continuous.}
+  \item{\textbf{Capital-loss}: continuous.}
+  \item{\textbf{Hours-per-week}: continuous.}
+  \item{\textbf{Native-country}: categorical.}
 \end{itemize}
 
-\section{Identificação do problema}
+\section{Problem Identification}
 
-\section{Análise dos Dados}
+\section{Data Analysis}
 
-A tabela \ref{tab:summary} apresenta um sumário da distribuição de valores no
-dataset estudado. Numa primeira observação da distribuição de valores, pode-se 
-constatar que são poucas as classes com \textit{missing vales} nos dados. Por
-outro lado, nalguns atributos, alguns valores têm uma frequência bastante
-superior, como são exemplo a naturalidade 'Estados Unidos', a classe operária
-'Private' e a raça 'White'. Nas horas de trabalho semanais, verifica-se a
-existência de bastantes \textit{outliers}, com valores pouco realistas,
-nomeadamente próximos das 100 horas ou menores que 10 em indivíduos com
-profissões definidas, como pode ser visto na figura \ref{fig:box_hours}.
-Variáveis como o ganho e perda capital apresentam poucos valores superiores a 0,
-sendo atributos bastante específicos de determinadas classes de indivíduos. O
-sexo também apresenta alguma discrepância na amostra, sendo o número de
-indivíduos homens mais do dobro das mulheres.
+The table \ref{tab:summary} summarizes the distribution of values on the studied
+dataset. From a first observation, one can see that the amount of missing values
+is low. On the other side, in some of the attributes, some classes have a
+much higher frequency than others, as the 'united-states' native country, the
+'private' workclass and the 'white' race. On the hours of work per week
+attribute, there is a great amount of outliers, with some unrealistic
+values, namely with values close to the 100 hours or less than 10 in individuals
+with a defined occupation, as can be seen on figure \ref{fig:box_hours}.
+Variables such has the capital gain and capital loss have few values above 0,
+being quite specific to certain classes of individuals. The sex is also
+unbalanced in the sample data, as the amount of men is more than twice the
+amount of women.
+
+It is also important to verify some correlations between variables. To that
+matter, we've tested some apparent situations, such as the influence of the age,
+hours of work per week and educational level on the amount gained by an
+individual. The figures \ref{fig:age_plus50}, \ref{fig:education_plus50} and
+\ref{fig:hpw_plus50} show that there is a tendency for older people, people with
+a higher educational level and people who work a great amount of hours per week
+to gain a larger amount of money.
+
+\subsection{Association Rules}
+
+\subsection{Clusters}
+
+\section{Future Work}
+
+\section{Conclusions}
+
+\begin{thebibliography}{1}
+\end{thebibliography}
+
+\clearpage
+
+\appendix
+
+\section{Tables}
 
 \begin{table}
 \centering
@@ -323,55 +336,41 @@ indivíduos homens mais do dobro das mulheres.
        \hline
        \end{tabular}
 }
-\caption{Sumário da distribuição de valores no dataset}
+\caption{Summary of the value distribution in the database}
 \label{tab:summary}
 \end{table}
 
+\clearpage
+
+\section{Figures}
+
 \begin{figure}
 \centering
-\includegraphics[width=11cm]{boxplot_hours_per_week.png}
-\caption{Boxplot da variável correspondente às horas de trabalho semanais}
+\includegraphics[width=10cm]{boxplot_hours_per_week.png}
+\caption{Boxplot of the hours per week variable}
 \label{fig:box_hours}
 \end{figure}
-
-Importa também verificar algumas correlações entre variáveis do dataset. Para
-isso, testamos algumas situações mais óbvias, como a influência que a idade,
-horas de trabalho semanais e nível educacional influenciam o ganho do indivíduo.
-As figuras \ref{fig:age_plus50}, \ref{fig:education_plus50} e 
-\ref{fig:hpw_plus50} mostram que existe uma tendência para que pessoas mais
-velhas, pessoas com um nível educacional mais elevado e pessoas que trabalham 
-mais horas por semana ganhem mais.
 
 \begin{figure}
 \centering
 \includegraphics[width=10cm]{plot_plus_50_age.png}
-\caption{Boxplot da idade dos indivíduos, filtrado pelo ganho salarial}
+\caption{Boxplot of the individuals' age, for each class of gain}
 \label{fig:age_plus50}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=10cm]{plot_plus_50_education_num.png}
-\caption{Boxplot do nível educacional dos indivíduos, filtrado pelo ganho salarial}
+\caption{Boxplot of the individuals' education level, for each class of gain}
 \label{fig:education_plus50}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=10cm]{plot_plus_50_hpw.png}
-\caption{Boxplot das horas de trabalho semanais, fitrado pelo ganho salarial}
+\caption{Boxplot of the individuals' hours of work per week, for each class of 
+gain}
 \label{fig:hpw_plus50}
 \end{figure}
-
-\subsection{Regras de associacao}
-
-\subsection{Clusters}
-
-\section{Trabalho Futuro}
-
-\section{Conclusões}
-
-\begin{thebibliography}{1}
-\end{thebibliography}
 
 \end{document}
