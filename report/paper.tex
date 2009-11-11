@@ -4,11 +4,12 @@
 \usepackage{longtable}
 \usepackage[portuguese]{babel}
 \usepackage[latin1]{inputenc}
+\usepackage{subfigure}
 \urldef{\mails}\path|{ei05011,ei05028}@fe.up.pt|
 \bibliographystyle{splncs}
 \begin{document}
 \title{Descrição do dataset ``Adult Database''}
-\author{Flávio Cruz\inst{1} \and João Azevedo\inst{1}}
+\author{Flávio Cruz \and João Azevedo}
 \institute{Faculdade de Engenharia da Universidade do Porto\\
     Rua Dr. Roberto Frias, s/n 4200-465 Porto PORTUGAL
     \mails}
@@ -64,9 +65,9 @@ respectivos tipos são:
         tipo de dados categórico: [[Wife], [Own-child], [Husband], 
         [Not-in-family], [Other-relative], [Unmarried]]}
   \item{\textbf{Race}: Raça do indivíduo, sendo um tipo de dados categórico: 
-      [[White], [Asian-Pac-Islander], [Amer-Indian-Eskimo], [Other], [Black]]}
+        [[White], [Asian-Pac-Islander], [Amer-Indian-Eskimo], [Other], [Black]]}
   \item{\textbf{Sex}: Sexo do indivíduo, sendo um tipo de dados categórico:
-      [[Male], [Female]]}
+        [[Male], [Female]]}
   \item{\textbf{Capital-gain}: Ganho de capital do indivíduo, sendo um tipo de
         dados contínuo}
   \item{\textbf{Capital-loss}: Perda de capital do indivíduo, sendo um tipo de
@@ -80,6 +81,258 @@ respectivos tipos são:
 \section{Identificação do problema}
 
 \section{Análise dos Dados}
+
+A tabela \ref{tab:summary} apresenta um sumário da distribuição de valores no
+dataset estudado. Numa primeira observação da distribuição de valores, pode-se 
+constatar que são poucas as classes com \textit{missing vales} nos dados. Por
+outro lado, nalguns atributos, alguns valores têm uma frequência bastante
+superior, como são exemplo a naturalidade 'Estados Unidos', a classe operária
+'Private' e a raça 'White'. Nas horas de trabalho semanais, verifica-se a
+existência de bastantes \textit{outliers}, com valores pouco realistas,
+nomeadamente próximos das 100 horas ou menores que 10 em indivíduos com
+profissões definidas, como pode ser visto na figura \ref{fig:box_hours}.
+Variáveis como o ganho e perda capital apresentam poucos valores superiores a 0,
+sendo atributos bastante específicos de determinadas classes de indivíduos. O
+sexo também apresenta alguma discrepância na amostra, sendo o número de
+indivíduos homens mais do dobro das mulheres.
+
+\begin{table}
+\centering
+\subtable[Age]{
+       \begin{tabular}{| l | l |}
+       \hline
+       Min. & 17 \\
+       \hline
+       1st Qu. & 28 \\
+       \hline
+       Median & 37 \\
+       \hline
+       Mean & 38.58 \\
+       \hline
+       3rd Qu. & 48 \\
+       \hline
+       Max & 90 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Workclass]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       private & 22696 \\
+       \hline
+       self\_emp\_not\_inc & 2541 \\
+       \hline
+       local\_gov & 2093 \\
+       \hline
+       state\_gov & 1298 \\
+       \hline
+       self\_emp\_inc & 1116 \\
+       \hline
+       (Other) & 981 \\
+       \hline
+       NA's & 1836 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Education]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       hs\_grad & 10501 \\
+       \hline
+       some\_college & 7291 \\
+       \hline
+       bachelors & 5535 \\
+       \hline
+       masters & 1723 \\
+       \hline
+       assoc\_voc & 1382 \\
+       \hline
+       11th & 1175 \\
+       \hline
+       (Other) & 5134 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Marital Status]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       divorced & 4443 \\
+       \hline
+       married\_af\_spouse & 23 \\
+       \hline
+       married\_civ\_spouse & 14976 \\
+       \hline
+       married\_spouse\_absent & 418 \\
+       \hline
+       never\_married & 10683 \\
+       \hline
+       separated & 1025 \\
+       \hline
+       widowed & 993 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Occupation]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       prof\_specialty & 4140 \\
+       \hline
+       craft\_repair & 4099 \\
+       \hline
+       exec\_managerial & 4066 \\
+       \hline
+       adm\_clerical & 3770 \\
+       \hline
+       sales & 3650 \\
+       \hline
+       (Other) & 10993 \\
+       \hline
+       NA's & 1843 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Relatonship]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       husband & 13193 \\
+       \hline
+       not\_in\_family & 8305 \\
+       \hline
+       other\_relative & 981 \\
+       \hline
+       own\_child & 5068 \\
+       \hline
+       unmarried & 3446 \\
+       \hline
+       wife & 1568 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Race]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       amer\_indian\_eskimo & 311 \\
+       \hline
+       asian\_pac\_islander & 1039 \\
+       \hline
+       black & 3124 \\
+       \hline
+       other & 271 \\
+       \hline
+       white & 27816 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Sex]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       female & 10771 \\
+       \hline
+       male & 21790 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Capital Gain]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       Min. & 0 \\
+       \hline
+       1st Qu. & 0 \\
+       \hline
+       Median & 0 \\
+       \hline
+       Mean & 1078 \\
+       \hline
+       3rd Qu. & 0 \\
+       \hline
+       Max. & 99999 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Capital Loss]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       Min. & 0 \\
+       \hline
+       1st Qu. & 0 \\
+       \hline
+       Median & 0 \\
+       \hline
+       Mean & 87.3 \\
+       \hline
+       3rd Qu. & 0 \\
+       \hline
+       Max. & 4356 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Hours Per Week]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       Min. & 1 \\
+       \hline
+       1st Qu. & 40 \\
+       \hline
+       Median & 40 \\
+       \hline
+       Mean & 40.44 \\
+       \hline
+       3rd Qu. & 45 \\
+       \hline
+       Max. & 99 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Native Country]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       United States & 29170 \\
+       \hline
+       Mexico & 643 \\
+       \hline
+       Philippines & 198 \\
+       \hline
+       Germany & 137 \\
+       \hline
+       Canada & 121 \\
+       \hline
+       (Other) & 1709 \\
+       \hline
+       NA's & 583 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Plus 50]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       No & 24720 \\
+       \hline
+       Yes & 7841 \\
+       \hline
+       \end{tabular}
+}
+\caption{Sumário da distribuição de valores no dataset}
+\label{tab:summary}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=11cm]{boxplot_hours_per_week.png}
+\caption{Boxplot da variável correspondente às horas de trabalho semanais}
+\label{fig:box_hours}
+\end{figure} %}
 
 \subsection{Regras de associacao}
 
