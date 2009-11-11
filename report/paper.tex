@@ -32,8 +32,10 @@ people gathered in a 1994 census on the United States of America. From the
 global collection of data, a representative sample was collected from people
 with ages between 16 and 100 and a final weight above 1.
 
-Each entry is composed by a set of 14 attributes and a class, identifying
-persons who gain more or less than 50K. The attributes and types are:
+The data set is divided in two groups: the train set with 32561 records and the test set with 16281 entries.
+
+Each entry is composed by a set of 14 attributes and two classes, identifying
+persons who gain more or less than 50K dollars per year. The attributes and types are:
 
 \begin{itemize}
   \item{\textbf{Age}: continuous.}
@@ -67,7 +69,29 @@ persons who gain more or less than 50K. The attributes and types are:
   \item{\textbf{Native-country}: categorical.}
 \end{itemize}
 
+There are 3620 records with missing values. The attributes that contain missing values are: \textbf{Workclass}, \textbf{Occupation} and \textbf{Native-country}.
+
+This data set is available in the following URL: \url{ftp://ftp.ics.uci.edu/pub/machine-learning-databases/adult}.
+
 \section{Problem Identification}
+
+Deducing from the previous section, this is a classification problem. Given an adult
+with the mentioned attributes we want to classify him into one of the following groups:
+one gains more than 50000 dollars per year, the other group does not.
+
+One important objective in classifying things is to understand why the given object
+is put under one class and not in another, that is, we want to understand what social characteristics
+allows one person to gain more than someone else, if the sex is important, the education level,
+the race and what factors are less important.
+
+Given a specific set of persons from a certain society and from a certain time we could then
+learn what contributes to a person's social standing and, as we all know, money is an important
+metric in that department. We could, for example, learn if the race affects the persons success and if
+that society discriminates certain races.
+
+Understanding what affects the money gained through an year can gives a lot of information
+concerning society's behaviors.
+
 
 \section{Data Analysis}
 
@@ -96,7 +120,7 @@ to gain a larger amount of money.
 
 \subsection{Clusters}
 
-\section{Future Work}
+\section{Work plan}
 
 \section{Conclusions}
 
