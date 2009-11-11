@@ -120,6 +120,25 @@ to gain a larger amount of money.
 
 \subsection{Clusters}
 
+Another method to analyze the dataset is based on the generation of clusters. 
+Clusters are sets of data in which objects in the same cluster are similar, and
+objects in different clusters are dissimilar. The first attempt at clustering
+used only three variables: age, education\_num and hours\_per\_week, the same
+variables we saw that had a greater impact on the amount gained by the
+individual. The data was normalized using the Z-Transformation method and the 
+K-Means method was used to obtain the final clusters, with a k of 6. Figures 
+\ref{fig:cluster_1_age_education} and \ref{fig:cluster_1_education_hpw} show
+scatter plots of the variables, colored by clusters. One thing one is able to
+note is that people with younger age belong to cluster \#2. In terms of
+education, people with higher education belong to cluster \#0, while people with
+lower education belong to cluster \#1. In terms of hours of work per week, 
+distribution is rather similar, but cluster \#2 and \#3 have a greater amount of
+lower and higher values, respectively. Figure \ref{fig:cluster_1_cluster_plus50}
+shows how clusters relate to the class values. Although the distribution is 
+balanced, clusters \#1 and \#2 have a greater amount of people gaining below 
+50K. Notice, as stated before, that this were the cluster having people with
+lower education and younger age, respective.
+
 \section{Work plan}
 
 \section{Conclusions}
@@ -395,6 +414,27 @@ to gain a larger amount of money.
 \caption{Boxplot of the individuals' hours of work per week, for each class of 
 gain}
 \label{fig:hpw_plus50}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{cluster_1_age_education.png}
+\caption{Scatter plot of age and education}
+\label{fig:cluster_1_age_education}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{cluster_1_education_hpw.png}
+\caption{Scatter plot of education and hours of work per week}
+\label{fig:cluster_1_education_hpw}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{cluster_1_cluster_plus50.png}
+\caption{Scatter plot of cluster and class values of amount gained}
+\label{fig:cluster_1_cluster_plus50}
 \end{figure}
 
 \end{document}
