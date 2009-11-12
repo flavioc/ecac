@@ -26,7 +26,7 @@ data mining tasks.
 \section{Introduction}
 
 Classification in data mining is the activity of identifying a given object as 
-belonging to a pre-defined class. The ultimate goal is to learn a concept. This
+belonging to a pre-defined class \cite{1}. The ultimate goal is to learn a concept. This
 learning process is based on past observations, where the dataset performs a
 main role. This report gives a first overview on the ``Adult Database'' dataset,
 describing its format and identifying the problem it poses. Some data analysis
@@ -89,7 +89,7 @@ with the mentioned attributes we want to classify him into one of the following 
 one gains more than 50000 dollars per year, the other group does not.
 
 One important objective in classifying things is to understand why the given object
-is put under one class and not in another, that is, we want to understand what social characteristics
+is put under one class and not in another \cite{2}\cite{3}, that is, we want to understand what social characteristics
 allows one person to gain more than someone else, if the sex is important, the education level,
 the race and what factors are less important.
 
@@ -134,7 +134,7 @@ objects in different clusters are dissimilar. The first attempt at clustering
 used only three variables: age, education\_num and hours\_per\_week, the same
 variables we saw that had a greater impact on the amount gained by the
 individual. The data was normalized using the Z-Transformation method and the 
-K-Means method was used to obtain the final clusters, with a k of 6. Figures 
+K-Means method was used to obtain the final clusters, with a k of 6, using RapidMiner \cite{4}. Figures 
 \ref{fig:cluster_1_age_education}, \ref{fig:cluster_1_education_hpw} and \ref{fig:cluster_1_age_hpw} show
 scatter plots of the variables, colored by clusters. One thing one is able to
 note is that people with younger age belong to cluster \#2. In terms of
@@ -163,6 +163,16 @@ leading to this particular composition of clusters.
 \section{Conclusions}
 
 \begin{thebibliography}{1}
+\bibitem{1}
+Mitchel, T.; Machine Learning; McGraw-Hill, 1997
+\bibitem{2}
+Han, J., Kamber, M., Pei, J.; Data Mining: Concepts and Techniques, Second Edition; Morgan Kaufmann, 2005
+\bibitem{3}
+H. Witten, I., Frank, E.; Data Mining: Practical Machine Learning Tools and Techniques, Second Edition; Morgan Kaufmann, 2005
+\bibitem{4}
+RapidMiner; \url{http://www.rapidminer.com/}, November 2009
+\bibitem{5}
+Ross Quinlan, J.; C4.5: Programs for Machine Learning; Morgan Kaufmann, 1992
 \end{thebibliography}
 
 \clearpage
