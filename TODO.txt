@@ -1,2 +1,2 @@
-- Gerar regras de associaÃ§Ã£o usando o arules (hÃ¡ um exemplo com o nosso dataset no introduction to arules capitulo 5.2)
 - Finalizar o relatório.
+- Adicionar referências.
