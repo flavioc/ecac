@@ -11,7 +11,7 @@
 \title{Progress Report on the ``Adult Database'' analysis}
 \author{Flávio Cruz \and João Azevedo}
 \institute{Faculdade de Engenharia da Universidade do Porto\\
-    Rua Dr. Roberto Frias, s/n 4200-465 Porto PORTUGAL
+    Rua Dr. Roberto Frias, s/n 4200-465 Porto PORTUGAL\\
     \mails}
 \maketitle
 
@@ -92,7 +92,6 @@ that society discriminates certain races.
 Understanding what affects the money gained through an year can gives a lot of information
 concerning society's behaviors.
 
-
 \section{Data Analysis}
 
 The table \ref{tab:summary} summarizes the distribution of values on the studied
@@ -127,7 +126,7 @@ used only three variables: age, education\_num and hours\_per\_week, the same
 variables we saw that had a greater impact on the amount gained by the
 individual. The data was normalized using the Z-Transformation method and the 
 K-Means method was used to obtain the final clusters, with a k of 6. Figures 
-\ref{fig:cluster_1_age_education} and \ref{fig:cluster_1_education_hpw} show
+\ref{fig:cluster_1_age_education}, \ref{fig:cluster_1_education_hpw} and \ref{fig:cluster_1_age_hpw} show
 scatter plots of the variables, colored by clusters. One thing one is able to
 note is that people with younger age belong to cluster \#2. In terms of
 education, people with higher education belong to cluster \#0, while people with
@@ -136,8 +135,19 @@ distribution is rather similar, but cluster \#2 and \#3 have a greater amount of
 lower and higher values, respectively. Figure \ref{fig:cluster_1_cluster_plus50}
 shows how clusters relate to the class values. Although the distribution is 
 balanced, clusters \#1 and \#2 have a greater amount of people gaining below 
-50K. Notice, as stated before, that this were the cluster having people with
-lower education and younger age, respective.
+50000 dollars. Notice, as stated before, that this were the clusters having 
+people with lower education and younger age, respectively.
+
+Clustering with the remaining attributes leads to results more difficult to
+analyze. The same process was applied, using the Z-Transformation method for
+normalization and the K-Means algorithm with a k of 6, but this time with all
+the attributes. The distribution of values is more balanced, although a very
+high value of capital gain, very unusual on the data set, leads to the creation
+of a very well identified cluster, as can be seen on table \ref{tab:centroids}.
+Particular values of race, workclass and native country also identify clusters
+\#2, \#3 and \#2, respectively. Notice that this attributes were the ones
+refered to before as having a given value more frequent than others, thus
+leading to this particular composition of clusters.
 
 \section{Work plan}
 
@@ -383,6 +393,41 @@ lower education and younger age, respective.
 \label{tab:summary}
 \end{table}
 
+\begin{table}
+\centering
+\begin{tabular}{ | l | l | l | l | l | l | l | }
+\hline
+\textbf{Attribute} & \textbf{Centroid \#0} & \textbf{Centroid \#1} & \textbf{Centroid \#2} & \textbf{Centroid \#3} & \textbf{Centroid \#4} & \textbf{Centroid \#5} \\
+\hline
+age	& -0.874 & 0.692 & -0.166 & 0.246 & 0.570 & 0.190 \\
+\hline
+workclass & -0.272 & -0.063 & -0.036 & 2.208 & 0.455 & -0.364 \\
+\hline
+education\_num & -0.101 & -0.172 & -0.177 & 0.0309 & 1.103 & 0.102 \\
+\hline
+marital\_status & -0.679 & 1.693 & -0.083 & -0.150 & -0.007 & -0.108 \\
+\hline
+occupation & -0.305 & -0.303 & 0.091 & 0.952 & -0.434 & 0.010 \\
+\hline
+relationship & 0.703 & 0.526 & 0.189 & -0.053 & -0.351 & -0.507 \\
+\hline
+race & -0.086 & -0.020 & 2.630 & -0.147 & -0.002 & -0.230 \\
+\hline
+sex & 0.662 & 1.199 & 0.019 & -0.161 & -0.409 & -0.635 \\
+\hline
+capital\_gain & -0.116 & -0.091 & -0.086 & -0.029 & 13.394 & -0.040 \\
+\hline
+capital\_loss & -0.115 & -0.079 & -0.021 & 0.025 & -0.217 & 0.079 \\
+\hline
+hours\_per\_week & -0.523 & -0.231 & -0.031 &-0.071 & 0.758 & 0.339 \\
+\hline
+native\_country & -0.186 & -0.154 & 2.951 & -0.181 & -0.075 & -0.171 \\
+\hline
+\end{tabular}
+\caption{Centroid table for the results of the application of the K-Means algorithm with a k of 6}
+\label{tab:centroids}
+\end{table}
+
 \clearpage
 
 \section{Figures}
@@ -428,6 +473,13 @@ gain}
 \includegraphics[width=10cm]{cluster_1_education_hpw.png}
 \caption{Scatter plot of education and hours of work per week}
 \label{fig:cluster_1_education_hpw}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{cluster_1_age_hpw.png}
+\caption{Scatter plot of age and hours of work per week}
+\label{fig:cluster_1_age_hpw}
 \end{figure}
 
 \begin{figure}
