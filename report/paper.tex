@@ -131,7 +131,7 @@ set of transactions. These rules can easily be used to make data analysis and
 to understand casual structures.
 
 To build a set of association rules we used the apriori algorithm that is featured
-in the R arules package. Before running the algorithm we made some data preprocessing
+in the R \cite{6} arules \cite{7} package. Before running the algorithm we made some data preprocessing
 for continuous attributes that are needed to build better and more general rules.
 
 The following attributes were transformed:
@@ -239,6 +239,10 @@ H. Witten, I., Frank, E.; Data Mining: Practical Machine Learning Tools and Tech
 RapidMiner; \url{http://www.rapidminer.com/}, November 2009
 \bibitem{5}
 Ross Quinlan, J.; C4.5: Programs for Machine Learning; Morgan Kaufmann, 1992
+\bibitem{6}
+The R Project for Statistical Computing; http://www.r-project.org/, November 2009
+\bibitem{7}
+Hahsler, M., Gruen, B.; Hornik, K.; arules -- A Computational Environment for Mining Association Rules and Frequent Item Sets; Journal of Statistical Software 14/15, 2005
 \end{thebibliography}
 
 \clearpage
@@ -519,28 +523,28 @@ native\_country & -0.186 & -0.154 & 2.951 & -0.181 & -0.075 & -0.171 \\
 
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{boxplot_hours_per_week.png}
+\includegraphics[width=9cm]{boxplot_hours_per_week.png}
 \caption{Boxplot of the hours per week variable}
 \label{fig:box_hours}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{plot_plus_50_age.png}
+\includegraphics[width=8cm]{plot_plus_50_age.png}
 \caption{Boxplot of the individuals' age, for each class of gain}
 \label{fig:age_plus50}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{plot_plus_50_education_num.png}
+\includegraphics[width=9cm]{plot_plus_50_education_num.png}
 \caption{Boxplot of the individuals' education level, for each class of gain}
 \label{fig:education_plus50}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{plot_plus_50_hpw.png}
+\includegraphics[width=9cm]{plot_plus_50_hpw.png}
 \caption{Boxplot of the individuals' hours of work per week, for each class of 
 gain}
 \label{fig:hpw_plus50}
