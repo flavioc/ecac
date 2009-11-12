@@ -1,10 +1,11 @@
 \documentclass[a4paper]{llncs}
 \usepackage{graphicx}
-\usepackage{url}
 \usepackage{longtable}
 \usepackage[latin1]{inputenc}
 \usepackage{subfigure}
 \usepackage{a4wide}
+\usepackage{listings}
+\usepackage[hyphens]{url}
 \urldef{\mails}\path|{ei05011,ei05028}@fe.up.pt|
 \bibliographystyle{splncs}
 \begin{document}
@@ -94,12 +95,11 @@ allows one person to gain more than someone else, if the sex is important, the e
 the race and what factors are less important.
 
 Given a specific set of persons from a certain society and from a certain time we could then
-learn what contributes to a person's social standing and, as we all know, money is an important
+learn what contributes to a person's social standing and, as we all know, income is an important
 metric in that department. We could, for example, learn if the race affects the persons success and if
-that society discriminates certain races.
+that society discriminates against certain races.
 
-Understanding what affects the money gained through an year can gives a lot of information
-concerning society's behaviors.
+Understanding what affects the income can give a lot of information concerning society's behaviors.
 
 \section{Data Analysis}
 
@@ -125,6 +125,47 @@ a higher educational level and people who work a great amount of hours per week
 to gain a larger amount of money.
 
 \subsection{Association Rules}
+
+Using association rules one can find frequent patterns and associations from a
+set of transactions. These rules can easily be used to make data analysis and
+to understand casual structures.
+
+To build a set of association rules we used the apriori algorithm that is featured
+in the R arules package. Before running the algorithm we made some data preprocessing
+for continuous attributes that are needed to build better and more general rules.
+
+The following attributes were transformed:
+
+\begin{itemize}
+  \item {\textbf{Age}: turned into categories. 15-25 (young), 25-45 (middle\_aged), 45-65 (senior), $>$ 65 (old).}
+  \item {\textbf{Hours-per-week}: turned into categories. 0-25 (part\_time), 25-40 (full\_time), 40-60 (overtime), $>$60 (workaholic).}
+  \item {\textbf{Capital-gain}: turned into categories. $<=$ 0 (none), $<$ median value (low), $>$ median value (high).}
+  \item {\textbf{Capital-loss}: turned into categories. $<=$ 0 (none), $<$ median value (low), $>$ median value (high).}
+\end{itemize}
+
+Next, we plotted the relative frequency of items in the transaction database
+with support greater than 10\%. The results are shown in figure \ref{fig:arules_item_frequency}.
+We can learn various things from that plot: the majority of people are from the united states,
+the white race is predominant, males outnumber females and that more people work in full time.
+
+Finally we run the apriori algorithm using the test data set to generate rules
+with support greater than 2\% and at least 60\% of confidence. The algorithm built
+50487 rules.
+
+We then built two sets of rules from the original set: one with the consequent component
+with plus\_50=0 (the person gains less than 50K a year) and the other with plus\_50=1
+(the person gains more than 50K a year).
+
+Each rule set was sorted by the confidence level, from more confident to less confident.
+
+The first 5 rules from the plus\_50=0 set are shown in listing \ref{arules_small_income} and
+are related to small incomes. We can easily make some observations
+about those rules: young people with a part-time are probably low income and having a child
+without being married is also not a very good signal.
+
+The second set, contrary to the ones above, shows us the top 5 rules for having large incomes.
+These rules are shown in listing \ref{arules_large_income}. A conclusion can readily be made:
+being a white husband with a high capital gain probably means we have a large income.
 
 \subsection{Clusters}
 
@@ -159,6 +200,24 @@ refered to before as having a given value more frequent than others, thus
 leading to this particular composition of clusters.
 
 \section{Work plan}
+
+Given the problem at hand, we want to generate a classification mechanism
+that can tell if a specific person has a small or large income.
+
+For this we will use various kinds of classification algorithms, from classical
+decision trees to rule induction.
+
+We will try to compare the error rate among the various algorithms. We'll be using
+the train set to "train" the algorithm and then the test set to assess which algorithm
+is best suited to make income predictions.
+
+We'll also use some data-processing techniques to eliminate unknown values. It will
+also be useful to categorize continuous values for more generalized rules as we have
+done when generating association rules.
+
+The algorithms we will be using are: ID3, C4.5, CN2 and AQ. Depending on our progress
+we will experiment with neural networks and genetic algorithms, which are other
+mechanisms for building classifiers.
 
 \section{Conclusions}
 
@@ -497,5 +556,54 @@ gain}
 \caption{Scatter plot of cluster and class values of amount gained}
 \label{fig:cluster_1_cluster_plus50}
 \end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=20cm,angle=90]{item_frequency.png}
+\caption{Item frequencies of items with at least 10\% support.}
+\label{fig:arules_item_frequency}
+\end{figure}
+
+\clearpage
+\section{Listings}
+
+\begin{lstlisting}[language=r,frame=single,breaklines=true,basicstyle=\footnotesize\ttfamily,caption={Association rules for small income.},label=arules_small_income]
+  lhs                               rhs            support confidence     lift
+1 {age=young,                                                                 
+   hours_per_week=part_time}     => {plus_50=0} 0.05730782          1 1.317193
+2 {age=young,                                                                 
+   occupation=unknown,                                                        
+   capital_gain=none}            => {plus_50=0} 0.02002396          1 1.317193
+3 {age=young,                                                                 
+   relationship=own_child,                                                    
+   hours_per_week=part_time}     => {plus_50=0} 0.04404042          1 1.317193
+4 {education=some_college,                                                    
+   relationship=own_child,                                                    
+   hours_per_week=part_time}     => {plus_50=0} 0.02069961          1 1.317193
+5 {marital_status=never_married,                                              
+   relationship=own_child,                                                    
+   hours_per_week=part_time}     => {plus_50=0} 0.04689659          1 1.317193
+\end{lstlisting}
+
+\begin{lstlisting}[language=r,frame=single,breaklines=true,basicstyle=\footnotesize\ttfamily,caption={Association rules for large income.},label=arules_large_income]
+  lhs                                    rhs            support confidence     lift
+1 {relationship=husband,                                                           
+   race=white,                                                                     
+   capital_gain=high}                 => {plus_50=1} 0.02063819  0.9926145 4.121990
+2 {marital_status=married_civ_spouse,                                              
+   relationship=husband,                                                           
+   race=white,                                                                     
+   capital_gain=high}                 => {plus_50=1} 0.02063819  0.9926145 4.121990
+3 {relationship=husband,                                                           
+   race=white,                                                                     
+   sex=male,                                                                       
+   capital_gain=high}                 => {plus_50=1} 0.02063819  0.9926145 4.121990
+4 {relationship=husband,                                                           
+   race=white,                                                                     
+   capital_gain=high,                                                              
+   capital_loss=none}                 => {plus_50=1} 0.02063819  0.9926145 4.121990
+5 {relationship=husband,                                                           
+   capital_gain=high}                 => {plus_50=1} 0.02251159  0.9918809 4.118943
+\end{lstlisting}
 
 \end{document}
