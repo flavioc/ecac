@@ -44,6 +44,31 @@ CREATE TABLE `adult` (
 ) ENGINE=InnoDB AUTO_INCREMENT=280037 DEFAULT CHARSET=latin1;
 SET character_set_client = @saved_cs_client;
 
+DROP TABLE IF EXISTS `adult_test`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `adult_test` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `age` int(11) DEFAULT NULL,
+  `workclass` enum('private','self_emp_not_inc','self_emp_inc','federal_gov','local_gov','state_gov','without_pay','never_worked','unknown') DEFAULT NULL,
+  `fnlwgt` int(11) DEFAULT NULL,
+  `education` enum('bachelors','some_college','11th','hs_grad','prof_school','assoc_acdm','assoc_voc','9th','7th_8th','12th','masters','1st_4th','10th','doctorate','5th_6th','preschool') DEFAULT NULL,
+  `education_num` int(11) DEFAULT NULL,
+  `marital_status` enum('married_civ_spouse','divorced','never_married','separated','widowed','married_spouse_absent','married_af_spouse') DEFAULT NULL,
+  `occupation` enum('tech_support','craft_repair','other_service','sales','exec_managerial','prof_specialty','handlers_cleaners','machine_op_inspct','adm_clerical','farming_fishing','transport_moving','priv_house_serv','protective_serv','armed_forces','unknown') DEFAULT NULL,
+  `relationship` enum('wife','own_child','husband','not_in_family','other_relative','unmarried') DEFAULT NULL,
+  `race` enum('white','asian_pac_islander','amer_indian_eskimo','other','black') DEFAULT NULL,
+  `sex` enum('male','female') DEFAULT NULL,
+  `capital_gain` int(11) DEFAULT NULL,
+  `capital_loss` int(11) DEFAULT NULL,
+  `hours_per_week` int(11) DEFAULT NULL,
+  `native_country` enum('united_states','cambodia','england','puerto_rico','canada','germany','outlying_us','india','japan','greece','south','china','cuba','iran','honduras','philippines','italy','poland','jamaica','vietnam','mexico','portugal','ireland','france','dominican_republic','laos','ecuador','taiwan','haiti','columbia','hungary','guatemala','nicaragua','scotland','thailand','yugoslavia','el_salvador','trinadad_tobago','peru','hong','holand_netherlands','unknown') DEFAULT NULL,
+  `plus_50` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=280037 DEFAULT CHARSET=latin1;
+SET character_set_client = @saved_cs_client;
+
 --
 -- Dumping routines for database 'adult'
 --
