@@ -18,18 +18,18 @@ def create_conn(db_user, db_password):
 
 db = create_conn(user, password)
 
-def cleanup_database(db_name):
+def cleanup_table(table_name):
   cursor = db.cursor()
-  sql = "DELETE FROM " + db_name
+  sql = "DELETE FROM " + table_name
   cursor.execute(sql)
   db.commit()
   return True
 
-def add_new_adult(db_name, age, workclass, fnlwgt, education, education_num,
+def add_new_adult(table_name, age, workclass, fnlwgt, education, education_num,
     marital_status, occupation, relationship, race, sex, capital_gain,
     capital_loss, hours_per_week, native_country, plus_50):
   cursor = db.cursor()
-  sql = "INSERT INTO " + db_name + "(age, workclass, fnlwgt, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country, plus_50) VALUES (%s, '%s', %s, '%s', %s, '%s', '%s', '%s', '%s', '%s', %s, %s, %s, '%s', %s)" \
+  sql = "INSERT INTO " + table_name + "(age, workclass, fnlwgt, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country, plus_50) VALUES (%s, '%s', %s, '%s', %s, '%s', '%s', '%s', '%s', '%s', %s, %s, %s, '%s', %s)" \
                 % (age, workclass, fnlwgt, education, education_num,
                     marital_status, occupation, relationship, race, sex, capital_gain,
                     capital_loss, hours_per_week, native_country, plus_50)
@@ -41,7 +41,7 @@ def add_new_adult(db_name, age, workclass, fnlwgt, education, education_num,
 def normalize_field(field):
   return field.lower().replace('-', '_')
 
-def import_record(line, db_name):
+def import_record(line, table_name):
   vec = line.split(', ')
   if len(vec) < 14:
     return
@@ -75,16 +75,16 @@ def import_record(line, db_name):
     workclass = 'unknown'
   if occupation == '?':
     occupation = 'unknown'
-  add_new_adult(db_name, age, workclass, fnlwgt, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country, plus_50)
+  add_new_adult(table_name, age, workclass, fnlwgt, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country, plus_50)
 
-def import_file(file, db_name):
+def import_file(file, table_name):
   f = open(file, 'r')
   for line in f:
-    import_record(line, db_name)
+    import_record(line, table_name)
   f.close()
 
-cleanup_database("adult")
-cleanup_database("adult_test")
+cleanup_table("adult")
+cleanup_table("adult_test")
 import_file(FILE, "adult")
 import_file(TEST_FILE, "adult_test")
 
