@@ -1,20 +1,13 @@
-import weka.core.Instances;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.BayesNet;
+import weka.core.Instances;
 import weka.filters.Filter;
 import weka.filters.unsupervised.instance.RemovePercentage;
 
-public class Genetic {
-	public static void main(String[] args) throws Exception {
-		if(args.length != 2) {
-			System.err.println("usage: C45 <db user> <db password>");
-			System.exit(1);
-		}
-		
-		String user = args[0];
-		String password = args[1];
-	
-		
+
+public class Bayes {
+	public static void runBayes(String user, String password, String search_alg, int perc) throws Exception
+	{
 		Instances train_data = Utils.getTrainSet(user, password);
 		/*System.out.println("====================================");
 		System.out.println("TRAIN DATA:");
@@ -28,14 +21,14 @@ public class Genetic {
 		System.out.println(test_data.toSummaryString());
 */
 		RemovePercentage rp = new RemovePercentage();
-		rp.setPercentage(99); // usar apenas 1% das instancias
+		rp.setPercentage(perc);
 		rp.setInputFormat(train_data);
 		Instances new_data = Filter.useFilter(train_data, rp);
 		
 		BayesNet net = new BayesNet();
 		
 		String options = "" +
-			"-Q weka.classifiers.bayes.net.search.local.GeneticSearch -- -L 3 -A 3 -U 2 -C -M -R 1 " +
+			"-Q " + search_alg + " " +
 			"-E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 1.0";
 		System.out.println(options);
 		
@@ -55,5 +48,19 @@ public class Genetic {
 		Evaluation test_eval = new Evaluation(train_data);
 		test_eval.evaluateModel(net, test_data);
 		System.out.println(test_eval.toSummaryString("\nTest Results\n===============\n", false));
+	}
+	
+	public static void main(String[] args) throws Exception {
+		if(args.length != 4) {
+			System.err.println("usage: bayes <db user> <db password> <search alg>");
+			System.exit(1);
+		}
+
+		String user = args[0];
+		String password = args[1];
+		String alg = args[2];
+		int perc = Integer.parseInt(args[3]);
+
+		Bayes.runBayes(user, password, alg, 100 - perc);
 	}
 }
