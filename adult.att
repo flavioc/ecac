@@ -1,0 +1,18 @@
+**ATTRIBUTE FILE**
+
+age: (INT)
+workclass: unknown private self_emp_not_inc self_emp_inc federal_gov local_gov state_gov without_pay never_worked;
+fnlwgt: (FLOAT)
+education: bachelors some_college _11th hs_grad prof_school assoc_acdm assoc_voc _9th _7th_8th _12th masters _1st_4th _10th doctorate _5th_6th preschool;
+education_num: (FLOAT)
+marital_status: married_civ_spouse, divorced, never_married separated widowed married_spouse_absent married_af_spouse;
+occupation: unknown tech_support craft_repair other_service sales exec_managerial prof_specialty handlers_cleaners machine_op_inspct adm_clerical farming_fishing transport_moving priv_house_serv protective_serv armed_forces;
+relationship: wife own_child husband not_in_family other_relative unmarried;
+race: white asian_pac_islander amer_indian_eskimo other black;
+sex: female male;
+capital_gain: (FLOAT)
+capital_loss: (FLOAT)
+hours_per_week: (FLOAT)
+native_country: unknown united_states cambodia england puerto_rico canada germany outlying_us india japan greece south china cuba iran honduras philippines italy poland jamaica vietnam mexico portugal ireland france dominican_republic laos ecuador taiwan haiti columbia hungary guatemala nicaragua scotland thailand yugoslavia el_salvador trinadad_tobago peru hong holand_netherlands;
+class: more_than_50K less_or_equal_than_50K;
+
