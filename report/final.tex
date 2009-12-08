@@ -55,16 +55,54 @@ inductive logic programming and bayesian classifiers \cite{bayes}.
 For decision trees, the algorithms used are ID3 \cite{id3}, C4.5 \cite{c45}, CART \cite{cart},
 Random Forest \cite{random_forest}, and alternating decision trees (adtree) \cite{adtree}.
 
+Decision tree learning is a very commonly used method in classification. The main goal here is to
+create a tree model that can predict an object's class. Each interior node corresponds
+to one test for the object's attributes and each edge links to new interiors nodes based on the corresponding
+results. Each leaf in the tree represents the object class for the tests made
+across the respective path, from root to leaf.
 
+The ID3 algorithm (Iterative Dichotomiser 3) was one of the first decision trees algorithms.
+It was designed by Ross Quinlan.
+
+The C4.5 algorithm is the improved version of the ID3 algorithm, also designed by Quinlan.
+Contrary to ID3, this algorithm can handle both continuous and discrete attributes,
+it can use data with missing values and can also prune its decision trees.
+
+The CART algorithm builds classification and regression trees for predicting continuous dependent variables (regression)
+and categorical predictor variables (classification). The classic CART algorithm was popularized by Breiman et al. \cite{cart}
+
+The alternating decision tree is another type of decision tree algorithms. This tree
+consists of decision nodes, which specify a predicate condition, and prediction nodes, containing a single number.
+Each object is classified by following all paths for which all decision nodes are true and summing any
+prediction nodes along the way. Contrary to binary classification like ID3 ou C4.5, in adtrees one
+object can follow multiple paths. 
+
+Finally, the Random Forest algorithm is an ensemble classifier which consists of many decision trees.
+Each object is classified multiple times by all decision trees and the mode class is used as the final class.
+Like the CART algorithm, Random Forest was also developed by Leo Breiman.
 
 \subsection{Rule induction}
 
 To experiment with rule induction algorithms we chose the CN2 \cite{cn2} algorithm.
 
+Rule induction works by extracting formal rules from a set of observations.
+Usually rules are expressed in the form \textit{if condition1 and condition2 ... then (decision, value)}.
+
+CN2 is an algorithm for inducing 
+propositional classification rules. CN2 consists of two main procedures: the 
+search procedure that performs beam search in order to find a single rule and 
+the control procedure that repeatedly executes the search. 
+The search procedure performs beam search using classification accuracy 
+of the rule as a heuristic function.
+Two different control procedures are used in CN2: one for inducing an ordered 
+list of rules and the other for the unordered case.
+
 \subsection{Inductive Logic Programming}
 
-The Aleph ILP system \cite{aleph} was the targeted inductive logic programming system, Aleph uses
-the inverse entailment algorithm to construct hypotheses.
+Hypothesis construction is the core of any ILP system and there exists many different techniques for constructing them, including: Inverse Resolution, Relative Least General Generalisations, Inverse Implication, and Inverse Entailment.
+
+We will be using the Aleph system \cite{aleph} to experiment with inductive logic programming. This system
+uses the Inverse Entailment algorithm and has also incorporated features from many of its predecessors based on other techniques.
 
 \subsection{Bayesian classifiers}
 
