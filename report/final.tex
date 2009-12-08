@@ -44,6 +44,44 @@ that society discriminates against certain races.
 
 Understanding what affects the income can give a lot of information concerning society's behaviors.
 
+\section{Algorithms}
+
+The algorithms we used to build classifiers can be grouped into four main
+groups: decision trees, rule induction \cite{rule_induction},
+inductive logic programming and bayesian classifiers \cite{bayes}.
+
+\subsection{Decision trees}
+
+For decision trees, the algorithms used are ID3 \cite{id3}, C4.5 \cite{c45}, CART \cite{cart},
+Random Forest \cite{random_forest}, and alternating decision trees (adtree) \cite{adtree}.
+
+
+
+\subsection{Rule induction}
+
+To experiment with rule induction algorithms we chose the CN2 \cite{cn2} algorithm.
+
+\subsection{Inductive Logic Programming}
+
+The Aleph ILP system \cite{aleph} was the targeted inductive logic programming system, Aleph uses
+the inverse entailment algorithm to construct hypotheses.
+
+\subsection{Bayesian classifiers}
+
+For bayesian classifiers we tested different kinds of search algorithms to build
+the network structure.
+
+The construction of the network structured is also known as
+\textit{local score metrics} and various algorithms can be employed for this optimization problem.
+
+The experiments conducted will use genetic based search, hill climbing \cite{bayes3}, simulated annealing,
+and a modified hill climbing algorithm, named K2 \cite{bayes2}.
+
+For the second step in building a bayesian network classifier, we used a
+simple estimator to estimate the conditional probability distributions.
+This simple estimator produces
+direct estimates of the conditional probabilities. \cite{bayes_weka}
+
 \section{Experimental Context}
 
 The ``Adult Database'' consists of 48842 entries of individual information of 
@@ -92,6 +130,9 @@ There are 3620 records with missing values. The attributes that contain missing 
 
 This data set is available in the following URL: \url{ftp://ftp.ics.uci.edu/pub/machine-learning-databases/adult}.
 
+\section{Experimental Evaluation}
+
+\section{Related Work}
 
 \section{Conclusions}
 
@@ -104,12 +145,45 @@ Han, J., Kamber, M., Pei, J.; Data Mining: Concepts and Techniques, Second Editi
 H. Witten, I., Frank, E.; Data Mining: Practical Machine Learning Tools and Techniques, Second Edition; Morgan Kaufmann, 2005
 \bibitem{4}
 RapidMiner; \url{http://www.rapidminer.com/}, November 2009
-\bibitem{5}
+\bibitem{c45}
 Ross Quinlan, J.; C4.5: Programs for Machine Learning; Morgan Kaufmann, 1992
 \bibitem{6}
 The R Project for Statistical Computing; http://www.r-project.org/, November 2009
 \bibitem{7}
 Hahsler, M., Gruen, B.; Hornik, K.; arules -- A Computational Environment for Mining Association Rules and Frequent Item Sets; Journal of Statistical Software 14/15, 2005
+
+\bibitem{id3}
+Quinlan, J. R. 1986. Induction of Decision Trees. Mach. Learn. 1, 1 (Mar. 1986), 81-106.
+
+\bibitem{cart}
+Leo Breiman, Jerome H. Friedman, Richard A. Olshen, Charles J. Stone (1984). Classification and Regression Trees. Wadsworth International Group, Belmont, California.
+
+\bibitem{random_forest}
+Liaw, Andy and Wiener, Matthew. Classification and Regression by randomForest. R News (2002) Vol. 2/3 p. 18
+
+\bibitem{adtree}
+Freund, Y., Mason, L.: The alternating decision tree learning algorithm. In: Proceeding of the Sixteenth International Conference on Machine Learning, Bled, Slovenia, 124-133, 1999
+
+\bibitem{bayes}
+N. Friedman, D. Geiger, M. Goldszmidt. Bayesian Network Classifiers. Machine Learning, 29: 131–163, 1997
+
+\bibitem{rule_induction}
+Quinlan, J. R. (1987). "Generating production rules from decision trees". in McDermott, John. Proceedings of the Tenth International Joint Conference on Artificial Intelligence (IJCAI-87). Milan, Italy. pp. 304–307
+
+\bibitem{aleph}
+Ashwin Srinivasan. The Aleph Manual. 2007
+
+\bibitem{bayes2}
+G. Cooper, E. Herskovits. A Bayesian method for the induction of probabilistic networks from 
+data. Machine Learning, 9: 309–347, 1992.
+
+\bibitem{bayes3}
+W.L. Buntine. A guide to the literature on learning probabilistic networks from data. IEEE 
+Transactions on Knowledge and Data Engineering, 8:195–210, 1996.
+
+\bibitem{bayes_weka}
+Remco R. Bouckaert. Bayesian Network Classifiers in Weka. 2004
+
 \end{thebibliography}
 
 \clearpage
