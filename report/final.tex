@@ -168,7 +168,7 @@ There are 3620 records with missing values. The attributes that contain missing 
 
 This data set is available in the following URL: \url{ftp://ftp.ics.uci.edu/pub/machine-learning-databases/adult}.
 
-\subsection{Experimental Context}
+\section{Experimental Context}
 
 In this section we will describe the experimental context for each
 algorithm described in the section \ref{sec:algs}, namely, programs we used,
@@ -208,11 +208,45 @@ These tables follow the same structure (Table \ref{tbl:mysql_table}).
 For the majority of the proposed algorithms we tried to make use of the database, instead
 of using the CSV files, as it allows a more flexible approach to data querying using SQL.
 
-\subsection{ID3}
+\subsection{Weka}
 
-\subsection{}
+Weka is a collection of machine learning algorithms for data mining tasks. \cite{weka}
+It can be applied directly to a dataset using command line tools or through Java code, using the Weka Java APIs.
+Weka supports tools for data pre-processing, classification, regression, clustering, association rules,
+and visualization.
 
-\section{Experimental Evaluation}
+This tool was used to apply the following algorithms: C4.5, ADTree, Random Forest, CART and Bayesian Networks.
+Instead of using the command line tools, we used the Java API to build classifiers.
+
+To use the data set we fetch it directly from the database and then apply various data pre-processing
+techniques that are available within Weka:
+
+\begin{itemize}
+  \item The \textbf{plus\_50} was converted from a numerical format to categories: $<$50K and $>$50K.
+  \item Every field marked as \textbf{unknown} was marked as \textbf{missing}.
+  \item The \textbf{age} was discretized into various categories: \textbf{young} ($<$25),
+    \textbf{middle\_aged} (25-45), \textbf{senior} (45-65), and \textbf{old} ($>$65).
+  \item The attribute \textbf{hours\_per\_week} was also discretized: \textbf{part\_time} ($<$25),
+    \textbf{full\_time} (25-40), \textbf{over\_time} (40-60), and \textbf{workaholic} ($>$60).
+  \item Each capital attribute (\textbf{capital\_gain} and \textbf{capital\_loss}) was also discretized:
+    \textbf{none} (0), \textbf{very\_low} (0-100), \textbf{low} (100-1000), \textbf{medium} (1000-5000),
+    \textbf{high} (5000-10000), and \textbf{very\_high} ($>$10000).
+\end{itemize}
+
+Only the following values are feed into the algorithms: age, workclass, education,
+marital\_status, occupation, relationship, race, sex, capital\_gain, capital\_loss,
+hours\_per\_week, native\_country, and plus\_50. The attributes education\_num
+and fnlwgt are derived from other attributes and so we keep them out.
+
+For missing values we used the \textit{ReplaceMissingValues} filter available in Weka that
+replaces unknown values with the modes and means from the data set. 
+
+Each algorithm has various configuration parameters that will be explored
+and analyzed in section \ref{sec:experimental_eval}.
+For example, the Bayesian Network
+algorithm allows the parameterization of the search algorithm that optimizes the network structure.
+
+\section{Experimental Evaluation} \label{sec:experimental_eval}
 
 \section{Related Work}
 
@@ -265,6 +299,9 @@ Transactions on Knowledge and Data Engineering, 8:195–210, 1996.
 
 \bibitem{bayes_weka}
 Remco R. Bouckaert. Bayesian Network Classifiers in Weka. 2004
+
+\bibitem{weka}
+Mark Hall, Eibe Frank, Geoffrey Holmes, Bernhard Pfahringer, Peter Reutemann, Ian H. Witten (2009); The WEKA Data Mining Software: An Update; SIGKDD Explorations, Volume 11, Issue 1.
 
 \end{thebibliography}
 
