@@ -1,0 +1,122 @@
+\documentclass[a4paper]{llncs}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage[utf8]{inputenc}
+\usepackage{subfigure}
+\usepackage{a4wide}
+\usepackage{listings}
+\usepackage[hyphens]{url}
+\urldef{\mails}\path|{ei05011,ei05028}@fe.up.pt|
+\bibliographystyle{splncs}
+\begin{document}
+\title{A comparison of classification algorithms applied to the Adult Database}
+\author{Flávio Cruz \and João Azevedo}
+\institute{Faculdade de Engenharia da Universidade do Porto\\
+    Rua Dr. Roberto Frias, s/n 4200-465 Porto PORTUGAL\\
+    \mails}
+\maketitle
+
+\begin{abstract}
+Highly frequent in experimental tests related to data mining, the Adult Database
+has some interesting properties which make it quite useful to test the 
+efficiency of classification algorithms. This report aims to describe the Adult
+Database from a statistical perspective and taking into account its support for
+data mining tasks.
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Problem Identification}
+
+Deducing from the previous section, this is a classification problem. Given an adult
+with the mentioned attributes we want to classify him into one of the following groups:
+one gains more than 50000 dollars per year, the other group does not.
+
+One important objective in classifying things is to understand why the given object
+is put under one class and not in another \cite{2}\cite{3}, that is, we want to understand what social characteristics
+allows one person to gain more than someone else, if the sex is important, the education level,
+the race and what factors are less important.
+
+Given a specific set of persons from a certain society and from a certain time we could then
+learn what contributes to a person's social standing and, as we all know, income is an important
+metric in that department. We could, for example, learn if the race affects the persons success and if
+that society discriminates against certain races.
+
+Understanding what affects the income can give a lot of information concerning society's behaviors.
+
+\section{Experimental Context}
+
+The ``Adult Database'' consists of 48842 entries of individual information of 
+people gathered in a 1994 census on the United States of America. From the
+global collection of data, a representative sample was collected from people
+with ages between 16 and 100 and a final weight above 1.
+
+The data set is divided in two groups: the train set with 32561 records and the test set with 16281 entries.
+
+Each entry is composed by a set of 14 attributes and two classes, identifying
+persons who gain more or less than 50K dollars per year. The attributes and types are:
+
+\begin{itemize}
+  \item{\textbf{Age}: continuous.}
+  \item{\textbf{Workclass}: categorical: [[Private], [Self-emp-not-inc], 
+        [Self-emp-inc], [Federal-gov], [Local-gov], [State-gov], [Without-pay], 
+        [Never-worked]]}
+  \item{\textbf{FNLWGT}: continuous. Represents the final weight. People with 
+        the same demographical characteristics should have the same weight.}
+  \item{\textbf{Education}: ordinal: [1. [Preschool], 2. [1st-4th], 3. 
+        [5th-6th], 4. [7th-8th], 5. [9th < 10th], 6. [11th < 12th], 7. 
+        [HS-grad], 8. [Prof-school], 9. [Assoc-acdm], 10. [Assoc-voc], 11.
+        [Some-college], 12. [Bachelors], 13. [Masters], 14. [Doctorate]]}
+  \item{\textbf{Education-num}: continuous. Is a continuous representation of 
+        the \textbf{Education} attribute.}
+  \item{\textbf{Marital-status}: categorical: [[Married-civ-spouse], [Divorced],
+        [Never-married], [Separated], [Widowed], [Married-spouse-absent],
+        [Married-AF-spouse]]}
+  \item{\textbf{Occupation}: categorical: [[Tech-support], [Craft-repair],
+        [Other-service], [Sales], [Exec-managerial], [Prof-specialty], 
+        [Handlers-cleaners], [Machine-op-inspct], [Adm-clerical], 
+        [Farming-fishing], [Transport-moving], [Priv-house-serv], 
+        [Protective-serv], [Armed-Forces]]}
+  \item{\textbf{Relationship}: categorical: [[Wife], [Own-child], [Husband], 
+        [Not-in-family], [Other-relative], [Unmarried]]}
+  \item{\textbf{Race}: categorial: [[White], [Asian-Pac-Islander], 
+        [Amer-Indian-Eskimo], [Other], [Black]]}
+  \item{\textbf{Sex}: categorical: [[Male], [Female]]}
+  \item{\textbf{Capital-gain}: continuous.}
+  \item{\textbf{Capital-loss}: continuous.}
+  \item{\textbf{Hours-per-week}: continuous.}
+  \item{\textbf{Native-country}: categorical.}
+\end{itemize}
+
+There are 3620 records with missing values. The attributes that contain missing values are: \textbf{Workclass}, \textbf{Occupation} and \textbf{Native-country}.
+
+This data set is available in the following URL: \url{ftp://ftp.ics.uci.edu/pub/machine-learning-databases/adult}.
+
+
+\section{Conclusions}
+
+\begin{thebibliography}{1}
+\bibitem{1}
+Mitchel, T.; Machine Learning; McGraw-Hill, 1997
+\bibitem{2}
+Han, J., Kamber, M., Pei, J.; Data Mining: Concepts and Techniques, Second Edition; Morgan Kaufmann, 2005
+\bibitem{3}
+H. Witten, I., Frank, E.; Data Mining: Practical Machine Learning Tools and Techniques, Second Edition; Morgan Kaufmann, 2005
+\bibitem{4}
+RapidMiner; \url{http://www.rapidminer.com/}, November 2009
+\bibitem{5}
+Ross Quinlan, J.; C4.5: Programs for Machine Learning; Morgan Kaufmann, 1992
+\bibitem{6}
+The R Project for Statistical Computing; http://www.r-project.org/, November 2009
+\bibitem{7}
+Hahsler, M., Gruen, B.; Hornik, K.; arules -- A Computational Environment for Mining Association Rules and Frequent Item Sets; Journal of Statistical Software 14/15, 2005
+\end{thebibliography}
+
+\clearpage
+
+\appendix
+
+\section{Tables}
+
+
+\end{document}
