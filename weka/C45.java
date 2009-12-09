@@ -5,13 +5,14 @@ import weka.core.Instances;
 public class C45 {
 	
 	public static void main(String[] args) throws Exception {
-		if(args.length != 2) {
-			System.err.println("usage: C45 <db user> <db password>");
+		if(args.length != 3) {
+			System.err.println("usage: C45 <db user> <db password> <options>");
 			System.exit(1);
 		}
 		
 		String user = args[0];
 		String password = args[1];
+		String options = args[2];
 		
 		Instances train_data = Utils.getTrainSet(user, password);
 		System.out.println("====================================");
@@ -27,7 +28,7 @@ public class C45 {
 		
 		// run c4.5
 		J48 tree = new J48();
-		tree.setOptions(weka.core.Utils.splitOptions("-S -C 0.3"));
+		tree.setOptions(weka.core.Utils.splitOptions(options));
 		tree.buildClassifier(train_data);
 		
 		System.out.println(tree.toString());

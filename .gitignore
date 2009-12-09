@@ -1,0 +1,10 @@
+.classpath
+.project
+*.class
+*.swp
+.DS_Store
+.Rhistory
+*.aux
+*.log
+*.pdf
+*.synctex.gz
