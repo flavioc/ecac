@@ -43,11 +43,11 @@ def convert_line(line, outputfile):
     if native_country == 'outlying_us(guam_usvi_etc)':
         native_country = 'outlying_us'
     if native_country == '?':
-        native_country = 'unknown'
+        native_country = 'united_states'
     if workclass == '?':
-        workclass = 'unknown'
+        workclass = 'private'
     if occupation == '?':
-        occupation = 'unknown'
+        occupation = 'prof_specialty'
     outputfile.write(age + " " + workclass + " " + fnlwgt + " " + education +
                      " " + education_num + " " + marital_status + " " + 
                      occupation + " " + relationship + " " + race + " " + sex +
