@@ -401,6 +401,86 @@ The confidence threshold for best test error rates appears to be in the interval
 
 A decision tree built by this algorithm with the confidence threshold set to 0.05 is shown in Listing \ref{decision_tree_c45}.
 
+\subsection{Alternating Decision Trees}
+
+Alternating Decision Trees are related to a concept named \textit{boosting}.
+Boosting is based on the observation that finding many rough rules of thumb can be a lot easier 
+than finding a single, highly accurate prediction rule. To apply the boosting approach,
+we start with a method or algorithm for finding the rough rules of thumb. 
+The boosting algorithm calls this “weak” or “base” learning algorithm repeatedly, 
+each time feeding it a different subset of the training examples. Each time 
+it is called, the base learning algorithm generates a new weak prediction rule, and 
+after many rounds, the boosting algorithm must combine these weak rules into a 
+single prediction rule that, hopefully, will be much more accurate than any one of 
+the weak rules. \cite{boosting}
+
+The ADTree's Weka algorithm can be parametrized by the number of boosting iterations
+\textbf{$<$-B integer$>$} and by the way the algorithm will expand the nodes,
+\textbf{$<$-E [-3,-2,-1,$>=$0]$>$},
+-3 for \textit{all}, -2 for \textit{weight} based expanding,
+-1 for \textit{z\_pure} and a number
+equal or greater than zero as a seed for random walks.
+
+We experimented the algorithm using various combinations of those two parameters.
+
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c | c | c |}
+    \hline
+    \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} & \textbf{Nodes} & \textbf{Leaves} \\ \hline
+    -E -3 -B 2 & 21.80 & 21.44 & 0m24.641s & 7 & 5 \\ \hline
+    -E -3 -B 5 & 18.20 & 20.99 & 0m24.571s & 16 & 11 \\ \hline
+    -E -3 -B 10 & 16.13 & 20.40 & 0m26.539s & 31 & 21 \\ \hline
+    -E -3 -B 15 & 15.91 & 20.19 & 0m28.565s & 46 & 31 \\ \hline
+    -E -3 -B 20 & 15.25 & 20.39 & 0m32.336s & 61 & 41 \\ \hline
+    -E -3 -B 25 & 15.08 & 20.37 & 0m37.223s & 76 & 51 \\ \hline
+    -E -3 -B 30 & 14.88 & 20.25 & 0m41.062s & 91 & 61 \\ \hline
+    -E -3 -B 35 & 14.78 & 20.01 & 0m45.760s & 106 & 71 \\ \hline
+    -E -3 -B 40 & 14.68 & 20.58 & 0m52.976s & 121 & 81 \\ \hline
+    
+    -E -2 -B 2 & 21.80 & 21.44 & 0m25.219s & 7 & 5 \\ \hline
+    -E -2 -B 5 & 18.20 & 20.99 & 0m24.445s & 16 & 11 \\ \hline
+    -E -2 -B 10 & 16.34 & 20.71 & 0m25.390s & 31 & 21 \\ \hline
+    -E -2 -B 15 & 15.80 & 20.42 & 0m26.982s & 46 & 31 \\ \hline
+    -E -2 -B 20 & 15.13 & 19.80 & 0m29.050s & 58 & 39 \\ \hline
+    -E -2 -B 25 & 14.95 & 20.25 & 0m28.956s & 73 & 49 \\ \hline
+    -E -2 -B 30 & 14.93 & 20.07 & 0m31.118s & 88 & 59 \\ \hline
+    -E -2 -B 35 & 14.90 & 20.20 & 0m32.565s & 100 & 67 \\ \hline
+    -E -2 -B 40 & 14.65 & 20.73 & 0m34.003s & 115 & 77 \\ \hline
+    
+    -E -1 -B 2 & 21.80 & 21.436 & 0m24.149s & 7 & 5 \\ \hline
+    -E -1 -B 5 & 18.20 & 20.99 & 0m24.061s & 16 & 11 \\ \hline
+    -E -1 -B 10 & 16.34 & 20.71 & 0m24.967s & 31 & 21 \\ \hline
+    -E -1 -B 15 & 15.80 & 20.42 & 0m27.095s & 46 & 31 \\ \hline
+    -E -1 -B 20 & 15.13 & 19.80 & 0m28.813s & 58 & 38 \\ \hline
+    -E -1 -B 25 & 14.95 & 20.25 & 0m29.205s & 73 & 49 \\ \hline
+    -E -1 -B 30 & 14.93 & 20.07 & 0m30.569s & 88 & 59 \\ \hline
+    -E -1 -B 35 & 14.93 & 20.20 & 0m32.708s & 100 & 67 \\ \hline
+    -E -1 -B 40 & 14.65 & 20.73 & 0m33.205s & 115 & 77 \\ \hline
+    
+    -E 0 -B 2 & 21.80 & 21.44 & 0m23.717s & 7 & 4 \\ \hline
+    -E 0 -B 5 & 18.21 & 20.99 & 0m24.619s & 16 & 11 \\ \hline
+    -E 0 -B 10 & 16.37 & 20.71 & 0m24.512s & 31 & 21 \\ \hline
+    -E 0 -B 15 & 15.81 & 20.42 & 0m25.240s & 46 & 31 \\ \hline
+    -E 0 -B 20 & 14.94 & 20.07 & 0m25.589s & 61 & 41 \\ \hline
+    -E 0 -B 25 & 15.04 & 20.15 & 0m25.868s & 76 & 51 \\ \hline
+    -E 0 -B 30 & 15.01 & 20.50 & 0m26.492s & 91 & 61 \\ \hline
+    -E 0 -B 35 & 14.96 & 20.53 & 0m26.294s & 106 & 71 \\ \hline
+    -E 0 -B 40 & 14.90 & 20.54 & 0m27.248s & 118 & 79 \\ \hline
+    
+  \end{tabular}
+  \caption{Results for ADTree.}
+  \label{tbl:results_adtree}
+  \end{center}
+\end{table}
+
+From Table \ref{tbl:results_adtree} we can see that the number of boosting iterations affects
+both the execution time (directly proportional) and the error rate.
+The best error rate is for the parameters \textbf{-E -2 -B 20} giving $\approx$19.80\% for the test set.
+
+Another good observation is that this algorithm can build small trees that give satisfactory results, both for
+the train set and for the test set.
+
 \section{Related Work}
 
 \section{Conclusions}
@@ -464,6 +544,9 @@ Peter Clark and Robin Boswell. Rule induction with CN2: Some recent improvements
 
 \bibitem{ilp}
 Nada Lavrac and Saso Dzeroski. Inductive Logic Programming: Techniques and Applications. Ellis Horwood, New York, 1994.
+
+\bibitem{boosting}
+Robert E. Schapire, The Boosting Approach to Machine Learning: An Overview, 2001.
 
 \end{thebibliography}
 
