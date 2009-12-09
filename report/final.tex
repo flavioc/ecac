@@ -481,6 +481,77 @@ The best error rate is for the parameters \textbf{-E -2 -B 20} giving $\approx$1
 Another good observation is that this algorithm can build small trees that give satisfactory results, both for
 the train set and for the test set.
 
+\subsection{Random Forest}
+
+In Weka, the Random Forest algorithm can be parametrized by the number
+of trees to build \textbf{$<$-I integer$>$}. Table \ref{tbl:results_random_forest} shows results for
+a varying number of trees.
+
+From the table we conclude that we need a certain amount of trees ($\approx$80) to
+reach a satisfactory error rate ($<$22\%) for the test set. Interestingly
+the error rate for the train set is low ($\approx$9\%), which indicates over-fitting.
+
+One drawback of using a big number of trees is the use of large
+quantities of memory (we needed 1GB to compute with 400 trees) and the time needed to compute everything.
+
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c |}
+    \hline
+    \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} \\ \hline
+    -I 2 & 10.52 & 34.03 & 0m25.861s \\ \hline
+    -I 3 & 9.83 & 34.00 & 0m26.318s \\ \hline
+    -I 4 & 9.69 & 30.91 & 0m26.154s \\ \hline
+    -I 5 & 9.50 & 29.62 & 0m27.108s \\ \hline
+    -I 7 & 9.32 & 28.03 & 0m27.158s \\ \hline
+    -I 10 & 9.24 & 29.80 & 0m28.107s \\ \hline
+    -I 15 & 9.18 & 28.80 & 0m30.716s \\ \hline
+    -I 20 & 9.15 & 28.09 & 0m36.340s \\ \hline
+    -I 40 & 9.15 & 23.43 & 0m39.687s \\ \hline
+    -I 60 & 9.15 & 23.65 & 0m49.443s \\ \hline
+    -I 80 & 9.15 & 22.92 & 0m57.652s \\ \hline
+    -I 100 & 9.15 & 22.83 & 1m28.024s \\ \hline
+    -I 400 & 9.15 & 22.71 & 4m58.842s \\ \hline
+  \end{tabular}
+  \caption{Results for Random Forest.}
+  \label{tbl:results_random_forest}
+  \end{center}
+\end{table}
+
+\subsection{CART}
+
+The simplified version of the CART algorithm is available
+in the \textit{SimpleCart} Weka class.
+
+This algorithm allows the disabling of various optimizations
+and heuristics \textbf{$<$-U and -H $>$} as explained by the Weka manual.
+We will keep these optimizations in.
+
+Other interesting parameters that we will be changing, include:
+
+\begin{itemize}
+  \item \textbf{$<$-M int$>$}: to set the minimal number of instances at the terminal nodes.
+  \item \textbf{$<$-N int$>$}: to set the number of folds used in the minimal cost-complexity pruning.
+\end{itemize}
+
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c | c | c |}
+    \hline
+    \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} & \textbf{Nodes} & \textbf{Leaves} \\ \hline
+    -M 2 -N 5 & 13.96 & 25.37 & 3m6.315s & 119 & 60 \\ \hline
+    -M 2 -N 10 & 13.85 & 25.38 & 5m36.925s & 139 & 70 \\ \hline
+    -M 2 -N 15 & 13.93 & 25.41 & 8m1.214s & 123 & 62 \\ \hline
+    
+  \end{tabular}
+  \caption{Results for CART.}
+  \label{tbl:results_cart}
+  \end{center}
+\end{table}
+
+CART results are displayed in Table \ref{tbl:results_cart}.
+
+
 \section{Related Work}
 
 \section{Conclusions}
