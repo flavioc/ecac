@@ -276,6 +276,34 @@ This tool was used to apply the ID3 \cite{id3}\cite{1} algorithm, mainly because
 of its support for numerical attributes (not seen in Weka), wich enabled a
 better comparison of approaches.
 
+\subsection{CN2}
+
+CN2 \cite{cn2} is a learning algorithm for rule induction \cite{rule_induction}
+that isn't available in Weka nor in RapidMiner. CN2 inductively learns a set of
+propositional if...then.. rules from a set of training examples, performing a
+general-to-specific beam search through the rule space for the "best" rule, 
+removing training examples covered by it, and repeating it until no more "good"
+rules can be found. The original version of the algorithm used entropy and
+significance test to decide the best rule. Later, it was improved to use the
+Laplace estimate \cite{cn2_laplace}, which is implemented in Peter Clark's 
+software used for our testing purposes.
+
+Peter Clark's CN2 software is built in C and provides a command-line environment
+for conducting experiments. The input format is limited to two files, one
+defining the attributes and other defining the training examples. The software 
+also provides an environment for performance evaluation of the produced set of 
+rules, by accepting a test file with examples.
+
+Only the following values are feed into the algorithms: age, workclass, 
+education, marital\_status, occupation, relationship, race, sex, capital\_gain,
+capital\_loss, hours\_per\_week, native\_country, and plus\_50. The attributes
+education\_num and fnlwgt are derived from other attributes and so are kept out.
+In terms of data pre-processing for missing values, continuous values were 
+replaced by the average value, while discrete values were replaced by the mode.
+
+In terms of performance metris, we took into account the error rate and the time
+spent building the rule set.
+
 \section{Experimental Evaluation} \label{sec:experimental_eval}
 
 This section shows performance results for the various algorithms.
@@ -380,6 +408,9 @@ Mark Hall, Eibe Frank, Geoffrey Holmes, Bernhard Pfahringer, Peter Reutemann, Ia
 
 \bibitem{cn2}
 Peter Clark and Tim Niblett. The CN2 induction algorithm. 1988.
+
+\bibitem{cn2_laplace}
+Peter Clark and Robin Boswell. Rule induction with CN2: Some recent improvements. In Y. Kodratoff, editor, Machine Learning - EWSL-91, pages 151-163, Berlin, 1991. Springer-Verlag.
 
 \end{thebibliography}
 
