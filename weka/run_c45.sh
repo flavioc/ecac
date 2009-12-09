@@ -1,11 +1,14 @@
 #!/bin/sh
 
+USER=$1
+PASSWORD=$2
+
 run_c45()
 {
   OPTIONS=$1
   FILE=$2
   echo "C45 $OPTIONS"
-  { time java C45 root nutshell111 "$OPTIONS"; } &> C45/$FILE.txt
+  { time java C45 $USER $PASSWORD "$OPTIONS"; } &> C45/$FILE.txt
 }
 
 mkdir -p C45
