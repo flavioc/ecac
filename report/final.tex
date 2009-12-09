@@ -210,6 +210,7 @@ For the majority of the proposed algorithms we tried to make use of the database
 of using the CSV files, as it allows a more flexible approach to data querying using SQL.
 
 \subsection{Weka}
+\label{sec:weka}
 
 Weka is a collection of machine learning algorithms for data mining tasks. \cite{weka}
 It can be applied directly to a dataset using command line tools or through Java code, using the Weka Java APIs.
@@ -253,6 +254,27 @@ Once the classifier is trained, it will be used to classify both the train and t
 
 Performance metrics for both classification results will be registered: error rate and time spent
 building the classifier and classifying all the examples.
+
+\subsection{RapidMiner}
+
+RapidMiner is an environment for machine learning and data mining experiments 
+\cite{4}. Experiments are done by composing a process made up of a large amount
+of nestable operators. This kind of approach makes it very suitable to create
+and modify different kinds of experiments in a quick fashion.
+
+RapidMiner provides both a GUI to design the process pipeline and a command-line
+tool to load XML-based configuration files. When using the GUI, users can easily
+switch between the pipeline visualization and the corresponding XML file,
+allowing for a better understanding of the configuration file internals. A large
+number of different outputs can be configured on a RapidMiner's process 
+pipeline, providing a broad range of visualizations for the final results.
+RapidMiner also integrates learning schemes and attribute evaluators from the 
+Weka \cite{weka} learning environment (see section \ref{sec:weka} for more 
+details) and provides a programming API for use in different environments.
+
+This tool was used to apply the ID3 \cite{id3}\cite{1} algorithm, mainly because
+of its support for numerical attributes (not seen in Weka), wich enabled a
+better comparison of approaches.
 
 \section{Experimental Evaluation} \label{sec:experimental_eval}
 
