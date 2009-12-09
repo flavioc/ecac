@@ -399,6 +399,8 @@ The confidence threshold for best test error rates appears to be in the interval
   \end{center}
 \end{table}
 
+A decision tree built by this algorithm with the confidence threshold set to 0.05 is shown in Listing \ref{decision_tree_c45}.
+
 \section{Related Work}
 
 \section{Conclusions}
@@ -470,5 +472,56 @@ Nada Lavrac and Saso Dzeroski. Inductive Logic Programming: Techniques and Appli
 \appendix
 
 \section{Tables}
+
+\clearpage
+\section{Decision trees}
+
+\begin{lstlisting}[language=c,frame=single,breaklines=true,basicstyle=\footnotesize\ttfamily,caption={Decision tree built by C4.5 with -C 0.05},label=decision_tree_c45]
+capital_gain = none
+|   marital_status = never_married: <50K (10228.0/340.0)
+|   marital_status = married_civ_spouse
+|   |   education = bachelors
+|   |   |   capital_loss = none
+|   |   |   |   age = young: <50K (33.0/4.0)
+|   |   |   |   age = middle_aged: >50K (1287.0/515.0)
+|   |   |   |   age = senior: >50K (707.0/243.0)
+|   |   |   |   age = old: <50K (77.0/25.0)
+|   |   |   capital_loss = low: >50K (0.0)
+|   |   |   capital_loss = medium: >50K (222.0/26.0)
+|   |   education = hs_grad
+|   |   |   capital_loss = none: <50K (4167.0/1130.0)
+|   |   |   capital_loss = low: <50K (1.0)
+|   |   |   capital_loss = medium: >50K (235.0/105.0)
+|   |   education = 11th: <50K (328.0/29.0)
+|   |   education = masters: >50K (823.0/214.0)
+|   |   education = 9th: <50K (212.0/18.0)
+|   |   education = some_college: <50K (2508.0/1000.0)
+|   |   education = assoc_acdm: <50K (412.0/186.0)
+|   |   education = assoc_voc: <50K (596.0/251.0)
+|   |   education = 7th_8th: <50K (325.0/29.0)
+|   |   education = doctorate: >50K (230.0/42.0)
+|   |   education = prof_school: >50K (295.0/62.0)
+|   |   education = 5th_6th: <50K (161.0/11.0)
+|   |   education = 10th
+|   |   |   capital_loss = none: <50K (314.0/41.0)
+|   |   |   capital_loss = low: <50K (0.0)
+|   |   |   capital_loss = medium: >50K (9.0/2.0)
+|   |   education = 1st_4th: <50K (78.0/5.0)
+|   |   education = preschool: <50K (18.0)
+|   |   education = 12th: <50K (119.0/21.0)
+|   marital_status = divorced: <50K (4155.0/333.0)
+|   marital_status = married_spouse_absent: <50K (397.0/25.0)
+|   marital_status = separated: <50K (973.0/46.0)
+|   marital_status = married_af_spouse
+|   |   hours_per_week = part_time: <50K (2.0)
+|   |   hours_per_week = full_time: <50K (3.0)
+|   |   hours_per_week = over_time: >50K (13.0/4.0)
+|   |   hours_per_week = workaholic: <50K (3.0)
+|   marital_status = widowed: <50K (918.0/62.0)
+capital_gain = low: <50K (55.0)
+capital_gain = medium: <50K (1009.0/181.0)
+capital_gain = high: >50K (878.0/138.0)
+capital_gain = very_high: >50K (770.0/14.0)
+\end{lstlisting}
 
 \end{document}
