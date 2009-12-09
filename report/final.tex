@@ -301,8 +301,56 @@ education\_num and fnlwgt are derived from other attributes and so are kept out.
 In terms of data pre-processing for missing values, continuous values were 
 replaced by the average value, while discrete values were replaced by the mode.
 
-In terms of performance metris, we took into account the error rate and the time
-spent building the rule set.
+In terms of performance metrics, we took into account the error rate and the 
+time spent building the rule set.
+
+\subsection{Aleph}
+
+Aleph \cite{aleph} is currently one of the most widely used ILP \cite{ilp} 
+systems. Developed by Ashwin Srinivasan is, as of 2007, in its 5th version. The
+basic Aleph algorithm (used on our experiments) consists of 4 steps:
+
+\begin{enumerate}
+    \item{Select example}
+    \item{Build most-specific clause}
+    \item{Search}
+    \item{Remove redundant}
+\end{enumerate}
+
+Aleph uses inverse entailment to build the most-specific clause and its basic
+algorithm uses a best-first search at the search step. Advanced use of Aleph 
+allows tweaks in every step of the algorithm, namely:
+
+\begin{itemize}
+    \item{\textbf{Select example}: The size of the sample can be configured.}
+    \item{\textbf{Build most-specific clause}: The approach on building the 
+    bottom-clause can be configured. The evaluation mechanism can also be 
+    tweaked.}
+    \item{\textbf{Search}: A huge range of search strategies, evaluation 
+    functions and refinement operators can be applied.}
+    \item{\textbf{Remove redundant}: A strategy of retaining covered examples
+    can be applied, for a better estimation of clause scores.}
+\end{itemize}
+
+Aleph is built entirely in prolog and is best suited to run on the YAP Prolog 
+engine. 
+
+In order to use ILP to build a classifier for our data set, some data
+pre-processing needs to be run, namely on converting the examples to logic 
+predicates. Despite the fact that Aleph is able to deal with numerical values,
+discretization has been run on the variables ``age'', ``capital\_gain'', 
+``capital\_loss'' and ``hours\_per\_week''. The value distribution was the same
+as described in section \ref{sec:weka}. The main classification clause is given
+by \verb$more_than_50K(+person).$ Those persons winning more than 50K per year
+are the positive examples, the rest are the negative examples. Each of the
+attributes was converted to unary prolog predicates (for example 
+\verb$young(+person).$, \verb$work_private(+person).$, \verb$male(+person).$,
+\verb$is_native_of_portugal(+person).$). Missing values were simply ommited from
+the background knowledge.
+
+In terms of performance metrics, we took into account the error rate and the 
+time spent building the hypothesis set. The expressiveness of the results is
+also analyzed in section \ref{sec:experimental_eval}.
 
 \section{Experimental Evaluation} \label{sec:experimental_eval}
 
@@ -411,6 +459,9 @@ Peter Clark and Tim Niblett. The CN2 induction algorithm. 1988.
 
 \bibitem{cn2_laplace}
 Peter Clark and Robin Boswell. Rule induction with CN2: Some recent improvements. In Y. Kodratoff, editor, Machine Learning - EWSL-91, pages 151-163, Berlin, 1991. Springer-Verlag.
+
+\bibitem{ilp}
+Nada Lavrac and Saso Dzeroski. Inductive Logic Programming: Techniques and Applications. Ellis Horwood, New York, 1994.
 
 \end{thebibliography}
 
