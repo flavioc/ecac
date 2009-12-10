@@ -579,11 +579,27 @@ parameters and the overall results are presented in table \ref{tbl:results_cn2}.
     Unordered & Naive & - & - & - \\ \hline
     Ordered & Laplacian & 0 & 17.6 & 1min45sec \\ \hline
     Ordered & Naive & 0 & 19.9 & 12min21sec \\ \hline
+    Ordered & Information Gain & 18.9 & 18.9 & 5sec \\ \hline
+    Ordered & Modified Entropy & 18.9 & 19.1 & 20sec \\ \hline
 \end{tabular}
 \caption{Results for CN2.}
 \label{tbl:results_cn2}
 \end{center}
 \end{table}
+
+The information gain and modified entropy approaches to error estimations are
+only available for the algorithm producing ordered set of rules. The approach
+building an unordered set of rules with a naive error estimation lead to a stack
+overflow error in the application. One thing one can note is that the process of
+building classification rules takes, in average, longer than the one of building
+classification trees. Nevertheless, the results are arguably more expressive and
+the error rates are low (the best being 15.2\% for a previously unkown set of 
+examples). Also note that the variant of building an ordered set of rules with
+an information gain error estimate produces rules faster and with an acceptable
+error rate (18.9\%). To analyze the expressiveness of the rules produced, a set
+of rules that cover the most examples of the training data are described in 
+listing \ref{cn2_rules} (using the ordered algorithm with the laplacian error 
+estimation).
 
 \subsection{Bayesian Networks}
 
@@ -821,6 +837,60 @@ capital_gain = low: <50K (55.0)
 capital_gain = medium: <50K (1009.0/181.0)
 capital_gain = high: >50K (878.0/138.0)
 capital_gain = very_high: >50K (770.0/14.0)
+\end{lstlisting}
+
+\clearpage
+\section{Classification Rules}
+\begin{lstlisting}[language=c,frame=single,breaklines=true,basicstyle=\footnotesize\ttfamily,caption={Subset of the ordered set of rules induced by CN2 with the laplacian error estimation method},label=cn2_rules]
+IF    age < 20.50
+  AND capital_gain < 9720.00
+  AND hours_per_week < 59.00
+THEN  class = less_or_equal_than_50K  [0 2366]
+ELSE
+IF    19.50 < age < 21.50
+  AND marital_status = never_married
+  AND capital_gain < 67047.00
+THEN  class = less_or_equal_than_50K  [0 664]
+ELSE
+IF    age < 54.50
+  AND capital_gain > 10585.50
+  AND hours_per_week > 33.00
+THEN  class = more_than_50K  [520 0]
+ELSE
+IF    age < 23.50
+  AND hours_per_week < 31.00
+THEN  class = less_or_equal_than_50K  [0 492]
+ELSE
+IF    age < 24.50
+  AND workclass = private
+  AND relationship = own_child
+  AND capital_loss < 2129.50
+  AND hours_per_week > 32.50
+  AND native_country = united_states
+THEN  class = less_or_equal_than_50K  [0 562]
+ELSE
+IF    age < 60.50
+  AND 7565.50 < capital_gain < 30961.50
+THEN  class = more_than_50K  [445 0]
+ELSE
+IF    relationship = own_child
+  AND race = black
+  AND hours_per_week < 49.00
+THEN  class = less_or_equal_than_50K  [0 261]
+ELSE
+IF    age < 38.50
+  AND education = hs_grad
+  AND marital_status = never_married
+  AND relationship = own_child
+  AND hours_per_week < 75.00
+THEN  class = less_or_equal_than_50K  [0 378]
+ELSE
+IF    20.50 < age < 23.50
+  AND workclass = private
+  AND marital_status = never_married
+  AND capital_loss < 2116.00
+  AND hours_per_week > 32.50
+THEN  class = less_or_equal_than_50K  [0 434]
 \end{lstlisting}
 
 \end{document}
