@@ -387,7 +387,13 @@ summarizes the results with the ID3 algorithm.
   \end{center}
 \end{table}
 
+As can be seen from the table, the numerical ID3 outperforms the standard ID3 in
+accuracy but takes longer to compute the decision tree. The decision tree
+produced is very large, as ID3 doesn't support pruning (see section 
+\ref{sec:4.5}), and so is omitted from this report.
+
 \subsection{C4.5}
+\label{sec:c4.5}
 
 C4.5 in Weka provides a number of parameters to tune the algorithm.
 One of these parameters allows the creation of unpruned trees $<$\textbf{-U}$>$.
@@ -659,7 +665,7 @@ hypothesis. The results obtained are described in table \ref{tbl:results_ilp}.
 The error rate produced by Aleph when evaluating the test data was 20.45\%.
 18881882 clauses were built, taking around 5 hours for the whole training
 data. Despite the number of clauses, most of them are irrelevant, directly
-classifying examples where no more general rule is available. Listing 
+classifying examples when no more general rule is available. Listing 
 \ref{ilp_clauses} lists the most relevant clauses produced.
 
 \subsection{Bayesian Networks}
