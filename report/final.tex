@@ -416,7 +416,7 @@ summarizes the results with the ID3 algorithm.
 As can be seen from the table, the numerical ID3 outperforms the standard ID3 in
 accuracy but takes longer to compute the decision tree. The decision tree
 produced is very large, as ID3 doesn't support pruning (see section 
-\ref{sec:4.5}), and so is omitted from this report.
+\ref{sec:c4.5}), and so is omitted from this report.
 
 \subsection{C4.5}
 \label{sec:c4.5}
@@ -812,6 +812,54 @@ with $\approx21$\% error rate, which is quite good when comparing to other algor
 
 \section{Related Work}
 
+The adult database has been widely used to benchmark novel learning algorithms.
+
+In the article \textit{Scaling Up the Accuracy of Naive-Bayes Classifiers: a Decision Tree hybrid},
+the author presents the nbtree algorithm, which is an hybrid approach suitable in learning scenarios
+when many attributes are likely to be relevant for a classification task, yet the attributes
+are not necessarily conditionally independent given the class \cite{nbtree}. It builds
+a decision tree with bayesian classifiers at the leaves.
+
+In the paper the author used various datasets, including the adult database. Records with unknown values
+were removed from the experiments. C4.5 reached an error rate of $\approx$15\% and NBTree $\approx$16.5\%,
+which are identical to our ID3 results, but worse than our C4.5 experiments. One reason for this is
+the incapability of Weka to use numeric attributes. Every other algorithm we used fared worse ($\approx$20\%).
+
+Another paper, \textit{Learning Bayesian Belief Network Classifiers: Algorithms and System}, explores
+various kinds of search algorithms used in Bayesian Networks and also comes up with very good error rates ($\approx$ 15\%).
+Other papers using this dataset can be found in \cite{dataset_papers}.
+
+The location from where we downloaded the dataset also contains results
+using various algorithms (Table \ref{tbl:dataset_error_rates}).
+
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c | c |}
+    \hline
+    \textbf{Algorithm} & \textbf{Error rate} \\ \hline
+    C4.5 & 15.54 \\ \hline
+    C4.5-auto & 14.46 \\ \hline
+    C4.5 rules & 14.94 \\ \hline
+    Voted ID3 (0.6) & 15.64 \\ \hline
+    Voted ID3 (0.8) & 16.47 \\ \hline
+    T2 & 16.84 \\ \hline
+    1R & 19.54 \\ \hline
+    NBTree & 14.10 \\ \hline
+    CN2 & 16.00 \\ \hline
+    HOODG & 14.82 \\ \hline
+    FSS Naive Bayes & 14.05 \\ \hline
+    IDTM (Decision table) & 14.05 \\ \hline
+    IDTM (Decision table) & 14.46 \\ \hline
+    Naive-Bayes & 16.12 \\ \hline
+    Nearest-neighbor (1) & 21.42 \\ \hline
+    Nearest-neighbor (3) & 20.35 \\ \hline
+    OC1 & 15.04 \\ \hline
+  \end{tabular}
+  \caption{Error rates from the dataset.}
+  \label{tbl:dataset_error_rates}
+  \end{center}
+\end{table}
+
 \section{Conclusions}
 
 // TODO: Tabela e descrição das diferentes taxas de erro
@@ -876,6 +924,15 @@ Nada Lavrac and Saso Dzeroski. Inductive Logic Programming: Techniques and Appli
 
 \bibitem{boosting}
 Robert E. Schapire, The Boosting Approach to Machine Learning: An Overview, 2001.
+
+\bibitem{nbtree}
+Ron Kohavi. Scaling Up the Accuracy of Naive-Bayes Classifiers: a Decision-Tree Hybrid. 1996
+
+\bibitem{dataset_papers}
+Adult Data Set, Machine Learning Repository, \url{http://archive.ics.uci.edu/ml/datasets/Adult}
+
+\bibitem{bayes4}
+Jie Cheng, Russell Greiner. Learning Bayesian Belief Network Classifiers: Algorithms and System. 2001
 
 \end{thebibliography}
 
