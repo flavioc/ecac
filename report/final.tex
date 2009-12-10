@@ -6,6 +6,7 @@
 \usepackage{a4wide}
 \usepackage{amsmath}
 \usepackage{listings}
+\usepackage{multirow}
 \usepackage[hyphens]{url}
 \urldef{\mails}\path|{ei05011,ei05028}@fe.up.pt|
 \bibliographystyle{splncs}
@@ -601,6 +602,35 @@ of rules that cover the most examples of the training data are described in
 listing \ref{cn2_rules} (using the ordered algorithm with the laplacian error 
 estimation).
 
+\subsection{ILP}
+
+There are a lot of techniques for building ILP classifiers. Due to time
+constraints (as building an ILP classifier is usually a very time-consuming 
+task), we only tested the basic Aleph system, which uses inverse entailment for
+building the bottom clause and a best-first search method to find the best
+hypothesis. The results obtained are described in table \ref{tbl:results_ilp}.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ | c | c | c | c | c |}
+\hline
+\vspace{1pt} & \multicolumn{4}{| c |}{\textbf{Actual}} \\ \hline
+\multirow{3}{*}{\textbf{Predicted}} & \vspace{1pt} & \textbf{+} & \textbf{-} & \textbf{Total} \\ \hline
+& \textbf{+} & 647 & 133 & 780 \\ \hline
+& \textbf{-} & 3199 & 12302 & 15501 \\ \hline
+& \textbf{Total} & 3846 & 12435 & 16281 \\ \hline
+\end{tabular}
+\caption{Results for ILP (Aleph).}
+\label{tbl:results_ilp}
+\end{center}
+\end{table}
+
+The error rate produced by Aleph when evaluating the test data was 20.45\%.
+18881882 clauses were built, taking around 5 hours for the whole training
+data. Despite the number of clauses, most of them are irrelevant, directly
+classifying examples where no more general rule is available. Listing 
+\ref{ilp_clauses} lists the most relevant clauses produced.
+
 \subsection{Bayesian Networks}
 
 Our strategy for bayesian networks revolve around changing the search algorithm
@@ -892,5 +922,54 @@ IF    20.50 < age < 23.50
   AND hours_per_week > 32.50
 THEN  class = less_or_equal_than_50K  [0 434]
 \end{lstlisting}
+\clearpage
+
+\begin{lstlisting}[language=c,frame=single,breaklines=true,basicstyle=\footnotesize\ttfamily,caption={Subset of the prolog clauses produced by Aleph},label=ilp_clauses]
+more_than_50K(A) :-
+   middle_aged(A), very_high_capital_gain(A), is_native_of_united_states(A).
+more_than_50K(A) :-
+   education_prof_school(A), wife(A), workaholic(A).
+more_than_50K(A) :-
+   senior(A), work_private(A), very_high_capital_gain(A).
+more_than_50K(A) :-
+   senior(A), work_federal_gov(A), education_doctorate(A).
+more_than_50K(A) :-
+   education_doctorate(A), medium_capital_loss(A), workaholic(A).
+more_than_50K(A) :-
+   work_self_emp_inc(A), high_capital_gain(A), full_time_worker(A).
+more_than_50K(A) :-
+   middle_aged(A), education_masters(A), is_native_of_iran(A).
+more_than_50K(A) :-
+   senior(A), very_high_capital_gain(A), over_time_worker(A).
+more_than_50K(A) :-
+   other_relative(A), high_capital_gain(A).
+more_than_50K(A) :-
+   education_bachelors(A), occupation_other_service(A), high_capital_gain(A).
+more_than_50K(A) :-
+   senior(A), married_civ_spouse(A), very_high_capital_gain(A).
+more_than_50K(A) :-
+   senior(A), full_time_worker(A), is_native_of_cambodia(A).
+more_than_50K(A) :-
+   middle_aged(A), married_civ_spouse(A), is_native_of_thailand(A).
+more_than_50K(A) :-
+   young(A), high_capital_gain(A), over_time_worker(A).
+more_than_50K(A) :-
+   middle_aged(A), asian_pac_islander(A), high_capital_gain(A).
+more_than_50K(A) :-
+   occupation_protective_serv(A), high_capital_gain(A), full_time_worker(A).
+more_than_50K(A) :-
+   work_state_gov(A), occupation_exec_managerial(A), high_capital_gain(A).
+more_than_50K(A) :-
+   education_bachelors(A), occupation_tech_support(A), wife(A).
+more_than_50K(A) :-
+   education_prof_school(A), very_high_capital_gain(A).
+more_than_50K(A) :-
+   high_capital_gain(A), full_time_worker(A), is_native_of_canada(A).
+more_than_50K(A) :-
+   education_prof_school(A), medium_capital_loss(A), over_time_worker(A).
+more_than_50K(A) :-
+   work_private(A), education_doctorate(A), is_native_of_taiwan(A).
+\end{lstlisting}
+
 
 \end{document}
