@@ -28,6 +28,28 @@ data mining tasks.
 
 \section{Introduction}
 
+Current real-world databases are rich with information that can be used for
+decision making. Classification is a form of data analysis used to extract 
+models that describe important data classes \cite{2}. Classification is, thus, 
+the process of predicting categorical labels. There has been active research on 
+the fields of machine learning, pattern recognition and statistics regarding 
+classification. Data classification is a two-step process, involving both a 
+learning step and a training step. The learning step builds a model, or 
+classifier, from training data, to which the class is already known (therefore
+this is called supervised learning, as opposed to unsupervised learning used in
+clustering, for example). The training step evaluates the accuracy of the 
+classifier by providing data not used on the learning step. If the accuracy is
+considered acceptable, then the rules can be applied to the classification of
+new data tuples.
+
+The models built can assume different forms, ranging from decision trees to 
+classification rules, including prolog clauses (as in ILP \cite{ilp}). This
+report describes the application of different classification algorithms applied
+to the adult database. It starts by identifying the problem, describing the
+algorithms to be applied, the data format, the experimental context and the 
+experimental evaluation. Some conclusions are then taken on the subject and 
+related work is described.
+
 \subsection{Problem Identification}
 
 Deducing from the previous section, this is a classification problem. Given an adult
