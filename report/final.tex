@@ -1040,9 +1040,67 @@ using various algorithms (Table \ref{tbl:dataset_error_rates}).
 
 \section{Conclusions}
 
-// TODO: Tabela e descrição das diferentes taxas de erro
+\begin{table}
+    \begin{center}
+    \begin{tabular}{ | l | l | }
+    \hline
+    \textbf{Algorithm} & \textbf{Error rate} \\ \hline
+    CN2 & 15.20 \\ \hline
+    ID3 & 15.68 \\ \hline
+    ADTree & 19.80 \\ \hline
+    ILP (Aleph) & 20.45 \\ \hline
+    Bayesian Networks (Simulated Annealing) & 21.09 \\ \hline
+    C4.5 & 21.69 \\ \hline
+    Random Forest & 22.71 \\ \hline
+    Bayesian Networks (Hill Climbing) & 22.93 \\ \hline
+    CART & 25.37 \\ \hline
+    Bayesian Networks (Genetic Search) & - \\ \hline
+    \end{tabular}
+    \caption{Error rates for the different algorithms used in the classification process}
+    \label{tbl:overall_results}
+    \end{center}
+\end{table}
 
-// TODO: Descrição de alguns padrões interessantes que sobressaiam nos modelos
+Table \ref{tbl:overall_results} summarizes the best error rates for the 
+different algorithms used in the classification process. Each algorithm has 
+different parameters to tweak it and the table only shows the best error rates
+obtained. CN2 has the best results for this particular dataset, although it
+takes longer than the majority of the other algorithms to build a classifier. 
+ID3 and C4.5 are usually quick to process and build classifiers within a decent
+error rate. ILP and CN2 build more expressive classifiers, capable of a better
+interpretation by a human. One special note goes to Inductive Logic Programming,
+a technique that allows the use of logic predicates to describe both the 
+background knowledge and the produced model. The use of prolog enables the 
+output produced by this technique to be better analyzed by a human agent. 
+Another important conclusion of the conducted experimental process is that the 
+worst error rate of the algorithms used is near 25\%, which denotes the power
+of the current classification algorithms, capable of building relevant models in
+a short period of time for relatively large datasets.
+
+Analyzing the models produced, one can see that having a high capital gain 
+clearly contributes to gaining more than 50K dollars per year. On the other
+hand, part time workers usually don't gain more than 50K dollars per year, like
+the younger and not married people. Having a higher education clearly 
+contributes to gaining more money, as does a stable life (married people
+gain more). People who work in private businesses or in the government are also
+more suitable to gain above 50K dollars per year. Working more hours per week
+obviously contributes to getting more money. Some less obvious conclusions show 
+that being a black own child, even though working more than 40 hours per week 
+doesn't lead to winning more than 50K dollars per year. In fact, being an own 
+child appears on a lot of rules describing people who win less than 50K. ILP
+also builds some interesting clauses where the nationality is associated with.
+This shows that being a native of some asian countries, such as taiwan, thailand
+or cambodia usually lead to gaining more than 50K dollars per year.
+
+Classification is a very active area on the machine learning research field, as
+the great amount of software tools and algorithms to tackle it show. It has
+arrived to a state where efficient models are built fast and with an expression
+suitable for analysis by a human agent. Progresses in relational data mining are
+allowing models to infer relations between entities, expanding their range of 
+applications by a lot. This work enabled a broad study of different types of 
+classification algorithms, analyzed both in terms of efficiency and 
+expressiveness of the models produced. Taking that into account, classification
+is nowadays a very reliable process for data analysis at large.
 
 \begin{thebibliography}{1}
 \bibitem{1}
