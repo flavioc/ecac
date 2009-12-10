@@ -725,13 +725,15 @@ satisfactory results, both for the train set and for the test set.
 \subsection{Random Forest}
 
 In Weka, the Random Forest algorithm can be parametrized by the number
-of trees to build \textbf{$<$-I integer$>$}. Table \ref{tbl:results_random_forest} shows results for
-a varying number of trees.
+of trees to build \textbf{$<$-I integer$>$}. Tables \ref{tbl:results_random_forest_discr}
+and \ref{tbl:results_random_forest_raw} show results for
+a varying number of trees, for discretized data and non-discretized data, respectively.
 
-From the table we conclude that we need a certain amount of trees ($\approx$80) to
-reach a satisfactory error rate ($<$22\%) for the test set. Interestingly
-the error rate for the train set is low ($\approx$9\%), which indicates over-fitting
-when comparing the difference to the test error rate.
+The classifier built with non-discretized data can easily reach a satisfactory
+error rate with less trees ($\approx$4 against $\approx$40).
+
+For both cases, the error rate for the train set is low ($\approx$9\%), which indicates over-fitting
+when comparing to the test error rate.
 
 One drawback of using a big number of trees is the use of large
 quantities of memory (we needed 1GB to compute 400 trees) and the long time needed to construct the classifier.
@@ -755,8 +757,32 @@ quantities of memory (we needed 1GB to compute 400 trees) and the long time need
     -I 100 & 9.15 & 22.83 & 1m28.024s \\ \hline
     -I 400 & 9.15 & 22.71 & 4m58.842s \\ \hline
   \end{tabular}
-  \caption{Results for Random Forest.}
-  \label{tbl:results_random_forest}
+  \caption{Results for Random Forest using discretized data.}
+  \label{tbl:results_random_forest_discr}
+  \end{center}
+\end{table}
+
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c |}
+    \hline
+    \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} \\ \hline
+    -I 2 & 5.72 & 25.70 & 0m4.882s \\ \hline
+    -I 3 & 3.89 & 24.58 & 0m5.588s \\ \hline
+    -I 4 & 3.81 & 23.40 & 0m6.086s \\ \hline
+    -I 5 & 3.20 & 23.43 & 0m6.839s \\ \hline
+    -I 7 & 2.86 & 21.01 & 0m8.190s \\ \hline
+    -I 10 & 2.69 & 21.15 & 0m10.162s \\ \hline
+    -I 15 & 2.52 & 21.01 & 0m13.597s \\ \hline
+    -I 20 & 2.46 & 20.83 & 0m16.970s \\ \hline
+    -I 40 & 2.44 & 21.26 & 0m30.488s \\ \hline
+    -I 60 & 2.44 & 21.67 & 0m46.093s \\ \hline
+    -I 80 & 2.44 & 21.70 & 1m1.347s \\ \hline
+    -I 100 & 2.44 & 21.75 & 1m15.592s \\ \hline
+    -I 400 & 2.44 & 21.62 & 7m51.624s \\ \hline
+  \end{tabular}
+  \caption{Results for Random Forest using non-discretized data.}
+  \label{tbl:results_random_forest_raw}
   \end{center}
 \end{table}
 
