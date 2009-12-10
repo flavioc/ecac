@@ -821,14 +821,42 @@ Other interesting parameters that we will be changing, include:
     -M 5 -N 15 & 13.94 & 25.41 & 7m9.537s & 123 & 62 \\ \hline
     -M 5 -N 20 & 13.88 & 25.39 & 9m18.095s & 133 & 67 \\ \hline
   \end{tabular}
-  \caption{Results for CART.}
-  \label{tbl:results_cart}
+  \caption{Results for CART with discretized data.}
+  \label{tbl:results_cart_discr}
   \end{center}
 \end{table}
 
-CART results are displayed in Table \ref{tbl:results_cart}.
-From these results we can see that there isn't a lot of variation in the results.
-The algorithm also performs badly when compared to C4.5 or ADTree.
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c | c | c |}
+    \hline
+    \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} & \textbf{Nodes} & \textbf{Leaves} \\ \hline
+    -M 2 -N 5 & 12.68 & 22.26 & 2m34.703s & 157 & 79 \\ \hline
+    -M 2 -N 10 & 12.72 & 22.26 & 4m49.261s & 151 & 76 \\ \hline
+    -M 2 -N 15 & 12.22 & 21.34 & 7m4.560s & 237 & 119 \\ \hline
+    -M 2 -N 20 & 11.75 & 21.70 & 9m14.989s & 341 & 171 \\ \hline
+    
+    -M 3 -N 5 & 12.68 & 22.26 & 2m21.439s & 157 & 79 \\ \hline
+    -M 3 -N 10 & 12.72 & 22.26 & 4m35.048s & 151 & 76 \\ \hline
+    -M 3 -N 15 & 12.22 & 21.34 & 6m45.982s & 237 & 119 \\ \hline
+    -M 3 -N 20 & 11.84 & 21.70 & 7m44.483s & 321 & 161 \\ \hline
+    
+    -M 5 -N 5 & 12.72 & 22.26 & 2m18.255s & 151 & 76 \\ \hline
+    -M 5 -N 10 & 12.60 & 22.78 & 4m28.169s & 171 & 86 \\ \hline
+    -M 5 -N 15 & 13.29 & 22.01 & 6m45.657s & 83 & 42 \\ \hline
+    -M 5 -N 20 & 12.22 & 21.43 & 8m53.232s & 259 & 130 \\ \hline
+  \end{tabular}
+  \caption{Results for CART with non-discretized data.}
+  \label{tbl:results_cart_raw}
+  \end{center}
+\end{table}
+
+CART results are displayed in tables \ref{tbl:results_cart_discr} and
+\ref{tbl:results_cart_raw}.
+From these results we can see that there isn't a lot of error rate variation
+for each type of data.
+The algorithm also performs worse compared to C4.5 or ADTree
+and takes a much longer time to build the classifier.
 
 \subsection{CN2}
 
