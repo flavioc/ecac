@@ -602,6 +602,10 @@ The ADTree's Weka algorithm can be parametrized by the number of boosting iterat
 equal or greater than zero as a seed for random walks.
 
 We experimented the algorithm using various combinations of those two parameters.
+Tables \ref{tbl:results_adtree_discr} and \ref{tbl:results_adtree_raw} show
+results for both discretized data and raw data, respectively.
+An example tree built using non-discretized data and with the parameters \textbf{-E -2 -B 10}
+is displayed in Listing \ref{decision_tree_adtree}.
 
 \begin{table}[ht]
   \begin{center}
@@ -649,17 +653,73 @@ We experimented the algorithm using various combinations of those two parameters
     -E 0 -B 40 & 14.90 & 20.54 & 0m27.248s & 118 & 79 \\ \hline
     
   \end{tabular}
-  \caption{Results for ADTree.}
-  \label{tbl:results_adtree}
+  \caption{Results for ADTree for discretized data.}
+  \label{tbl:results_adtree_discr}
   \end{center}
 \end{table}
 
-From Table \ref{tbl:results_adtree} we can see that the number of boosting iterations affects
-both the execution time (directly proportional) and the error rate.
-The best error rate is for the parameters \textbf{-E -2 -B 20} giving $\approx$19.80\% for the test set.
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c | c | c |}
+    \hline
+    \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} & \textbf{Nodes} & \textbf{Leaves} \\ \hline
+    -E -3 -B 2 & 19.90 & 19.69 & 0m4.166s & 7 & 5 \\ \hline
+    -E -3 -B 5 & 18.43 & 18.58 & 0m7.070s & 16 & 11 \\ \hline
+    -E -3 -B 10 & 14.98 & 19.68 & 0m14.188s & 31 & 21 \\ \hline
+    -E -3 -B 15 & 14.78 & 20.18 & 0m24.777s & 46 & 31 \\ \hline
+    -E -3 -B 20 & 14.48 & 19.88 & 0m36.194s & 61 & 41 \\ \hline
+    -E -3 -B 25 & 14.08 & 18.87 & 0m51.563s & 76 & 51 \\ \hline
+    -E -3 -B 30 & 13.80 & 18.49 & 1m11.919s & 91 & 61 \\ \hline
+    -E -3 -B 35 & 13.74 & 18.65 & 1m32.886s & 106 & 71 \\ \hline
+    -E -3 -B 40 & 13.65 & 18.98 & 1m54.094s & 121 & 81 \\ \hline
+    
+    -E -2 -B 2 & 19.90 & 19.69 & 0m3.995s & 7 & 5 \\ \hline
+    -E -2 -B 5 & 18.43 & 18.58 & 0m5.502s & 16 & 11 \\ \hline
+    -E -2 -B 10 & 15.14 & 20.07 & 0m8.662s & 31 & 21 \\ \hline
+    -E -2 -B 15 & 14.67 & 20.26 & 0m11.982s & 46 & 31 \\ \hline
+    -E -2 -B 20 & 14.67 & 19.95 & 0m15.543s & 61 & 41 \\ \hline
+    -E -2 -B 25 & 14.43 & 19.88 & 0m19.500s & 76 & 51 \\ \hline
+    -E -2 -B 30 & 14.34 & 19.85 & 0m22.929s & 91 & 61 \\ \hline
+    -E -2 -B 35 & 14.26 & 20.00 & 0m27.735s & 106 & 71 \\ \hline
+    -E -2 -B 40 & 14.05 & 19.71 & 0m32.832s & 121 & 81 \\ \hline
+    
+    
+    -E -1 -B 2 & 19.90 & 19.69 & 0m4.093s & 7 & 5 \\ \hline
+    -E -1 -B 5 & 18.43 & 18.58 & 0m5.414s & 16 & 11 \\ \hline
+    -E -1 -B 10 & 15.14 & 20.07 & 0m8.459s & 31 & 21 \\ \hline
+    -E -1 -B 15 & 14.67 & 20.26 & 0m11.937s & 46 & 31 \\ \hline
+    -E -1 -B 20 & 14.67 & 19.95 & 0m15.430s & 61 & 41 \\ \hline
+    -E -1 -B 25 & 14.43 & 19.88 & 0m19.413s & 76 & 51 \\ \hline
+    -E -1 -B 30 & 14.34 & 19.85 & 0m22.973s & 91 & 61 \\ \hline
+    -E -1 -B 35 & 14.26 & 20.00 & 0m27.246s & 106 & 71 \\ \hline
+    -E -1 -B 40 & 14.05 & 19.72 & 0m32.555s & 121 & 81 \\ \hline
+    
+    -E 0 -B 2 & 19.90 & 19.69 & 0m4.039s & 7 & 5 \\ \hline
+    -E 0 -B 5 & 18.43 & 18.58 & 0m4.901s & 16 & 11 \\ \hline
+    -E 0 -B 10 & 15.15 & 20.10 & 0m6.701s & 31 & 21 \\ \hline
+    -E 0 -B 15 & 14.80 & 20.65 & 0m8.409s & 46 & 31 \\ \hline
+    -E 0 -B 20 & 14.50 & 20.27 & 0m9.858s & 61 & 41 \\ \hline
+    -E 0 -B 25 & 14.37 & 20.41 & 0m11.057s & 73 & 49 \\ \hline
+    -E 0 -B 30 & 14.21 & 20.28 & 0m12.712s & 88 & 59 \\ \hline
+    -E 0 -B 35 & 13.99 & 19.45 & 0m14.145s & 103 & 69 \\ \hline
+    -E 0 -B 40 & 14.04 & 20.21 & 0m15.273s & 118 & 79 \\ \hline
+    
+  \end{tabular}
+  \caption{Results for ADTree for non-discretized data.}
+  \label{tbl:results_adtree_raw}
+  \end{center}
+\end{table}
 
-Another good observation is that this algorithm can build small trees that give satisfactory results, both for
-the train set and for the test set.
+From tables \ref{tbl:results_adtree_discr} and \ref{tbl:results_adtree_raw}
+we can see that the number of boosting iterations affects
+both the execution time (directly proportional) and the error rate.
+The best error rate for raw data is using the parameters \textbf{-E -3 -B 30} giving $\approx$18.49\% for the test set.
+
+For nearly all parameters the algorithm gives best results when using numeric attributes instead
+of categories. Non-discretized data also generates larger trees.
+
+Another good observation is that this algorithm can build small trees that give
+satisfactory results, both for the train set and for the test set.
 
 \subsection{Random Forest}
 
@@ -987,10 +1047,10 @@ using various algorithms (Table \ref{tbl:dataset_error_rates}).
     \textbf{Algorithm} & \textbf{Error rate} \\ \hline
     CN2 & 15.20 \\ \hline
     ID3 & 15.68 \\ \hline
-    ADTree & 19.80 \\ \hline
+    ADTree & 18.49 \\ \hline
     ILP (Aleph) & 20.45 \\ \hline
     Bayesian Networks (Simulated Annealing) & 21.09 \\ \hline
-    C4.5 & 21.69 \\ \hline
+    C4.5 & 18.84 \\ \hline
     Random Forest & 22.71 \\ \hline
     Bayesian Networks (Hill Climbing) & 22.93 \\ \hline
     CART & 25.37 \\ \hline
@@ -1543,6 +1603,31 @@ capital_gain = low: <50K (55.0)
 capital_gain = medium: <50K (1009.0/181.0)
 capital_gain = high: >50K (878.0/138.0)
 capital_gain = very_high: >50K (770.0/14.0)
+\end{lstlisting}
+
+\clearpage
+\begin{lstlisting}[language=c,frame=single,breaklines=true,basicstyle=\footnotesize\ttfamily,caption={Decision tree built by ADTree with -E -2 -B 10},label=decision_tree_adtree]
+: -0.574
+|  (1)marital_status = married_civ_spouse: 0.467
+|  (1)marital_status != married_civ_spouse: -0.756
+|  (2)capital_gain < 7073.5: -0.11
+|  |  (5)capital_loss < 1748: -0.047
+|  |  (5)capital_loss >= 1748: 0.996
+|  |  (7)education = masters: 0.714
+|  |  (7)education != masters: -0.055
+|  (2)capital_gain >= 7073.5: 2.636
+|  (3)age < 27.5: -0.891
+|  (3)age >= 27.5: 0.11
+|  (4)hours_per_week < 41.5: -0.183
+|  (4)hours_per_week >= 41.5: 0.291
+|  (6)education = bachelors: 0.418
+|  (6)education != bachelors: -0.101
+|  (8)education = prof_school: 0.986
+|  (8)education != prof_school: -0.023
+|  (9)education = doctorate: 1.067
+|  (9)education != doctorate: -0.021
+|  (10)occupation = exec_managerial: 0.335
+|  (10)occupation != exec_managerial: -0.062
 \end{lstlisting}
 
 \clearpage
