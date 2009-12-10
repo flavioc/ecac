@@ -113,8 +113,7 @@ the network structure.
 The construction of the network structured is also known as
 \textit{local score metrics} and various algorithms can be employed for this optimization problem.
 
-The experiments conducted will use genetic based search, hill climbing \cite{bayes3}, simulated annealing,
-and a modified hill climbing algorithm, named K2 \cite{bayes2}.
+The experiments conducted will use genetic based search, hill climbing \cite{bayes3}, and simulated annealing.
 
 For the second step in building a bayesian network classifier, we used a
 simple estimator to estimate the conditional probability distributions.
@@ -354,7 +353,7 @@ also analyzed in section \ref{sec:experimental_eval}.
 
 \section{Experimental Evaluation} \label{sec:experimental_eval}
 
-This section shows performance results for the various algorithms.
+This section shows performance results for the various algorithms described in section \ref{sec:algs}.
 
 \subsection{C4.5}
 
@@ -489,10 +488,11 @@ a varying number of trees.
 
 From the table we conclude that we need a certain amount of trees ($\approx$80) to
 reach a satisfactory error rate ($<$22\%) for the test set. Interestingly
-the error rate for the train set is low ($\approx$9\%), which indicates over-fitting.
+the error rate for the train set is low ($\approx$9\%), which indicates over-fitting
+when comparing the difference to the test error rate.
 
 One drawback of using a big number of trees is the use of large
-quantities of memory (we needed 1GB to compute with 400 trees) and the time needed to compute everything.
+quantities of memory (we needed 1GB to compute 400 trees) and the long time needed to construct the classifier.
 
 \begin{table}[ht]
   \begin{center}
@@ -563,6 +563,122 @@ CART results are displayed in Table \ref{tbl:results_cart}.
 From these results we can see that there isn't a lot of variation in the results.
 The algorithm also performs badly when compared to C4.5 or ADTree.
 
+\subsection{Bayesian Networks}
+
+Our strategy for bayesian networks revolve around changing the search algorithm
+and its parameters. Weka easily allows the parameterization of this algorithm (\textbf{$<$-Q$>$})
+that optimizes the network structure.
+
+The search algorithms experimented include:
+
+\begin{itemize}
+  \item Genetic based search (\textit{weka.classifiers.bayes.net.search.local.GeneticSearch}) \\
+  The following options are available:
+  \begin{itemize}
+    \item -L integer: Population size. 
+    \item -A integer: Descendant population size.
+    \item -U integer: Number of runs/generations.
+    \item -M: Use mutation (true by default).
+    \item -C: Use cross-over (true by default).
+  \end{itemize}
+  
+  \item Hill climbing (\textit{weka.classifiers.bayes.net.search.local.HillClimber}) \\
+  The following options are available:
+  \begin{itemize}
+    \item -P $<$nr of parents$>$: Maximum number of parents.
+    \item -R: Use arc reversal operation. (default false)
+  \end{itemize}
+  
+  \item Simulated annealing (\textit{weka.classifiers.bayes.net.search.local.SimulatedAnnealing}) \\
+  The following options are available:
+  \begin{itemize}
+    \item -A float: Start temperature.
+    \item -U integer: Number of runs.
+    \item -D float: Delta temperature.
+  \end{itemize}
+\end{itemize}
+
+Weka also allows the parameterization of the estimator algorithm (\textbf{$<$-E$>$}).
+We will use the \textit{SimpleEstimator} estimator (\textit{weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 1.0})
+for all the experiments.
+
+\subsubsection{Genetic Search}
+
+The Genetic Search algorithm is a genetic based algorithm to optimize the bayesian network structure.
+We can configure the population size and number of generations. Mutation and cross-over can also
+be set or kept out.
+
+For this experiment we will only use a portion of the train data to speed up the process.
+
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c | c | c | c |}
+    \hline
+    \textbf{Parameter} & \textbf{Portion} & \textbf{Portion error rate} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} \\ \hline
+    GeneticSearch -C -M -L 3 -A 3 -U 3 & 5 & & & & \\ \hline
+    GeneticSearch -C -M -L 3 -A 3 -U 5 & 5 & & & & \\ \hline
+    GeneticSearch -C -M -L 3 -A 3 -U 15 & 5 & & & & \\ \hline
+  \end{tabular}
+  \caption{Results for Bayesian Networks / Genetic Search.}
+  \label{tbl:results_bayesian_networks_gs}
+  \end{center}
+\end{table}
+
+\subsubsection{Hill Climbing}
+
+The best configuration for hill climbing (Table \ref{tbl:results_bayesian_networks_hc})
+is when the number of parents is exactly 1, still, the error rate is somewhat unsatisfactory when
+comparing to other results.
+
+Incrementing the number of parents forces the classifier to over-fit the train set, as it
+directly increases the test set error rate while decreasing the train set error rate.
+
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c | c |}
+    \hline
+    \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} \\ \hline
+    HillClimber -P 1 & 19.22 & 22.93 & 0m29.512s \\ \hline
+    HillClimber -P 2 & 15.15 & 26.34 & 0m30.340s \\ \hline
+    HillClimber -P 3 & 14.51 & 28.11 & 0m29.963s \\ \hline
+    HillClimber -P 4 & 14.43 & 27.92 & 0m29.945s \\ \hline
+    HillClimber -P 10 & 14.43 & 27.92 & 0m30.638s \\ \hline
+  \end{tabular}
+  \caption{Results for Bayesian Networks / Hill Climbing.}
+  \label{tbl:results_bayesian_networks_hc}
+  \end{center}
+\end{table}
+
+\subsubsection{Simulated Annealing}
+
+The simulated annealing algorithm provides lots of configuration parameters
+and it is difficult to input the best values of start temperature, delta
+temperature and number of runs to archive the best error rates.
+
+We tried various temperatures values and came up with the Table \ref{tbl:results_bayesian_networks_sa}.
+
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c | c |}
+    \hline
+    \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} \\ \hline
+    SimulatedAnnealing -U 75 -D 0.4 -A 20 & 14.32 & 26.80 & 0m29.841s \\ \hline
+    SimulatedAnnealing -U 55 -D 0.4 -A 20 & 14.40 & 21.45 & 0m29.77s \\ \hline
+    SimulatedAnnealing -U 52 -D 0.4 -A 20 & 14.49 & 21.09 & 0m29.407s \\ \hline
+    SimulatedAnnealing -U 50 -D 0.4 -A 20 & 15.2 & 21.35 & 0m30.884s \\ \hline
+    SimulatedAnnealing -U 50 -D 0.4 -A 40 & 15.2 & 21.35 & 0m30.884s \\ \hline
+    SimulatedAnnealing -U 25 -D 0.4 -A 20 & 18.25 & 22.31 & 0m29.602s \\ \hline
+    SimulatedAnnealing -U 10 -D 0.4 -A 20 & 19.82 & 22.96 & 0m29.131s \\ \hline
+  \end{tabular}
+  \caption{Results for Bayesian Networks / Simulated Annealing.}
+  \label{tbl:results_bayesian_networks_sa}
+  \end{center}
+\end{table}
+
+The diminish the error rates more research will be required to find the best
+tuple of configuration values. Anyway, with just a few guesses we came up
+with $\approx21$\% error rate, which is quite good when comparing to other algorithms.
+
 \section{Related Work}
 
 \section{Conclusions}
@@ -603,10 +719,6 @@ Quinlan, J. R. (1987). "Generating production rules from decision trees". in McD
 
 \bibitem{aleph}
 Ashwin Srinivasan. The Aleph Manual. 2007
-
-\bibitem{bayes2}
-G. Cooper, E. Herskovits. A Bayesian method for the induction of probabilistic networks from 
-data. Machine Learning, 9: 309–347, 1992.
 
 \bibitem{bayes3}
 W.L. Buntine. A guide to the literature on learning probabilistic networks from data. IEEE 
