@@ -23,7 +23,16 @@
               <list key="columns">
               </list>
           </operator>
-          <operator name="ID3Numerical" class="ID3Numerical">
+          <operator name="AbsoluteDiscretization" class="AbsoluteDiscretization">
+              <parameter key="return_preprocessing_model"	value="false"/>
+              <parameter key="create_view"	value="false"/>
+              <parameter key="size_of_bins"	value="10000"/>
+              <parameter key="sorting_direction"	value="decreasing"/>
+              <parameter key="range_name_type"	value="long"/>
+              <parameter key="automatic_number_of_digits"	value="true"/>
+              <parameter key="number_of_digits"	value="-1"/>
+          </operator>
+          <operator name="ID3" class="ID3">
               <parameter key="keep_example_set"	value="false"/>
               <parameter key="criterion"	value="gain_ratio"/>
               <parameter key="minimal_size_for_split"	value="500"/>
