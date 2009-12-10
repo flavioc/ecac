@@ -913,9 +913,47 @@ with $\approx21$\% error rate, which is quite good when comparing to other algor
 
 \section{Conclusions}
 
-// TODO: Tabela e descrição das diferentes taxas de erro
+\begin{table}
+    \begin{center}
+    \begin{tabular}{ | l | l | }
+    \hline
+    \textbf{Algorithm} & \textbf{Error rate} \\ \hline
+    CN2 & 15.20 \\ \hline
+    ID3 & 15.68 \\ \hline
+    ADTree & 19.80 \\ \hline
+    ILP (Aleph) & 20.45 \\ \hline
+    Bayesian Networks (Simulated Annealing) & 21.09 \\ \hline
+    C4.5 & 21.69 \\ \hline
+    Random Forest & 22.71 \\ \hline
+    Bayesian Networks (Hill Climbing) & 22.93 \\ \hline
+    CART & 25.37 \\ \hline
+    Bayesian Networks (Genetic Search) & - \\ \hline
+    \end{tabular}
+    \caption{Error rates for the different algorithms used in the classification process}
+    \label{tbl:overall_results}
+    \end{center}
+\end{table}
 
-// TODO: Descrição de alguns padrões interessantes que sobressaiam nos modelos
+Table \ref{tbl:overall_results} summarizes the best error rates for the 
+different algorithms used in the classification process. Each algorithm has 
+different parameters to tweak it and the table only shows the best error rates
+obtained. CN2 has the best results for this particular dataset, although it
+takes longer than the majority of the other algorithms to build a classifier. 
+ID3 and C4.5 are usually quick to process and build classifiers within a decent
+error rate. ILP and CN2 build more expressive classifiers, capable of a better
+interpretation by a human. One special note goes to Inductive Logic Programming,
+a technique that allows the use of logic predicates to describe both the 
+background knowledge and the produced model. The use of prolog enables the 
+output produced by this technique to be better analyzed by a human agent. 
+Another important conclusion of the conducted experimental process is that the 
+worst error rate of the algorithms used is near 25\%, which denotes the power
+of the current classification algorithms, capable of building relevant models in
+a short period of time for relatively large datasets.
+
+Analyzing the models produced, one can see that having a high capital gain 
+clearly contributes to gaining more than 50K dollars per year. On the other
+hand, part time workers usually don't gain more than 50K dollars per year, like
+the younger and not married people.
 
 \begin{thebibliography}{1}
 \bibitem{1}
