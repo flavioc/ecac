@@ -714,7 +714,7 @@ is displayed in Listing \ref{decision_tree_adtree}.
 From tables \ref{tbl:results_adtree_discr} and \ref{tbl:results_adtree_raw}
 we can see that the number of boosting iterations affects
 both the execution time (directly proportional) and the error rate.
-The best error rate for raw data is using the parameters \textbf{-E -1 -B 5} giving $\approx$18.58\% for the test set.
+The best error rate for raw data is using the parameters \textbf{-E -3 -B 30} giving $\approx$18.49\% for the test set.
 
 For nearly all parameters the algorithm gives best results when using numeric attributes instead
 of categories. Non-discretized data also generates larger trees.
@@ -1047,10 +1047,10 @@ using various algorithms (Table \ref{tbl:dataset_error_rates}).
     \textbf{Algorithm} & \textbf{Error rate} \\ \hline
     CN2 & 15.20 \\ \hline
     ID3 & 15.68 \\ \hline
-    ADTree & 19.80 \\ \hline
+    ADTree & 18.49 \\ \hline
     ILP (Aleph) & 20.45 \\ \hline
     Bayesian Networks (Simulated Annealing) & 21.09 \\ \hline
-    C4.5 & 21.69 \\ \hline
+    C4.5 & 18.84 \\ \hline
     Random Forest & 22.71 \\ \hline
     Bayesian Networks (Hill Climbing) & 22.93 \\ \hline
     CART & 25.37 \\ \hline
