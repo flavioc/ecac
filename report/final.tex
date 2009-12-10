@@ -344,9 +344,12 @@ and visualization.
 
 This tool was used to apply the following algorithms: C4.5, ADTree, Random Forest, CART and Bayesian Networks.
 Instead of using the command line tools, we used the Java API to build classifiers.
+We will build classifiers using only nominal attributes, with numeric values being
+discretized into categories, and classifiers with the data unchanged, to test
+the effects of using numeric attributes within the algorithms.
 
-To use the data set we fetch it directly from the database and then apply various data pre-processing
-techniques that are available within Weka:
+To use the data set we fetch it directly from the database and then optionally
+apply various data pre-processing techniques that are available within Weka:
 
 \begin{itemize}
   \item The \textbf{plus\_50} was converted from a numerical format to categories: $<$50K and $>$50K.
@@ -379,6 +382,7 @@ Once the classifier is trained, it will be used to classify both the train and t
 
 Performance metrics for both classification results will be registered: error rate and time spent
 building the classifier and classifying all the examples.
+We will separate the results for the discretized data set and for the raw data set.
 
 \subsection{RapidMiner}
 
@@ -526,13 +530,12 @@ For pruned trees we can use the confidence threshold parameter that dictates how
 much pruning the algorithm will do $<$\textbf{-C float}$>$.
 
 We executed the algorithm using different combinations of the parameters described above.
-Table \ref{tbl:results_c45} displays the obtained results. From the table
-we note that once the confidence threshold reaches a certain level ($\approx$0.55) the results
-are very similar for the unpruned classifier and the over-fitting effect starts to get worse,
-where the train data gets very good results ($\approx$11.19 error rate) and the test set gets a
-large error rate ($\approx$24).
-
-The confidence threshold for best test error rates appears to be in the interval 0.05-0.15.   
+Table \ref{tbl:results_c45_discr} and \ref{tbl:results_c45_raw} displays the results
+with discretized and raw data, respectively. From the tables we can see that
+using numeric attributes increases the number of nodes and leaves, and
+that once the confidence threshold increases, the test error rate
+increases while the train error rate decreases, which indicates over-fitting.
+This effect is clearly visible for unpruned trees.
 
 \begin{table}[ht]
   \begin{center}
@@ -548,20 +551,36 @@ The confidence threshold for best test error rates appears to be in the interval
     -C 0.3 & 14.17 & 23.26 & 0m24.765s & 494 & 423 \\ \hline
     -C 0.35 & 13.84 & 22.42 & 0m25.154s & 692 & 593 \\ \hline
     -C 0.4 & 13.68 & 22.49 & 0m24.325s & 835 & 721 \\ \hline
-    -C 0.45 & 13.26 & 22.43 & 0m25.086s & 1143 & 992 \\ \hline
     -C 0.5 & 12.95 & 22.51 & 0m24.874s & 1483 & 1292 \\ \hline
-    -C 0.55 & 11.19 & 24.94 & 0m25.899s & 6727 & 6036 \\ \hline
-    -C 0.6 & 11.19 & 23.94 & 0m26.882s & 6727 & 6036 \\ \hline
-    -C 0.7 & 11.19 & 23.94 & 0m26.638s & 6727 & 6036 \\ \hline
-    -C 0.8 & 11.19 & 23.94 & 0m26.818s & 6727 & 6036 \\ \hline
-    -C 0.9 & 11.19 & 23.94 & 0m26.634s & 6727 & 6036 \\ \hline
   \end{tabular}
-  \caption{Results for C4.5.}
-  \label{tbl:results_c45}
+  \caption{Results for C4.5 with discretized attributes.}
+  \label{tbl:results_c45_discr}
   \end{center}
 \end{table}
 
-A decision tree built by this algorithm with the confidence threshold set to 0.05 is shown in Listing \ref{decision_tree_c45}.
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{ | l | c | c | c | c | c |}
+    \hline
+    \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} & \textbf{Nodes} & \textbf{Leaves} \\ \hline
+    -U & 9.48 & 21.58 & 0m7.525s & 6422 & 5491 \\ \hline
+    -C 0.05 & 13.78 & 19.49 & 0m7.667s & 149 & 105 \\ \hline
+    -C 0.1 & 13.37 & 19.06 & 0m7.969s & 278 & 212 \\ \hline
+    -C 0.15 & 12.99 & 18.84 & 0m7.708s & 361 & 278 \\ \hline
+    -C 0.2 & 12.95 & 18.89 & 0m7.812s & 373 & 284 \\ \hline
+    -C 0.25 & 12.86 & 18.86 & 0m7.974s & 433 & 331 \\ \hline
+    -C 0.3 & 12.11 & 19.73 & 0m8.064s & 806 & 624 \\ \hline
+    -C 0.35 & 12.02 & 19.77 & 0m8.035s & 878 & 678 \\ \hline
+    -C 0.4 & 11.54 & 20.47 & 0m8.255s & 1264 & 995 \\ \hline
+    -C 0.5 & 11.22 & 20.28 & 0m8.117s & 1603 & 1257 \\ \hline
+  \end{tabular}
+  \caption{Results for C4.5 with non-discretized attributes.}
+  \label{tbl:results_c45_raw}
+  \end{center}
+\end{table}
+
+A decision tree built by this algorithm with the confidence threshold set to 0.05 and
+discretized data is shown in Listing \ref{decision_tree_c45}.
 
 \subsection{Alternating Decision Trees}
 
