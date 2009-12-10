@@ -572,9 +572,13 @@ parameters and the overall results are presented in table \ref{tbl:results_cn2}.
 
 \begin{table}
 \begin{center}
-\begin{tabular}{ | l | l | l | l | l | }
+\begin{tabular}{ | l | l | l | l | l |}
     \hline
-    \textbf{Algorithm} & \textbf{Error Estimate} & \textbf{Train Error Rate} & \textbf{Test Error Rate} & \textbf{Time}
+    \textbf{Algorithm} & \textbf{Error estimate} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} \\ \hline
+    Unordered & Laplacian & 13.3 & 15.2 & 3min29sec \\ \hline
+    Unordered & Naive & - & - & - \\ \hline
+    Ordered & Laplacian & 0 & 17.6 & 1min45sec \\ \hline
+    Ordered & Naive &
 \end{tabular}
 \caption{Results for CN2.}
 \label{tbl:results_cn2}

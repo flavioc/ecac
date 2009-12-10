@@ -48,8 +48,8 @@ def convert_line(line, outputfile):
         workclass = 'private'
     if occupation == '?':
         occupation = 'prof_specialty'
-    outputfile.write(age + " " + workclass + " " + fnlwgt + " " + education +
-                     " " + education_num + " " + marital_status + " " + 
+    outputfile.write(age + " " + workclass + " " + education +
+                     " " + marital_status + " " + 
                      occupation + " " + relationship + " " + race + " " + sex +
                      " " + capital_gain + " " + capital_loss + " " + 
                      hours_per_week + " " + native_country + " " + plus_50 +
