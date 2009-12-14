@@ -116,14 +116,20 @@ persons who gain more or less than 50K dollars per year. The attributes and type
   \item{\textbf{Native-country}: categorical.}
 \end{itemize}
 
-There are 3620 records with missing values. The attributes that contain missing values are: \textbf{Workclass}, \textbf{Occupation} and \textbf{Native-country}.
+For the training set, there are 3620 records with missing values. The attributes
+that contain missing values are: \textbf{Workclass}, \textbf{Occupation} and 
+\textbf{Native-country}.
 
 This data set is available in the following URL: \url{ftp://ftp.ics.uci.edu/pub/machine-learning-databases/adult}.
 
 \subsection{Data Analysis}
 
-The table \ref{tab:summary} summarizes the distribution of values on the studied
-dataset. From a first observation, one can see that the amount of missing values
+The table \ref{tab:summary} summarizes the distribution of values in the training data on the studied
+dataset, while the table \ref{tab:summarytest} summarizes the same distribution but
+for the test set. A quick observation shows that the distribution of values is 
+similar in both the training and the test set. Taking that into account, some
+analysis was conducted on the training data, expecting some interesting 
+properties to arise. From a first observation, one can see that the amount of missing values
 is low. On the other side, in some of the attributes, some classes have a
 much higher frequency than others, such as the 'united-states' native country, 
 the 'private' workclass and the 'white' race. On the hours of work per week
@@ -269,7 +275,7 @@ the control procedure that repeatedly executes the search.
 The search procedure performs beam search using classification accuracy 
 of the rule as a heuristic function.
 Two different control procedures are used in CN2: one for inducing an ordered 
-list of rules and the other for the unordered case.
+list of rules and the other for an unordered one.
 
 \subsection{Inductive Logic Programming}
 
@@ -498,7 +504,7 @@ numerical values, one that doesn't. For the one that doesn't support numerical
 values, an absolute discretization was conducted. Table \ref{tbl:results_id3}
 summarizes the results with the ID3 algorithm.
 
-\begin{table}
+\begin{table}[ht]
   \begin{center}
   \begin{tabular}{ | l | c | c | c | c | c |}
     \hline
@@ -870,7 +876,7 @@ or unordered rule sets and with different error estimations: laplacian, naive,
 information gain and modified entropy. We've tested each combination of
 parameters and the overall results are presented in table \ref{tbl:results_cn2}.
 
-\begin{table}
+\begin{table}[ht]
 \begin{center}
 \begin{tabular}{ | l | l | l | l | l |}
     \hline
@@ -926,7 +932,7 @@ hypothesis. The results obtained are described in table \ref{tbl:results_ilp}.
 \end{table}
 
 The error rate produced by Aleph when evaluating the test data was 20.45\%.
-18881882 clauses were built, taking around 5 hours for the whole training
+Around 7000 clauses were built, taking around 5 hours for the whole training
 data. Despite the number of clauses, most of them are irrelevant, directly
 classifying examples when no more general rule is available. Listing 
 \ref{ilp_clauses} lists the most relevant clauses produced.
@@ -1138,7 +1144,7 @@ using various algorithms (Table \ref{tbl:dataset_error_rates}).
 
 \section{Conclusions}
 
-\begin{table}
+\begin{table}[ht]
     \begin{center}
     \begin{tabular}{ | l | l | }
     \hline
@@ -1503,8 +1509,239 @@ Jie Cheng, Russell Greiner. Learning Bayesian Belief Network Classifiers: Algori
        \hline
        \end{tabular}
 }
-\caption{Summary of the value distribution in the database}
+\caption{Summary of the value distribution on the training data of the dataset}
 \label{tab:summary}
+\end{table}
+
+\begin{table}
+\centering
+\subtable[Age]{
+       \begin{tabular}{| l | l |}
+       \hline
+       Min. & 17 \\
+       \hline
+       1st Qu. & 28 \\
+       \hline
+       Median & 37 \\
+       \hline
+       Mean & 38.77 \\
+       \hline
+       3rd Qu. & 48 \\
+       \hline
+       Max & 90 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Workclass]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       private & 11210 \\
+       \hline
+       self\_emp\_not\_inc & 1321 \\
+       \hline
+       local\_gov & 1043 \\
+       \hline
+       state\_gov & 683 \\
+       \hline
+       self\_emp\_inc & 579 \\
+       \hline
+       (Other) & 482 \\
+       \hline
+       NA's & 963 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Education]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       hs\_grad & 5283 \\
+       \hline
+       some\_college & 3587 \\
+       \hline
+       bachelors & 2670 \\
+       \hline
+       masters & 934 \\
+       \hline
+       assoc\_voc & 679 \\
+       \hline
+       11th & 637 \\
+       \hline
+       (Other) & 2491 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Marital Status]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       divorced & 2190 \\
+       \hline
+       married\_af\_spouse & 14 \\
+       \hline
+       married\_civ\_spouse & 7403 \\
+       \hline
+       married\_spouse\_absent & 210 \\
+       \hline
+       never\_married & 5434 \\
+       \hline
+       separated & 505 \\
+       \hline
+       widowed & 525 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Occupation]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       prof\_specialty & 2032 \\
+       \hline
+       exec\_managerial & 2020 \\
+       \hline
+       craft\_repair & 2013 \\
+       \hline
+       sales & 1854 \\
+       \hline
+       adm\_clerical & 1841 \\
+       \hline
+       (Other) & 5555 \\
+       \hline
+       NA's & 966 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Relatonship]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       husband & 6523 \\
+       \hline
+       not\_in\_family & 4278 \\
+       \hline
+       other\_relative & 525 \\
+       \hline
+       own\_child & 2513 \\
+       \hline
+       unmarried & 1679 \\
+       \hline
+       wife & 763 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Race]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       amer\_indian\_eskimo & 159 \\
+       \hline
+       asian\_pac\_islander & 480 \\
+       \hline
+       black & 1561 \\
+       \hline
+       other & 135 \\
+       \hline
+       white & 13946 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Sex]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       female & 5421 \\
+       \hline
+       male & 10860 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Capital Gain]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       Min. & 0 \\
+       \hline
+       1st Qu. & 0 \\
+       \hline
+       Median & 0 \\
+       \hline
+       Mean & 1082 \\
+       \hline
+       3rd Qu. & 0 \\
+       \hline
+       Max. & 99999 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Capital Loss]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       Min. & 0 \\
+       \hline
+       1st Qu. & 0 \\
+       \hline
+       Median & 0 \\
+       \hline
+       Mean & 87.9 \\
+       \hline
+       3rd Qu. & 0 \\
+       \hline
+       Max. & 3770 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Hours Per Week]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       Min. & 1 \\
+       \hline
+       1st Qu. & 40 \\
+       \hline
+       Median & 40 \\
+       \hline
+       Mean & 40.39 \\
+       \hline
+       3rd Qu. & 45 \\
+       \hline
+       Max. & 99 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Native Country]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       United States & 14662 \\
+       \hline
+       Mexico & 308 \\
+       \hline
+       Philippines & 97 \\
+       \hline
+       Puerto Rico & 70 \\
+       \hline
+       Germany & 69 \\
+       \hline
+       (Other) & 801 \\
+       \hline
+       NA's & 274 \\
+       \hline
+       \end{tabular}
+}
+\qquad\qquad
+\subtable[Plus 50]{        
+       \begin{tabular}{| l | l |}
+       \hline
+       No & 12435 \\
+       \hline
+       Yes & 3846 \\
+       \hline
+       \end{tabular}
+}
+\caption{Summary of the value distribution on the test data of the dataset}
+\label{tab:summarytest}
 \end{table}
 
 \begin{table}
