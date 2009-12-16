@@ -474,9 +474,9 @@
       \item<1-> Various parameters available in Weka algorithms were experimented in hope of getting better error rates
       \item<1-> Every missing value was replaced with modes and means
       \item<1-> Two different classifiers were trained for each algorithm, one using only discretized attributes
-                and unchanged attributes to analyze how the algorithms behaves when using numeric attributes
+                and another with the attributes unmodified
+      \item<1-> Analyze how the algorithm behaves when using numeric attributes
     \end{itemize}
-    
   \end{itemize}
 }
 
@@ -484,6 +484,92 @@
 {
   \frametitle{Conducted Experiments}
   % colocar ILP CN2 ID3!
+}
+
+\subsection{C4.5}
+\frame
+{
+  \frametitle{C4.5}
+  
+  \begin{itemize}
+    \item Weka supports a confidence threshold parameter that dictates how much pruning the algorithm will do
+    \item The bigger the threshold the less pruning the algorithm does
+    \item When using only discretized data the algorithm gives error rates of $\approx$25\%
+  \end{itemize}
+  
+  \begin{table}[ht]
+    \begin{center}
+    \scalebox{0.8}{
+    \begin{tabular}{ | l | c | c | c | c | c |}
+      \hline
+      \textbf{Parameters} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} & \textbf{Nodes} & \textbf{Leaves} \\ \hline
+      -U & 9.48 & 21.58 & 0m7.525s & 6422 & 5491 \\ \hline
+      -C 0.05 & 13.78 & 19.49 & 0m7.667s & 149 & 105 \\ \hline
+      -C 0.1 & 13.37 & 19.06 & 0m7.969s & 278 & 212 \\ \hline
+      -C 0.15 & 12.99 & 18.84 & 0m7.708s & 361 & 278 \\ \hline
+      -C 0.2 & 12.95 & 18.89 & 0m7.812s & 373 & 284 \\ \hline
+      -C 0.25 & 12.86 & 18.86 & 0m7.974s & 433 & 331 \\ \hline
+      -C 0.3 & 12.11 & 19.73 & 0m8.064s & 806 & 624 \\ \hline
+      -C 0.35 & 12.02 & 19.77 & 0m8.035s & 878 & 678 \\ \hline
+      -C 0.4 & 11.54 & 20.47 & 0m8.255s & 1264 & 995 \\ \hline
+      -C 0.5 & 11.22 & 20.28 & 0m8.117s & 1603 & 1257 \\ \hline
+    \end{tabular}}
+    \end{center}
+  \end{table}
+}
+
+\subsection{Random Forest}
+\frame
+{
+  \frametitle{Random Forest}
+  
+  \begin{itemize}
+    \item<1-> It is an ensemble classifier consisting of many decision trees
+    \item<1-> Outputs the class that is the mode of the class's output by individual trees
+    \item<1-> Better results require more time building the classifier
+    \item<1-> Large quantities of memory needed: 1GB to compute with 400 trees
+    \item<1-> Over-fitting
+  \end{itemize}
+  
+  \begin{table}[ht]
+    \begin{center}
+    \scalebox{0.75}{
+    \begin{tabular}{ | l | c | c | c |}
+      \hline
+      \textbf{Trees} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} \\ \hline
+      2 & 5.72 & 25.70 & 0m4.882s \\ \hline
+      4 & 3.81 & 23.40 & 0m6.086s \\ \hline
+      5 & 3.20 & 23.43 & 0m6.839s \\ \hline
+      7 & 2.86 & 21.01 & 0m8.190s \\ \hline
+      10 & 2.69 & 21.15 & 0m10.162s \\ \hline
+      20 & 2.46 & 20.83 & 0m16.970s \\ \hline
+      40 & 2.44 & 21.26 & 0m30.488s \\ \hline
+      80 & 2.44 & 21.70 & 1m1.347s \\ \hline
+      100 & 2.44 & 21.75 & 1m15.592s \\ \hline
+      400 & 2.44 & 21.62 & 7m51.624s \\ \hline
+    \end{tabular}}
+    \end{center}
+  \end{table}
+}
+
+\subsection{Bayesian Networks}
+\frame
+{
+  \frametitle{Bayesian Networks}
+  
+  \begin{itemize}
+    \item<1-> Based on conditional probabilities and the Bayes theorem
+    \item<1-> Represents a set of variables and their conditional independencies via a directed acyclic graph and a set of probability tables
+    \item<1-> The algorithm first learns the network structure / graph and then learns the probability tables
+    \item<1-> We experimented with different algorithms to learn the network structure:
+     \begin{itemize}
+      \item<1-> Genetic Search
+      \item<1-> Hill Climbing
+      \item<1-> Simulated Annealing
+     \end{itemize}
+    \item<1-> Weka provides a very rich set of parameters for each search algorithm
+  \end{itemize}
+  
 }
 
 \subsection{Rule Induction}
@@ -542,6 +628,7 @@
     \item<1-> ID3 and C4.5 are very fast and build classifiers with a decent error rate.
     \item<1-> ILP and CN2 build more expressive classifiers, capable of a better interpretation by a human agent, but take longer to finish.
     \item<1-> The worst error rate is below 25\%.
+    \item<1-> Using numeric information results in better error rates
     \item<1-> There is a lot of software tools that support the building of classifiers, namely Weka and RapidMiner.
     \begin{itemize}
         \item<1-> Open source.
