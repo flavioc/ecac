@@ -15,6 +15,7 @@
 \usepackage{url}
 \usepackage{float}
 \usepackage{subfigure}
+\usepackage{multirow}
 
 \urldef{\mails}\path|ei05011@fe.up.pt,ei05028@fe.up.pt|
 \title[Classification on the Adult Database \insertframenumber/\inserttotalframenumber]{A comparison of classification algorithms applied to the Adult Database}
@@ -649,6 +650,34 @@
 \end{tabular}
 \end{center}
 \end{table}
+\normalsize
+}
+
+\subsection{ILP}
+\frame[containsverbatim]
+{
+    \frametitle{ILP}
+
+    \begin{itemize}
+    \item Aleph was used to genereate logic clauses.
+    \item Uses inverse entailment to generate the bottom clause.
+    \item The search for the best clause is implemented by a restricted branch-and-bound algorithm.
+    \item The generation of hypothesis takes around 6 hours and produces an error rate on the test set of around 20\%.
+    \item Some interesting clauses:
+    \end{itemize}
+
+\scriptsize
+\begin{verbatim}
+more_than_50K(A) :- middle_aged(A), very_high_capital_gain(A), 
+                    is_native_of_united_states(A).
+more_than_50K(A) :- education_prof_school(A), wife(A), workaholic(A).
+more_than_50K(A) :- senior(A), work_private(A), very_high_capital_gain(A).
+more_than_50K(A) :- senior(A), work_federal_gov(A), education_doctorate(A).
+more_than_50K(A) :- education_doctorate(A), medium_capital_loss(A), workaholic(A).
+more_than_50K(A) :- work_self_emp_inc(A), high_capital_gain(A), full_time_worker(A).
+more_than_50K(A) :- middle_aged(A), education_masters(A), is_native_of_iran(A).
+more_than_50K(A) :- senior(A), full_time_worker(A), is_native_of_cambodia(A).
+\end{verbatim}
 \normalsize
 }
 
