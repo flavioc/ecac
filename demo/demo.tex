@@ -462,9 +462,28 @@
   \end{itemize}
 }
 
-\subsection{Decision Trees}
+\section{Conducted Experiments}
 \frame
 {
+  \frametitle{Conducted Experiments}
+  
+  \begin{itemize}
+    \item<1-> Classifiers were built using the train set and then tested against the test set
+    \item<1-> C4.5, Random Forest, CART, ADTree and Bayesian classifiers built using Weka
+    \begin{itemize}
+      \item<1-> Various parameters available in Weka algorithms were experimented in hope of getting better error rates
+      \item<1-> Every missing value was replaced with modes and means
+      \item<1-> Two different classifiers were trained for each algorithm, one using only discretized attributes
+                and unchanged attributes to analyze how the algorithms behaves when using numeric attributes
+    \end{itemize}
+    
+  \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Conducted Experiments}
+  % colocar ILP CN2 ID3!
 }
 
 \subsection{Rule Induction}
@@ -486,21 +505,6 @@
         \item<1-> Modified Entropy.
     \end{itemize}
     \end{itemize}
-}
-
-\subsection{Inductive Logic Programming}
-\frame
-{
-}
-
-\subsection{Bayesian Classifiers}
-\frame
-{
-}
-
-\section{Conducted Experiments}
-\frame
-{
 }
 
 \section{Results}
