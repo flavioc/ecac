@@ -37,9 +37,9 @@
     \frametitle{Problem proposed by the Dataset}
 
     \begin{itemize}
-    \item<1-> Given an adult with some attributes, identify whether he gains more than 50000 dollars per year, or not.
-    \item<1-> Identify what social characteristics allow one person to gain more than someone else.
-    \item<1-> Understanding what affects the income can give a lot of information concerning society's behaviour.
+    \item Given an adult with some attributes, identify whether he gains more than 50000 dollars per year, or not.
+    \item Identify what social characteristics allow one person to gain more than someone else.
+    \item Understanding what affects the income can give a lot of information concerning society's behaviour.
     \end{itemize}
 }
 
@@ -51,14 +51,14 @@
     \frametitle{The Dataset}
     
     \begin{itemize}
-    \item<1-> 48842 entries of individual information of people gathered in a 1994 census on the United States of America.
+    \item 48842 entries of individual information of people gathered in a 1994 census on the United States of America.
     \begin{itemize}
-        \item<1-> 32561 records for the training set (67\%).
-        \item<1-> 16281 records for the test set (33\%).
+        \item 32561 records for the training set (67\%).
+        \item 16281 records for the test set (33\%).
     \end{itemize}
-    \item<1-> Each entry is composed by a set of 14 attributes and 2 classes (winning more or less than 50K dollars a year).
-    \item<1-> There are 3620 records with missing values. The only attributes containing missing values are \textbf{Workclass}, \textbf{Occupation} and \textbf{Native-country}.
-    \item<1-> Available in \url{ftp://ftp.ics.uci.edu/pub/machine-learning-databases/adult}.
+    \item Each entry is composed by a set of 14 attributes and 2 classes (winning more or less than 50K dollars a year).
+    \item There are 3620 records with missing values. The only attributes containing missing values are \textbf{Workclass}, \textbf{Occupation} and \textbf{Native-country}.
+    \item Available in \url{ftp://ftp.ics.uci.edu/pub/machine-learning-databases/adult}.
     \end{itemize}
 }
 
@@ -67,20 +67,20 @@
     \frametitle{Attributes}
 
     \begin{itemize}
-        \item<1-> \textbf{Age} (continuous).
-        \item<1-> \textbf{Workclass} (categorical).
-        \item<1-> \textbf{FNLWGT} (continuous).
-        \item<1-> \textbf{Education} (ordinal).
-        \item<1-> \textbf{Education-num} (continuous).
-        \item<1-> \textbf{Marital-status} (categorical).
-        \item<1-> \textbf{Occupation} (categorical).
-        \item<1-> \textbf{Relationship} (categorical).
-        \item<1-> \textbf{Race} (categorical).
-        \item<1-> \textbf{Sex} (categorical).
-        \item<1-> \textbf{Capital-gain} (continuous).
-        \item<1-> \textbf{Capital-loss} (continuous).
-        \item<1-> \textbf{Hours-per-week} (continuous).
-        \item<1-> \textbf{Native country} (categorical).
+        \item \textbf{Age} (continuous).
+        \item \textbf{Workclass} (categorical).
+        \item \textbf{FNLWGT} (continuous).
+        \item \textbf{Education} (ordinal).
+        \item \textbf{Education-num} (continuous).
+        \item \textbf{Marital-status} (categorical).
+        \item \textbf{Occupation} (categorical).
+        \item \textbf{Relationship} (categorical).
+        \item \textbf{Race} (categorical).
+        \item \textbf{Sex} (categorical).
+        \item \textbf{Capital-gain} (continuous).
+        \item \textbf{Capital-loss} (continuous).
+        \item \textbf{Hours-per-week} (continuous).
+        \item \textbf{Native country} (categorical).
     \end{itemize}   
 }
 
@@ -343,9 +343,9 @@
     \frametitle{Some obvious relationships}
     
     \begin{itemize}
-    \item<1-> There is a higher percentage of older people gaining more than 50K than younger ones.
-    \item<1-> There is a higher percentage of people with more education gaining more than 50K than people with less studies.
-    \item<1-> There is a higher percentage of workaholics gaining more than 50K than people who work in part-time.
+    \item There is a higher percentage of older people gaining more than 50K than younger ones.
+    \item There is a higher percentage of people with more education gaining more than 50K than people with less studies.
+    \item There is a higher percentage of workaholics gaining more than 50K than people who work in part-time.
     \end{itemize}
 
    \begin{minipage}{0.30\linewidth}
@@ -375,7 +375,7 @@
     \frametitle{Association Rules}
     
     \begin{itemize}
-      \item <1-> Association rules can be used to discover interesting relations and patterns between attributes.
+      \item  Association rules can be used to discover interesting relations and patterns between attributes.
      
     \end{itemize}
     
@@ -402,11 +402,11 @@
     \frametitle{Clusters}
 
     \begin{itemize}
-    \item<1-> Clustering can be used to detect similar individuals and to build classes in the absence of them.
-    \item<1-> Generating 6 clusters with only three variables (\textbf{age}, \textbf{education\_num} and \textbf{hours\_per\_week}) leads to some interesting observations:
+    \item Clustering can be used to detect similar individuals and to build classes in the absence of them.
+    \item Generating 6 clusters with only three variables (\textbf{age}, \textbf{education\_num} and \textbf{hours\_per\_week}) leads to some interesting observations:
     \begin{itemize}
-        \item<1-> Younger people are grouped together.
-        \item<1-> People with different levels of education belong to different clusters.
+        \item Younger people are grouped together.
+        \item People with different levels of education belong to different clusters.
     \end{itemize}
     \end{itemize}
 }
@@ -417,13 +417,13 @@
     \frametitle{Data Mining Problem}
 
     \begin{itemize}
-    \item<1-> The database poses a classification problem.
-    \item<1-> There is no single classifier that works best on all given problems:
+    \item The database poses a classification problem.
+    \item There is no single classifier that works best on all given problems:
     \begin{itemize}
-        \item<1-> Decision trees.
-        \item<1-> Rule induction.
-        \item<1-> Inductive logic programming.
-        \item<1-> Bayesian classifiers.
+        \item Decision trees.
+        \item Rule induction.
+        \item Inductive logic programming.
+        \item Bayesian classifiers.
     \end{itemize}
     \end{itemize}
 }
@@ -434,33 +434,33 @@
   \frametitle{Algorithms Used}
   
   \begin{itemize}
-    \item<1-> Decision trees
+    \item Decision trees
     
     \begin{itemize}
-      \item<1-> ID3
-      \item<1-> C4.5
-      \item<1-> CART
-      \item<1-> Random Forest
-      \item<1-> Alternating Decision Trees (ADTree)
+      \item ID3
+      \item C4.5
+      \item CART
+      \item Random Forest
+      \item Alternating Decision Trees (ADTree)
     \end{itemize}
     
-    \item<1-> Rule Induction
+    \item Rule Induction
     
     \begin{itemize}
-      \item <1-> CN2
+      \item  CN2
     \end{itemize}
     
-    \item<1-> Inductive Logic Programming
+    \item Inductive Logic Programming
     \begin{itemize}
-        \item<1-> Aleph
+        \item Aleph
     \end{itemize}
     
-    \item<1-> Bayesian Networks. Using different search algorithms:
+    \item Bayesian Networks. Using different search algorithms:
     
     \begin{itemize}
-      \item<1-> Genetic Search
-      \item<1-> Hill Climbing
-      \item<1-> Simulated Annealing
+      \item Genetic Search
+      \item Hill Climbing
+      \item Simulated Annealing
     \end{itemize}
     
   \end{itemize}
@@ -472,14 +472,14 @@
   \frametitle{Conducted Experiments}
   
   \begin{itemize}
-    \item<1-> Classifiers were built using the train set and then tested against the test set
-    \item<1-> C4.5, Random Forest, CART, ADTree and Bayesian classifiers built using Weka
+    \item Classifiers were built using the train set and then tested against the test set
+    \item C4.5, Random Forest, CART, ADTree and Bayesian classifiers built using Weka
     \begin{itemize}
-      \item<1-> Various parameters available in Weka algorithms were experimented in hope of getting better error rates
-      \item<1-> Every missing value was replaced with modes and means
-      \item<1-> Two different classifiers were trained for each algorithm, one using only discretized attributes
+      \item Various parameters available in Weka algorithms were experimented in hope of getting better error rates
+      \item Every missing value was replaced with modes and means
+      \item Two different classifiers were trained for each algorithm, one using only discretized attributes
                 and another with the attributes unmodified
-      \item<1-> Analyze how the algorithm behaves when using numeric attributes
+      \item Analyze how the algorithm behaves when using numeric attributes
     \end{itemize}
   \end{itemize}
 }
@@ -489,17 +489,16 @@
   \frametitle{Conducted Experiments}
 
   \begin{itemize}
-    \item<1-> RapidMiner was used to build a classifier with the ID3 algorithm.
-    \item<1-> Peter Clark's CN2 was used to induce rules.
+    \item RapidMiner was used to build a classifier with the ID3 algorithm.
+    \item Peter Clark's CN2 was used to induce rules.
     \begin{itemize}
-        \item<1-> \url{http://www.cs.utexas.edu/users/pclark/software/\#cn2}.
+        \item \url{http://www.cs.utexas.edu/users/pclark/software/\#cn2}.
     \end{itemize}
-    \item<1-> Aleph was used to inductively generate logic clauses.
+    \item Aleph was used to inductively generate logic clauses.
     \begin{itemize}
-        \item<1-> \url{http://www.comlab.ox.ac.uk/activities/machinelearning/Aleph/aleph.html}.
+        \item \url{http://www.comlab.ox.ac.uk/activities/machinelearning/Aleph/aleph.html}.
     \end{itemize}
   \end{itemize}
-  % colocar ILP ID3!
 }
 
 \subsection{ID3}
@@ -571,11 +570,11 @@
   \frametitle{Random Forest}
   
   \begin{itemize}
-    \item<1-> It is an ensemble classifier consisting of many decision trees
-    \item<1-> Outputs the class that is the mode of the class's output by individual trees
-    \item<1-> Better results require more time building the classifier
-    \item<1-> Large quantities of memory needed: 1GB to compute with 400 trees
-    \item<1-> Over-fitting
+    \item It is an ensemble classifier consisting of many decision trees
+    \item Outputs the class that is the mode of the class's output by individual trees
+    \item Better results require more time building the classifier
+    \item Large quantities of memory needed: 1GB to compute with 400 trees
+    \item Over-fitting
   \end{itemize}
   
   \begin{table}[ht]
@@ -605,16 +604,16 @@
   \frametitle{Bayesian Networks}
   
   \begin{itemize}
-    \item<1-> Based on conditional probabilities and the Bayes theorem
-    \item<1-> Represents a set of variables and their conditional independencies via a directed acyclic graph and a set of probability tables
-    \item<1-> The algorithm first learns the network structure / graph and then learns the probability tables
-    \item<1-> We experimented with different algorithms to learn the network structure:
+    \item Based on conditional probabilities and the Bayes theorem
+    \item Represents a set of variables and their conditional independencies via a directed acyclic graph and a set of probability tables
+    \item The algorithm first learns the network structure / graph and then learns the probability tables
+    \item We experimented with different algorithms to learn the network structure:
      \begin{itemize}
-      \item<1-> Genetic Search
-      \item<1-> Hill Climbing
-      \item<1-> Simulated Annealing
+      \item Genetic Search
+      \item Hill Climbing
+      \item Simulated Annealing
      \end{itemize}
-    \item<1-> Weka provides a very rich set of parameters for each search algorithm
+    \item Weka provides a very rich set of parameters for each search algorithm
   \end{itemize}
   
 }
@@ -625,13 +624,13 @@
     \frametitle{CN2}
 
     \begin{itemize}
-    \item<1-> CN2 can generate both ordered and unordered set of rules.
-    \item<1-> Peter Clark's software can use different error estimations:
+    \item CN2 can generate both ordered and unordered set of rules.
+    \item Peter Clark's software can use different error estimations:
     \begin{itemize}
-        \item<1-> Laplacian.
-        \item<1-> Naive.
-        \item<1-> Information Gain.
-        \item<1-> Modified Entropy.
+        \item Laplacian.
+        \item Naive.
+        \item Information Gain.
+        \item Modified Entropy.
     \end{itemize}
     \end{itemize}
 
@@ -713,15 +712,15 @@ more_than_50K(A) :- senior(A), full_time_worker(A), is_native_of_cambodia(A).
     \frametitle{Conclusions}
 
     \begin{itemize}
-    \item<1-> ID3 and C4.5 are very fast and build classifiers with a decent error rate.
-    \item<1-> ILP and CN2 build more expressive classifiers, capable of a better interpretation by a human agent, but take longer to finish.
-    \item<1-> The worst error rate is below 25\%.
-    \item<1-> Using numeric information results in better error rates
-    \item<1-> There is a lot of software tools that support the building of classifiers, namely Weka and RapidMiner.
+    \item ID3 and C4.5 are very fast and build classifiers with a decent error rate.
+    \item ILP and CN2 build more expressive classifiers, capable of a better interpretation by a human agent, but take longer to finish.
+    \item The worst error rate is below 25\%.
+    \item Using numeric information results in better error rates
+    \item There is a lot of software tools that support the building of classifiers, namely Weka and RapidMiner.
     \begin{itemize}
-        \item<1-> Open source.
-        \item<1-> Easy to use.
-        \item<1-> APIs for integration with Java applications.
+        \item Open source.
+        \item Easy to use.
+        \item APIs for integration with Java applications.
     \end{itemize}
     \end{itemize}
 }
@@ -731,10 +730,10 @@ more_than_50K(A) :- senior(A), full_time_worker(A), is_native_of_cambodia(A).
     \frametitle{Conclusions}
 
     \begin{itemize}
-    \item<1-> Having a high capital gain clearly contributes to gain more than 50K dollars per year.
-    \item<1-> Middle-aged husbands have a higher tendency to gain more than 50K dollars per year.
-    \item<1-> A high percentage of people who gain less than 50K dollars per year are own childs.
-    \item<1-> People coming from countries such as Taiwan, Thailand or Cambodia usually have higher education and gain more than 50K dollars per year.
+    \item Having a high capital gain clearly contributes to gain more than 50K dollars per year.
+    \item Middle-aged husbands have a higher tendency to gain more than 50K dollars per year.
+    \item A high percentage of people who gain less than 50K dollars per year are own childs.
+    \item People coming from countries such as Taiwan, Thailand or Cambodia usually have higher education and gain more than 50K dollars per year.
     \end{itemize}
 }
 
