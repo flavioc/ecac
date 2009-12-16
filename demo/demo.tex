@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage{indentfirst}
 \usepackage{lastpage}
+\usepackage{array}
 \usepackage{url}
 \usepackage{float}
 \usepackage{subfigure}
@@ -371,6 +372,28 @@
 \frame
 {
     \frametitle{Association Rules}
+    
+    \begin{itemize}
+      \item <1-> Association rules can be used to discover interesting relations and patterns between attributes.
+     
+    \end{itemize}
+    
+    \begin{table}[ht]
+        \begin{center}
+        \scalebox{1.0}{
+          
+        \begin{tabular}{ | m{5cm} | c | c | c | }
+        \hline
+        \textbf{Rule / LHS} & \textbf{RHS} & \textbf{Support} & \textbf{Confidence} \\ \hline
+        \footnotesize{age=young, hours\_per\_week=part\_time} & $<$50K & 0.05730782 & 1 \\ \hline
+        \footnotesize{marital\_status=never\_married, relationship=own\_child, hours\_per\_week=part\_time} & $<$50K & 0.04689659 & 1 \\ \hline
+        \footnotesize{age=young, relationship=own\_child, hours\_per\_week=part\_time} & $<$50K & 0.04404042 & 1 \\ \hline
+        \footnotesize{relationship=husband, capital\_gain=high} & $>$50K & 0.02251159 & 0.9918809 \\ \hline
+        \footnotesize{relationship=husband, race=white, sex=male, capital\_gain=high} & $>$50K & 0.02063819 & 0.9926145 \\ \hline
+        \end{tabular}}
+        \label{tbl:arules_income}
+        \end{center}
+    \end{table}
 }
 
 \frame
