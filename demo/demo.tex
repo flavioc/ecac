@@ -425,11 +425,57 @@
 \section{Results}
 \frame
 {
+    \frametitle{Results}
+
+\begin{table}[ht]
+    \begin{center}
+    \begin{tabular}{ | l | l | }
+    \hline
+    \textbf{Algorithm} & \textbf{Error rate} \\ \hline
+    CN2 & 15.20 \\ \hline
+    ID3 & 15.68 \\ \hline
+    ADTree & 18.49 \\ \hline
+    C4.5 & 18.84 \\ \hline
+    Bayesian Networks (Simulated Annealing) & 19.15 \\ \hline
+    Bayesian Networks (Hill Climbing) & 20.03 \\ \hline
+    ILP (Aleph) & 20.45 \\ \hline
+    Random Forest & 21.01 \\ \hline
+    Bayesian Networks (Genetic Search) & 21.26 \\ \hline
+    CART & 21.34 \\ \hline
+    \end{tabular}
+    \label{tbl:overall_results}
+    \end{center}
+\end{table}
 }
 
 \section{Conclusions}
 \frame
 {
+    \frametitle{Conclusions}
+
+    \begin{itemize}
+    \item<1-> ID3 and C4.5 are very fast and build classifiers with a decent error rate.
+    \item<1-> ILP and CN2 build more expressive classifiers, capable of a better interpretation by a human agent, but take longer to finish.
+    \item<1-> The worst error rate is below 25\%.
+    \item<1-> There is a lot of software tools that support the building of classifiers, namely Weka and RapidMiner.
+    \begin{itemize}
+        \item<1-> Open source.
+        \item<1-> Easy to use.
+        \item<1-> APIs for integration with Java applications.
+    \end{itemize}
+    \end{itemize}
+}
+
+\frame
+{
+    \frametitle{Conclusions}
+
+    \begin{itemize}
+    \item<1-> Having a high capital gain clearly contributes to gain more than 50K dollars per year.
+    \item<1-> Middle-aged husbands have a higher tendency to gain more than 50K dollars per year.
+    \item<1-> A high percentage of people who gain less than 50K dollars per year are own childs.
+    \item<1-> People coming from countries such as Taiwan, Thailand or Cambodia usually have higher education and gain more than 50K dollars per year.
+    \end{itemize}
 }
 
 \end{document}
