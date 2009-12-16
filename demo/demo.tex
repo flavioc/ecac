@@ -449,7 +449,10 @@
       \item <1-> CN2
     \end{itemize}
     
-    \item<1-> Inductive Logic Programming: using Aleph
+    \item<1-> Inductive Logic Programming
+    \begin{itemize}
+        \item<1-> Aleph
+    \end{itemize}
     
     \item<1-> Bayesian Networks. Using different search algorithms:
     
@@ -483,7 +486,19 @@
 \frame
 {
   \frametitle{Conducted Experiments}
-  % colocar ILP CN2 ID3!
+
+  \begin{itemize}
+    \item<1-> RapidMiner was used to build a classifier with the ID3 algorithm.
+    \item<1-> Peter Clark's CN2 was used to induce rules.
+    \begin{itemize}
+        \item<1-> \url{http://www.cs.utexas.edu/users/pclark/software/\#cn2}.
+    \end{itemize}
+    \item<1-> Aleph was used to inductively generate logic clauses.
+    \begin{itemize}
+        \item<1-> \url{http://www.comlab.ox.ac.uk/activities/machinelearning/Aleph/aleph.html}.
+    \end{itemize}
+  \end{itemize}
+  % colocar ILP ID3!
 }
 
 \subsection{C4.5}
@@ -572,16 +587,12 @@
   
 }
 
-\subsection{Rule Induction}
+\subsection{CN2}
 \frame
 {
-    \frametitle{Rule Induction}
+    \frametitle{CN2}
 
     \begin{itemize}
-    \item<1-> Peter Clark's CN2 software was used to induce rules:
-    \begin{itemize}
-        \item<1-> \url{http://www.cs.utexas.edu/users/pclark/software/\#cn2}.
-    \end{itemize}
     \item<1-> CN2 can generate both ordered and unordered set of rules.
     \item<1-> Peter Clark's software can use different error estimations:
     \begin{itemize}
@@ -591,6 +602,23 @@
         \item<1-> Modified Entropy.
     \end{itemize}
     \end{itemize}
+
+\footnotesize
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{ | l | l | l | l | l |}
+    \hline
+    \textbf{Algorithm} & \textbf{Error estimate} & \textbf{Train error rate} & \textbf{Test error rate} & \textbf{Time} \\ \hline
+    Unordered & Laplacian & 13.3 & 15.2 & 3m29s \\ \hline
+    Unordered & Naive & - & - & - \\ \hline
+    Ordered & Laplacian & 0 & 17.6 & 1m45s \\ \hline
+    Ordered & Naive & 0 & 19.9 & 12m21s \\ \hline
+    Ordered & Information Gain & 18.9 & 18.9 & 0m5s \\ \hline
+    Ordered & Modified Entropy & 18.9 & 19.1 & 0m20s \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\normalsize
 }
 
 \section{Results}
