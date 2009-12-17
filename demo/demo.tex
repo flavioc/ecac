@@ -56,9 +56,9 @@
         \item 32561 records for the training set (67\%).
         \item 16281 records for the test set (33\%).
     \end{itemize}
-    \item Each entry is composed by a set of 14 attributes and 2 classes (winning more or less than 50K dollars a year).
+    \item Each entry is composed by a set of 14 attributes and a class (winning more or less than 50K dollars a year).
     \item There are 3620 records with missing values. The only attributes containing missing values are \textbf{Workclass}, \textbf{Occupation} and \textbf{Native-country}.
-    \item Available in \url{ftp://ftp.ics.uci.edu/pub/machine-learning-databases/adult}.
+    \item Available in \url{ftp://ftp.ics.uci.edu/pub/machine-learning-databases/adult}
     \end{itemize}
 }
 
@@ -472,14 +472,14 @@
   \frametitle{Conducted Experiments}
   
   \begin{itemize}
-    \item Classifiers were built using the train set and then tested against the test set
-    \item C4.5, Random Forest, CART, ADTree and Bayesian classifiers built using Weka
+    \item Classifiers were built using the train set and then tested against the test set.
+    \item C4.5, Random Forest, CART, ADTree and Bayesian classifiers built using Weka:
     \begin{itemize}
-      \item Various parameters available in Weka algorithms were experimented in hope of getting better error rates
-      \item Every missing value was replaced with modes and means
+      \item Various parameters available in Weka algorithms were experimented in hope of getting better error rates.
+      \item Every missing value was replaced with modes and means.
       \item Two different classifiers were trained for each algorithm, one using only discretized attributes
-                and another with the attributes unmodified
-      \item Analyze how the algorithm behaves when using numeric attributes
+                and another with the attributes unmodified.
+      \item Analyze how the algorithm behaves when using numeric attributes.
     \end{itemize}
   \end{itemize}
 }
@@ -492,11 +492,11 @@
     \item RapidMiner was used to build a classifier with the ID3 algorithm.
     \item Peter Clark's CN2 was used to induce rules.
     \begin{itemize}
-        \item \url{http://www.cs.utexas.edu/users/pclark/software/\#cn2}.
+        \item \url{http://www.cs.utexas.edu/users/pclark/software/\#cn2}
     \end{itemize}
     \item Aleph was used to inductively generate logic clauses.
     \begin{itemize}
-        \item \url{http://www.comlab.ox.ac.uk/activities/machinelearning/Aleph/aleph.html}.
+        \item \url{http://www.comlab.ox.ac.uk/activities/machinelearning/Aleph/aleph.html}
     \end{itemize}
   \end{itemize}
 }
@@ -538,9 +538,9 @@
   \frametitle{C4.5}
   
   \begin{itemize}
-    \item Weka supports a confidence threshold parameter that dictates how much pruning the algorithm will do
-    \item The bigger the threshold the less pruning the algorithm does
-    \item When using only discretized data the algorithm gives error rates of $\approx$25\%
+    \item Weka supports a confidence threshold parameter that dictates how much pruning the algorithm will do.
+    \item The bigger the threshold the less pruning the algorithm does.
+    \item When using only discretized data the algorithm gives error rates of $\approx$25\%.
   \end{itemize}
   
   \begin{table}[ht]
@@ -570,11 +570,11 @@
   \frametitle{Random Forest}
   
   \begin{itemize}
-    \item It is an ensemble classifier consisting of many decision trees
-    \item Outputs the class that is the mode of the class's output by individual trees
-    \item Better results require more time building the classifier
-    \item Large quantities of memory needed: 1GB to compute with 400 trees
-    \item Over-fitting
+    \item It is an ensemble classifier consisting of many decision trees.
+    \item Outputs the class that is the mode of the class's output by individual trees.
+    \item Better results require more time building the classifier.
+    \item Large quantities of memory needed: 1GB to compute with 400 trees.
+    \item Over-fitting.
   \end{itemize}
   
   \begin{table}[ht]
@@ -604,16 +604,16 @@
   \frametitle{Bayesian Networks}
   
   \begin{itemize}
-    \item Based on conditional probabilities and the Bayes theorem
-    \item Represents a set of variables and their conditional independencies via a directed acyclic graph and a set of probability tables
-    \item The algorithm first learns the network structure / graph and then learns the probability tables
+    \item Based on conditional probabilities and the Bayes theorem.
+    \item Represents a set of variables and their conditional independencies via a directed acyclic graph and a set of probability tables.
+    \item The algorithm first learns the network structure / graph and then learns the probability tables.
     \item We experimented with different algorithms to learn the network structure:
      \begin{itemize}
       \item Genetic Search
       \item Hill Climbing
       \item Simulated Annealing
      \end{itemize}
-    \item Weka provides a very rich set of parameters for each search algorithm
+    \item Weka provides a very rich set of parameters for each search algorithm.
   \end{itemize}
   
 }
